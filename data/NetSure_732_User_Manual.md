@@ -19,7 +19,7 @@ BOM 编码
 
 版权所有，保留一切权利。内容如有改动，恕不另行通知。
 
-艾默生网络能源有限公司 Vertiv Co., Ltd.
+艾默生网络能源有限公司 Vertiv Co., Ltd.ri
 
 Address: Block B2, Nanshan I Park, No.1001
 

@@ -1,0 +1,50 @@
+{
+  "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+  "cac_muc": [
+    {
+      "ten_hang_hoa": "Yêu cầu chung",
+      "thong_so_ky_thuat": {
+        "YCG001": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ rõ ràng, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+        "YCG002": "Thiết bị mới 100% chưa qua sử dụng.",
+        "YCG003": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây.",
+        "YCG004": "Tuân thủ tiêu chuẩn IEC 60950-1.",
+        "YCG005": "Thuộc loại thiết bị nguồn sử dụng kỹ thuật chuyển mạch, thiết kế dạng Module theo chức năng của từng khối.",
+        "YCG006": "Tất cả các khối đặt trong tủ liên hoàn, đồng bộ của hãng, tạo thành thiết bị cấp nguồn và nạp acquy hoàn chỉnh.",
+        "YCG007": "Thời gian bảo hành: theo tiêu chuẩn của nhà sản xuất, tối thiểu 12 tháng."
+      }
+    },
+    {
+      "ten_hang_hoa": "Cấu hình thiết bị nguồn",
+      "thong_so_ky_thuat": {
+        "CND001": "Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4.",
+        "CND002": "Công suất mỗi module chỉnh lưu: ≥ 3000W.",
+        "CND003": "Số lượng module chỉnh lưu trang bị kèm tủ nguồn: ≥ 3 module.",
+        "CND004": "Attomat DC: PL (Priority LLVD) Loại 32A: ≥ 02 cái.",
+        "CND005": "Attomat DC: PL (Priority LLVD) Loại 16A: ≥ 01 cái.",
+        "CND006": "Attomat DC: NPL (Non Priority LLVD) Loại 63A: ≥ 02 cái.",
+        "CND007": "Attomat DC: NPL (Non Priority LLVD) Loại 32A: ≥ 03 cái.",
+        "CND008": "Attomat DC: NPL (Non Priority LLVD) Loại 16A: ≥ 02 cái.",
+        "CND009": "Attomat cho acquy: Loại 125A: ≥ 02 cái."
+      }
+    },
+    {
+      "ten_hang_hoa": "Đầu vào AC",
+      "thong_so_ky_thuat": {
+        "DAC001": "Sử dụng được các điện áp L＋N＋PE/220VAC.",
+        "DAC002": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC.",
+        "DAC003": "Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz.",
+        "DAC004": "Có tính năng chống sét."
+      }
+    },
+    {
+      "ten_hang_hoa": "Đầu ra DC",
+      "thong_so_ky_thuat": {
+        "DDC001": "Điện áp đầu ra danh định -48VDC, cực dương đấu đất.",
+        "DDC002": "Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC.",
+        "DDC003": "Độ ổn định điện áp đầu ra: ≤1%.",
+        "DDC004": "Nhiễu băng rộng (Wide band noise): ≤20mV rms (5Hz÷1MHz).",
+        "DDC005": "Độ gợn sóng đầu ra (đỉnh – đỉnh):≤ 250 mV (0÷20MHz)."
+      }
+    }
+  ]
+}

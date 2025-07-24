@@ -6,3 +6,5 @@ llama-index-llms-openai
 nbconvert
 python-docx
 docx2pdf
+llama-index-vector-stores-qdran
+fastembed
