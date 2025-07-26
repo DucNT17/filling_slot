@@ -3,6 +3,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
+
+
 os.environ["LLAMA_CLOUD_API_KEY"] = os.getenv("LLAMA_API_KEY")
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
@@ -98,13 +100,13 @@ class PDFTomarkdownConverter:
     
 if __name__ == "__main__":
     converter = PDFTomarkdownConverter(api_key=os.getenv("LLAMA_API_KEY"))
-    batch_results = converter.convert_multiple_pdfs(
-        pdf_folder="documents",
-        output_folder="data"
-    )
-    
-    # single_result = converter.convert_single_pdf(
-    #     pdf_path="./documents/NetSure_732_User_Manual.pdf",
-    #     output_path="./data/NetSure_732_User_Manual.md"
+    # batch_results = converter.convert_multiple_pdfs(
+    #     pdf_folder="documents",
+    #     output_folder="data"
     # )
+    
+    single_result = converter.convert_single_pdf(
+        pdf_path="D:\\study\\LammaIndex\\output\\output_no_repeat.pdf",
+        output_path="D:\\study\\LammaIndex\\data\\Bang_Tuyen_Bo_Dap_Ung.md"
+    )
     print("Hoàn thành!")

@@ -4,3 +4,7 @@ llama-index-core
 llama-index-embeddings-openai 
 llama-index-llms-openai
 nbconvert
+python-docx
+docx2pdf
+llama-index-vector-stores-qdran
+fastembed

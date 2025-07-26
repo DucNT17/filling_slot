@@ -1,0 +1,50 @@
+{
+    "1": {
+        "file_name": "NetSure_732_Brochure",
+        "product_name": "NetSure™ 732 A41",
+        "header_path": "/",
+        "page": 1,
+        "level1": "NetSure™ 732 A41",
+        "level2": null,
+        "summary": "The text describes the NetSure™ 732 A41, a 48V DC embedded power supply.",
+        "table_name": "None",
+        "figure_name": "None",
+        "document_id": "cad8cf9f-684b-11f0-a0c2-38f3abb08dd1",
+        "chunk_id": "NetSure_732_Brochure_1",
+        "type": "chunk_document"
+    },
+    "2": {
+        "file_name": "NetSure_732_Brochure",
+        "product_name": "NetSure™ 732 A41",
+        "header_path": "/NetSure™ 732 A41/",
+        "page": 1,
+        "level1": "NetSure™ 732 A41",
+        "level2": "Key Features",
+        "summary": "The text describes the key features of an ultra-compact power system that offers high efficiency, adaptability, and multiple communication interfaces.",
+        "table_name": "None",
+        "figure_name": "None",
+        "document_id": "cad8cf9f-684b-11f0-a0c2-38f3abb08dd1",
+        "chunk_id": "NetSure_732_Brochure_2",
+        "type": "chunk_document"
+    },
+    "3": {
+        "file_name": "NetSure_732_Brochure",
+        "product_name": "NetSure™ 732 A41",
+        "header_path": "/NetSure™ 732 A41/",
+        "page": 1,
+        "level1": "NetSure™ 732 A41",
+        "level2": "Description",
+        "summary": "The NetSure™ 732 A41 is a versatile rack-mounted power system designed for telecom sites, featuring advanced technology for high energy efficiency and remote monitoring capabilities.",
+        "table_name": "System Configuration of NetSure™ 732 A41",
+        "figure_name": "None",
+        "document_id": "cad8cf9f-684b-11f0-a0c2-38f3abb08dd1",
+        "chunk_id": "NetSure_732_Brochure_3",
+        "type": "chunk_document"
+    },
+    "cad8cf9f-684b-11f0-a0c2-38f3abb08dd1": {
+        "file_name": "NetSure_732_Brochure",
+        "product_name": "NetSure™ 732 A41",
+        "document_id": "cad8cf9f-684b-11f0-a0c2-38f3abb08dd1",
+        "type": "summary_document"
+    }
+}

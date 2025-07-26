@@ -1,0 +1,92 @@
+{
+    "1": {
+        "file_name": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc",
+        "product_name": "Vertiv™ eSure™ Inverter",
+        "header_path": "/",
+        "page": 1,
+        "level1": "Vertiv™ eSure™ Inverter",
+        "level2": null,
+        "summary": "The Vertiv™ eSure™ Inverter offers a reliable AC and DC backup solution that prioritizes space and efficiency.",
+        "table_name": "None",
+        "figure_name": "None",
+        "document_id": "ef8fba95-684a-11f0-a86d-38f3abb08dd1",
+        "chunk_id": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc_1",
+        "type": "chunk_document"
+    },
+    "2": {
+        "file_name": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc",
+        "product_name": "Vertiv™ eSure™ Inverter",
+        "header_path": "/Vertiv™ eSure™ Inverter/",
+        "page": 1,
+        "level1": "Vertiv™ eSure™ Inverter",
+        "level2": "Benefits",
+        "summary": "The text outlines the benefits of a power system designed for 5G and edge sites, highlighting its efficiency, space-saving design, and performance control.",
+        "table_name": "None",
+        "figure_name": "None",
+        "document_id": "ef8fba95-684a-11f0-a86d-38f3abb08dd1",
+        "chunk_id": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc_2",
+        "type": "chunk_document"
+    },
+    "3": {
+        "file_name": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc",
+        "product_name": "Vertiv™ eSure™ Inverter",
+        "header_path": "/Vertiv™ eSure™ Inverter/",
+        "page": 1,
+        "level1": "Vertiv™ eSure™ Inverter",
+        "level2": "Description",
+        "summary": "The eSure™ Inverter I120-1000 is a highly reliable dual input inverter that ensures efficient power management and backup capabilities.",
+        "table_name": "Efficiency of eSure Inverter I120-1000",
+        "figure_name": "I120-1000 AC/AC Peak Efficiency Curve at 120 VAC Nominal",
+        "document_id": "ef8fba95-684a-11f0-a86d-38f3abb08dd1",
+        "chunk_id": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc_3",
+        "type": "chunk_document"
+    },
+    "4": {
+        "file_name": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc",
+        "product_name": "Vertiv™ eSure™ Inverter",
+        "header_path": "/Vertiv™ eSure™ Inverter/",
+        "page": 2,
+        "level1": "Vertiv™ eSure™ Inverter",
+        "level2": "Technical Specifications",
+        "summary": "The text provides detailed technical specifications for a power system, including AC and DC input/output parameters, control and monitoring features, environmental conditions, standards compliance, and mechanical dimensions.",
+        "table_name": "Technical Specifications of Power System",
+        "figure_name": "None",
+        "document_id": "ef8fba95-684a-11f0-a86d-38f3abb08dd1",
+        "chunk_id": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc_4",
+        "type": "chunk_document"
+    },
+    "5": {
+        "file_name": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc",
+        "product_name": "Vertiv™ eSure™ Inverter",
+        "header_path": "/Vertiv™ eSure™ Inverter/",
+        "page": 2,
+        "level1": "Vertiv™ eSure™ Inverter",
+        "level2": "Figures",
+        "summary": "The text presents a flowchart illustrating the relationship between output power and temperature across a specified voltage range.",
+        "table_name": "None",
+        "figure_name": "Output Power vs. Temperature",
+        "document_id": "ef8fba95-684a-11f0-a86d-38f3abb08dd1",
+        "chunk_id": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc_5",
+        "type": "chunk_document"
+    },
+    "6": {
+        "file_name": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc",
+        "product_name": "Vertiv™ eSure™ Inverter",
+        "header_path": "/Vertiv™ eSure™ Inverter/",
+        "page": 2,
+        "level1": "Vertiv™ eSure™ Inverter",
+        "level2": "Ordering Information",
+        "summary": "The text provides ordering information for the eSure™ Inverter module, including its part number and description.",
+        "table_name": "Table 1-1 Ordering Information for eSure Inverter Module",
+        "figure_name": "None",
+        "document_id": "ef8fba95-684a-11f0-a86d-38f3abb08dd1",
+        "chunk_id": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc_6",
+        "type": "chunk_document"
+    },
+    "ef8fba95-684a-11f0-a86d-38f3abb08dd1": {
+        "file_name": "vertiv-esure-inverter-i120-1000-ds-en-gl-dc",
+        "product_name": "Vertiv™ eSure™ Inverter",
+        "document_id": "ef8fba95-684a-11f0-a86d-38f3abb08dd1",
+        "type": "summary_document"
+    }
+}
