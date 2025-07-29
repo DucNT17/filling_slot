@@ -22,8 +22,10 @@ class PDFTomarkdownConverter:
             auto_mode_trigger_on_table_in_page=True,
             skip_diagonal_text=True,
             preserve_layout_alignment_across_pages=True,
+            preserve_very_small_text=True,
+            merge_tables_across_pages_in_markdown=True,
             num_workers=4,
-            max_timeout=180,
+            max_timeout=500,
         )
     def convert_single_pdf(self, pdf_path, output_path=None):
         """
@@ -106,7 +108,7 @@ if __name__ == "__main__":
     # )
     
     single_result = converter.convert_single_pdf(
-        pdf_path="D:\\study\\LammaIndex\\output\\output_no_repeat.pdf",
-        output_path="D:\\study\\LammaIndex\\data\\Bang_Tuyen_Bo_Dap_Ung.md"
+        pdf_path="D:\\study\\LammaIndex\\documents\\NetSure_732_User_Manual.pdf",
+        output_path="D:\\study\\LammaIndex\\data\\Bang_Tuyen_Bo_Dap_Ung2.md"
     )
     print("Hoàn thành!")
