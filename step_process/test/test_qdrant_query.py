@@ -52,36 +52,26 @@ filters = MetadataFilters(
 
 index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
 
-retriever = index.as_retriever(similarity_top_k=5, verbose=True)
+retriever = index.as_retriever(similarity_top_k=5, verbose=True, filters=filters)
 
 query_str = f"""Sản phẩm Netsure 732 có đấp ứng được tiêu chuẩn IEC60950-1 không? (trả lời bằng tiếng việt)"""
 
 # --- Thay đổi từ đây ---
 query_engine = RetrieverQueryEngine.from_args(
-    retriever=retriever,
+    retriever=retriever
 )
 
 # 2. Thực hiện truy vấn qua Query Engine
 print("Bắt đầu truy vấn với Query Engine...")
-response = query_engine.query(query_str)
+response = query_engine.retrieve(query_str)
+print("sdddddd: ", response)
 
-
-# 3. In câu trả lời được tổng hợp bởi LLM và các nguồn tham khảo
-print("\n" + "="*50)
-print("Câu trả lời từ LLM:")
-print(str(response))
-print("="*50 + "\n")
-
-
-print("Nguồn tham khảo (Source Nodes):")
-if not response.source_nodes:
-    print("Không tìm thấy thông tin nào phù hợp.")
-else:
-    for node in response.source_nodes:
-        print(f"Metadata: {node.metadata}")
-        print(f"Score: {node.score:.4f}")
-        print(f"Content: {node.text[:300]}...") # In một đoạn nội dung để xem trước
-        print("-" * 100)
+# print("Nguồn tham khảo (Source Nodes):")
+# if not response.source_nodes:
+#     print("Không tìm thấy thông tin nào phù hợp.")
+# else:
+#     for node in response.source_nodes:
+#         print(f"Metadata: {node.metadata}")
 
 
 # response_nodes = retriever.retrieve(query_str)
