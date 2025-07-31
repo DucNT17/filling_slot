@@ -4,3 +4,4 @@ chroma_store/
 data/
 documents/
 output/
+**/__pycache__/
