@@ -54,7 +54,9 @@ index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
 
 retriever = index.as_retriever(similarity_top_k=5, verbose=True)
 
-query_str = f"""Sản phẩm Netsure 732 có đấp ứng được tiêu chuẩn IEC60950-1 không? (trả lời bằng tiếng việt)"""
+query_str = f"""Dải điện áp đầu vào AC của bộ chuyển đổi nguồn 220VAC/48VDC (đi kèm 2 dàn acquy 200Ah) nằm trong khoảng bao nhiêu? Có đúng là từ 85VAC đến 300VAC không?
+
+"""
 
 # --- Thay đổi từ đây ---
 query_engine = RetrieverQueryEngine.from_args(
@@ -149,4 +151,3 @@ else:
 #         print(f"Content: {doc.get_content()}")
 #         print(f"Metadata: {doc.metadata}")
 #         print("-----")
-

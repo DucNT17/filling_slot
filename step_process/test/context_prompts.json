@@ -1,0 +1,875 @@
+[
+  {
+    "8DA76": "Tải giả xả acquy Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "9A3F0": "Tải giả xả acquy Yêu cầu chung Thiết bị mới 100% chưa qua sử dụng"
+  },
+  {
+    "83F83": "Tải giả xả acquy Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "C2ECA": "Tải giả xả acquy Yêu cầu chung Thời  gian  bảo  hành:  theo  tiêu  chuẩn  của  nhà  sản xuất, tối thiểu 12 tháng."
+  },
+  {
+    "69345": "Tải giả xả acquy Thông số kỹ thuật Điện trở tiếp địa < 0.1 Ohm"
+  },
+  {
+    "1A34B": "Tải giả xả acquy Thông số kỹ thuật Độ ồn < 75 dB khi hoạt động hết công suất."
+  },
+  {
+    "8CAC1": "Tải giả xả acquy Thông số kỹ thuật Điều kiện nhiệt độ -  Dải nhiệt độ hoạt động: 0 ÷ 40°C,  -  Dải nhiệt độ lưu kho: -25°C ÷70°C."
+  },
+  {
+    "6BD3E": "Tải giả xả acquy Thông số kỹ thuật Điều kiện độ ẩm -  Độ ẩm tương đối từ 5 ÷ 95%, không đọng sương."
+  },
+  {
+    "D69E0": "Tải giả xả acquy Thông số kỹ thuật Điện áp acquy cao nhất – tính theo giá trị tuyệt đối ≥ 270 V"
+  },
+  {
+    "B9D13": "Tải giả xả acquy Thông số kỹ thuật Điện áp acquy nhỏ nhất ≤ 18 V"
+  },
+  {
+    "09148": "Tải giả xả acquy Thông số kỹ thuật Công suất lớn nhất có thể xả - tương ứng với 1 bộ ≥ 16 kW"
+  },
+  {
+    "30D20": "Tải giả xả acquy Thông số kỹ thuật Dòng xả lớn nhất với dải điện áp  24V  DC  ÷  120V  DC)  – tương ứng với 1 bộ ≥ 130A"
+  },
+  {
+    "04FB5": "Tải giả xả acquy Thông số kỹ thuật Dòng xả lớn nhất với dải điện áp  220V  DC  ÷  240V  DC)  – tương ứng với 1 bộ ≥ 70 A"
+  },
+  {
+    "834D9": "Tải giả xả acquy Thông số kỹ thuật Các chế độ xả -  Gồm 4 chế độ: dòng không đổi, công suất không đổi, theo đặc tính dòng cho trước, điều chỉnh thủ công."
+  },
+  {
+    "D7302": "Tải giả xả acquy Thông số kỹ thuật Bước công suất điều chỉnh xả tải 100 W"
+  },
+  {
+    "923E9": "Tải giả xả acquy Thông số kỹ thuật Dải điện áp acquy định mức -  Bao gồm: 24, 48, 110, 240 V DC"
+  },
+  {
+    "D6004": "Tải giả xả acquy Thông số kỹ thuật Dải cài đặt acquy -  Tự động, 4 mức danh định, cài đặt khi bắt đầu test"
+  },
+  {
+    "CA67D": "Tải giả xả acquy Thông số kỹ thuật Với mức điện áp danh định là 24V -  Dải điện áp của acquy là 20 ÷ 34 V DC"
+  },
+  {
+    "49BCA": "Tải giả xả acquy Thông số kỹ thuật Với mức điện áp danh định là 48V -  Dải điện áp của acquy là 34 ÷ 60 V DC"
+  },
+  {
+    "709BD": "Tải giả xả acquy Thông số kỹ thuật Với mức điện áp danh định là 72V -  Dải điện áp của acquy là 60 ÷ 84 V DC"
+  },
+  {
+    "13394": "Tải giả xả acquy Thông số kỹ thuật Với mức điện áp danh định là 110/120V -  Dải điện áp của acquy là 84 ÷ 140 V DC"
+  },
+  {
+    "CE8EE": "Tải giả xả acquy Thông số kỹ thuật Với mức điện áp danh định là 240V -  Dải điện áp của acquy là 140 ÷ 270 V DC"
+  },
+  {
+    "5ACDD": "Tải giả xả acquy Thông số kỹ thuật Điện áp khởi đầu cực đại với mức điện áp danh định 24V -  Dải điện áp của acquy là 20 ÷ 35 V DC"
+  },
+  {
+    "10E04": "Tải giả xả acquy Thông số kỹ thuật Điện áp khởi đầu cực đại với mức điện áp danh định 48V -  Dải điện áp của acquy là 34 ÷ 65 V DC"
+  },
+  {
+    "00B60": "Tải giả xả acquy Thông số kỹ thuật Điện áp khởi đầu cực đại với mức điện áp danh định 72V -  Dải điện áp của acquy là 58 ÷ 97 V DC"
+  },
+  {
+    "E0629": "Tải giả xả acquy Thông số kỹ thuật Điện áp khởi đầu cực đại với mức điện áp danh định 110V -  Dải điện áp của acquy là 84 ÷ 140 V DC"
+  },
+  {
+    "2037C": "Tải giả xả acquy Thông số kỹ thuật Điện áp khởi đầu cực đại với mức điện áp danh định 240V -  Dải điện áp của acquy là 169 ÷ 270 V DC"
+  },
+  {
+    "EA46E": "Tải giả xả acquy Thông số kỹ thuật Độ  phân  giải  khi  đo  điện  áp acquy ≤ 0,1 V DC"
+  },
+  {
+    "1F90F": "Tải giả xả acquy Thông số kỹ thuật Độ  chính  xác  khi  đo  điện  áp acquy ≤ 1% với dải cực đại là 2,7 V"
+  },
+  {
+    "7F6BD": "Tải giả xả acquy Thông số kỹ thuật Độ phân giải khi đo dòng của acquy ≤ 1 A"
+  },
+  {
+    "96D15": "Tải giả xả acquy Thông số kỹ thuật Độ  chính  xác  khi  đo  dòng acquy ≤ 1% với dải cực đại là 1,3 A, bắt đầu từ 15 A"
+  },
+  {
+    "1E3B3": "Tải giả xả acquy Thông số kỹ thuật Chu  kì  cập  nhật  hiển  thị  các chỉ số điện áp và dòng điện ≤ 15 s"
+  },
+  {
+    "4FAA0": "Tải giả xả acquy Thông số kỹ thuật Độ phân giải về thời gian ≤ 1 s"
+  },
+  {
+    "56F47": "Tải giả xả acquy Thông số kỹ thuật Thông  báo  kết  thúc  đo  bằng âm thành -  Có (5 tones)"
+  },
+  {
+    "4D462": "Tải giả xả acquy Thông số kỹ thuật Kiểu hiển thị -  Đồ họa tối thiểu 128 x 64 điểm"
+  },
+  {
+    "4583F": "Tải giả xả acquy Thông số kỹ thuật Đèn nền hiển thị -  Có"
+  },
+  {
+    "B0E96": "Tải giả xả acquy Thông số kỹ thuật Số lượng bộ nhớ kết quả đo ≥ 8"
+  },
+  {
+    "F00AF": "Tải giả xả acquy Thông số kỹ thuật Thời lượng ghi lớn nhất trong quá trình test ≥ 15 giờ, với độ phân giải là 15 giây"
+  },
+  {
+    "0D5CE": "Tải giả xả acquy Thông số kỹ thuật Các  kết  quả  đo  hiển  thị  trên màn hình gồm: -  Ngày, giờ, dòng xả trong (Internal discharge current), dòng  xả  ngoài  (External  discharge  current),  điện  áp acquy, dung lượng xả, thời gian đã thử tải."
+  },
+  {
+    "2888F": "Tải giả xả acquy Thông số kỹ thuật Các  chế  độ  cài  đặt  điều  kiện dừng test gồm: -  Điện áp nhỏ nhất, dung lượng lớn nhất, thời gian test tối đa, cảnh báo hệ thống, ngừng test bằng cơ chế điều khiển từ xa"
+  },
+  {
+    "48709": "Tải giả xả acquy Thông số kỹ thuật Khả năng nâng cấp Firmware -  Có"
+  },
+  {
+    "28250": "Tải giả xả acquy Thông số kỹ thuật Bộ điều khiển của thiết bị. -  Hệ thống số, với 2 bộ vi xử lý"
+  },
+  {
+    "82BD1": "Tải giả xả acquy Thông số kỹ thuật Bảo vệ chống ngược cực pin -  Có"
+  },
+  {
+    "AE738": "Tải giả xả acquy Thông số kỹ thuật Tự động làm mát thiết bị khi kết thúc quá trình test -  Có"
+  },
+  {
+    "544BC": "Đồng hồ đo nội trở acquy Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "9DFCF": "Đồng hồ đo nội trở acquy Yêu cầu chung Thiết bị mới 100% chưa qua sử dụng"
+  },
+  {
+    "06373": "Đồng hồ đo nội trở acquy Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "2D23B": "Đồng hồ đo nội trở acquy Các tính năng Tự động tính toán trở kháng và lưu kết quả để xác định ngay chất lượng acquy"
+  },
+  {
+    "D6149": "Đồng hồ đo nội trở acquy Các tính năng Cho phép kết nối máy tính qua phần mềm phân tích"
+  },
+  {
+    "35CA2": "Đồng hồ đo nội trở acquy Các tính năng Có thể sử dụng để kiểm tra các loại acquy như: acquy axit, acquy kiềm (NiCD), acquy Lithium-ion"
+  },
+  {
+    "05D6E": "Đồng hồ đo nội trở acquy Đặc tính kỹ thuật Dải đo nội trở: + 3 mΩ: độ phân giải 1µΩ + 30 mΩ: độ phân giải 10µΩ + 300 mΩ: độ phân giải 0.1 mΩ + 3 Ω: độ phân giải 1mΩ + 30 Ω: độ phân giải 10mΩ + 300 Ω: độ phân giải 100 mΩ"
+  },
+  {
+    "68028": "Đồng hồ đo nội trở acquy Đặc tính kỹ thuật Dải đo điện áp: + 5 VDC : độ phân giải 1mV + 50 VDC: độ phân giải 10mV + 500 VDC : độ phân giải 100mV"
+  },
+  {
+    "0BEB0": "Đồng hồ đo nội trở acquy Đặc tính kỹ thuật Dải đo dòng điện DC/AC: + 4A DC: độ phân giải 1mA + 40A DC: độ phân giải 10mA + 400A DC: độ phân giải 100mA + 1000A DC: độ phân giải 1A + 4A AC: độ phân giải 1mA + 40A AC: độ phân giải 10mA + 400A AC: độ phân giải 100mA + 1000A AC: độ phân giải 1A"
+  },
+  {
+    "C4AE9": "Đồng hồ đo nội trở acquy Thân máy Màn hình cảm ứng kích thước ≥ 160 x 90 mm"
+  },
+  {
+    "0CCC1": "Đồng hồ đo nội trở acquy Thân máy Bộ nhớ lưu trữ ≥ 8Gb"
+  },
+  {
+    "362D8": "Đồng hồ đo nội trở acquy Thân máy Bản tin lưu trữ kết quả đo nội trở:  ≥ 1000 bản tin"
+  },
+  {
+    "7BE76": "Đồng hồ đo nội trở acquy Thân máy Bản tin lưu trữ kết quả đo điện áp:  ≥ 500 bản tin"
+  },
+  {
+    "39A2F": "Đồng hồ đo nội trở acquy Pin Chủng loại Pin: Li-ion, dung lượng ≥ 5.4Ah"
+  },
+  {
+    "86E39": "Đồng hồ đo nội trở acquy Pin Thời gian hoạt động sau khi sạc đầy ≥ 8h"
+  },
+  {
+    "E203C": "Đồng hồ đo nội trở acquy Phụ kiện Túi  đựng  thiết  bị,  AC/DC  adapter  sử  dụng  nguồn 220VAC"
+  },
+  {
+    "8EBC2": "Đồng hồ đo nội trở acquy Phụ kiện Toàn bộ phụ kiện hỗ trợ đo kiểm theo khuyến nghị của nhà sản xuất"
+  },
+  {
+    "1A13E": "Đồng hồ đo nội trở acquy Phụ kiện Bộ que đo 2 tiếp điểm"
+  },
+  {
+    "9A30C": "Đồng hồ đo nội trở acquy Phụ kiện Phần mềm đọc và phân tích kết quả"
+  },
+  {
+    "FB99E": "Đồng hồ đo nội trở acquy Phụ kiện Tài liệu hướng dẫn kèm theo"
+  },
+  {
+    "FAB0B": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ rõ ràng, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "EAB2F": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu chung Thiết bị mới 100% chưa qua sử dụng"
+  },
+  {
+    "8B02F": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "D3A7B": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu chung Tuân thủ tiêu chuẩn IEC 60950-1"
+  },
+  {
+    "8C7E7": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu chung Thuộc loại thiết bị  nguồn sử dụng kỹ thuật chuyển mạch, thiết kế dạng Module theo chức năng của từng khối."
+  },
+  {
+    "179C9": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu chung Tất cả các khối đặt trong tủ liên hoàn, đồng bộ của hãng, tạo thành thiết bị cấp nguồn và nạp acquyhoàn chỉnh."
+  },
+  {
+    "4623B": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu chung Thời gian bảo hành: theo tiêu chuẩn của nhà sản xuất, tối thiểu 12 tháng."
+  },
+  {
+    "23915": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Cấu hình thiết bị nguồn Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4"
+  },
+  {
+    "2D389": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Cấu hình thiết bị nguồn Công suất mỗi module chỉnh lưu: ≥ 3000W"
+  },
+  {
+    "40E88": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Cấu hình thiết bị nguồn Số lượng module chỉnh lưu trang bị kèm tủ nguồn: ≥ 3 module"
+  },
+  {
+    "50C4B": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Cấu hình thiết bị nguồn Attomat DC: + PL (Priority LLVD) ● Loại 32A: ≥ 02 cái ● Loại 16A: ≥ 01 cái + NPL (Non Priority LLVD): ● Loại 63A: ≥ 02 cái ● Loại 32A: ≥ 03 cái ● Loại 16A: ≥ 02 cái + Attomat cho acquy: ●  Loại 125A: ≥ 02 cái"
+  },
+  {
+    "5CF25": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu vào AC Sử dụng được các điện áp L＋N＋PE/220VAC"
+  },
+  {
+    "E5142": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu vào AC Dải điện áp đầu vào từ 85VAC ÷ 300VAC"
+  },
+  {
+    "6819A": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu vào AC Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz."
+  },
+  {
+    "30A65": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu vào AC Có tính năng chống sét"
+  },
+  {
+    "E9D52": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu ra DC Điện áp đầu ra danh định -48VDC, cực dương đấu đất"
+  },
+  {
+    "2D5CC": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu ra DC Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC"
+  },
+  {
+    "6BDD4": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu ra DC Độ ổn định điện áp đầu ra: ≤1%"
+  },
+  {
+    "18B7C": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu ra DC Nhiễu băng rộng (Wide band noise): ≤20mV rms (5Hz÷1MHz)"
+  },
+  {
+    "DD198": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Đầu ra DC Độ  gợn  sóng  đầu ra (đỉnh  –  đỉnh):≤  250  mV (0÷20MHz)"
+  },
+  {
+    "5883A": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Công suất mỗi module chỉnh lưu: ≥ 3000W"
+  },
+  {
+    "1D9E9": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Hệ số công suất (power factor) của Rectifier: ≥0.99 với tải từ 50÷100%"
+  },
+  {
+    "CF5FC": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Hiệu suất đỉnh (peak efficiency) module rectifier: ≥ 0,95"
+  },
+  {
+    "D5803": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100% tại điện áp 220VAC"
+  },
+  {
+    "C0DC7": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Rectifier thay thế nóng được khi tủ nguồn đang hoạt động."
+  },
+  {
+    "21F43": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Rectifier hoạt động theo cơ chế chia tải"
+  },
+  {
+    "93343": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED."
+  },
+  {
+    "8D268": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Yêu cầu với module chỉnh lưu (Rectifier) Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ."
+  },
+  {
+    "C140C": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Tính năng của thiết bị nguồn Bộ nguồn có chức năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode)."
+  },
+  {
+    "FEEF1": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Tính năng của thiết bị nguồn Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquy mà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi thì bộ thiết bị điều khiển phải đảm bảo tự động chuyển  đổi  lại  trạng  thái  làm  việc  ban  đầu  và  cũng không có sự gián đoạn nào."
+  },
+  {
+    "47E30": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Tính năng của thiết bị nguồn Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection)."
+  },
+  {
+    "3CAA6": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Tính năng của thiết bị nguồn Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/ SNMP)."
+  },
+  {
+    "F8398": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Tính năng của thiết bị nguồn Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo vệ acquy không cho phóng điện khi điện áp  quá thấp."
+  },
+  {
+    "F84DA": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Tính năng của thiết bị nguồn Hệ thống nguồn phải có tiếp đất, chống sét"
+  },
+  {
+    "80244": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Tính năng của thiết bị nguồn Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ●  Lỗi AC đầu vào của Rectifier ●  Lỗi quá nhiệt của Rectifier ●  Lỗi quạt của Rectifier ●  Lỗi của Rectifier ●  Mất điện AC ●  Cảnh báo AC đầu vào thấp ●  Cảnh báo AC đầu vào cao ●  Cảnh báo DC cao ●  Cảnh báo DC thấp ●  Cảnh báo LVD ●  Cảnh báo dòng sạc Ắc quy cao"
+  },
+  {
+    "B8720": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Khối điều khiển và hiển thị Hiển thị bằng màn hình LCD, có khả năng hiển thị các thông số điện áp (U), dòng điện (I) và một số thông số khác như: cảnh báo, hiển thị chế độ nạp acquy."
+  },
+  {
+    "ADF59": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Khối điều khiển và hiển thị Bảng điều khiển phải gồm có nút điều khiển để thiết lập và điều chỉnh các thông số, màn hình hiển thị các thông số vận hành, đèn chỉ thị trạng thái, các cổng truy cập và giám sát từ xa."
+  },
+  {
+    "744A2": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Khối điều khiển và hiển thị Cổng kết nối: RS485, Ethernet, USB"
+  },
+  {
+    "93A34": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Khối điều khiển và hiển thị Giao thức kết nối: IPv4, HTTPS, SNMP V2/V3"
+  },
+  {
+    "04464": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Khối điều khiển và hiển thị Sử dụng màn hình LCD màu"
+  },
+  {
+    "31977": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Khối điều khiển và hiển thị Cho phép cài đặt, thiết lập các thông số cho thiết bị nguồn."
+  },
+  {
+    "6CB43": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Khối điều khiển và hiển thị Bảng điều khiển được đặt trước mặt máy, dễ quan sát."
+  },
+  {
+    "F4B67": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Điều kiện làm việc ●  Dải nhiệt độ từ -10°C đến +60°C ●  Dải độ ẩm từ 5% đến 95%"
+  },
+  {
+    "2E652": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Hệ thống làm mát Làm mát bằng quạt"
+  },
+  {
+    "0C8D4": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Điều kiện bảo hành Có cơ sở bảo hành chính hãng thiết bị nguồn tại Việt Nam."
+  },
+  {
+    "5EEE1": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo 02 dàn Ac quy 12V - 200Ah (08 bình):"
+  },
+  {
+    "1F6A9": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Ắcquy phải là loại Axít chì, vỏ bình kín không phải bảo dưỡng (loại VLRA) và không ảnh hưởng đến môi trường, cho phép bố trí chung trong phòng máy với các thiết bị điện khác, chất liệu vỏ bình acquy là nhựa ABS."
+  },
+  {
+    "27F56": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Thời  hạn  sản  xuất  acquy  không  quá  1  năm  tính  từ ngày cấp hàng."
+  },
+  {
+    "82E89": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Điện áp nạp ở 25oC: +  Chế  độ  nạp  đệm  (Float  mode):  2.25V/cell  hoặc 13.6V/bình + Chế độ nạp bổ sung (Boost mode): 2.35-2.4V/cell hoặc 14.4V/bình"
+  },
+  {
+    "DA2FE": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Độ tự xả sau 03 tháng: dung lượng ắcquy ≥ 90% dung lượng danh định"
+  },
+  {
+    "59835": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Đầu cực: dạng M6 hoặc M8"
+  },
+  {
+    "794FA": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Quy cách dàn ắcquy: + Mỗi dàn ắcquy gồm 4 bình. + Điện áp danh định mỗi bình là 12VDC. + Điện áp cả tổ là 48VDC"
+  },
+  {
+    "C24E2": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Dung lượng dàn ắcquy≥ 200Ah."
+  },
+  {
+    "1198C": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Nội trở ≤ 4.5mΩ"
+  },
+  {
+    "24AFC": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Mỗi dàn acquy phải gồm đầy đủ cáp nối giữa các bình"
+  },
+  {
+    "36E26": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah) Acquy kèm theo Kèm phụ kiện lắp đặt (cầu nối giữa các bình, kẹp cực, giá đỡ..)"
+  },
+  {
+    "FC5B8": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ rõ ràng, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "582A4": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu chung Thiết bị mới 100% chưa qua sử dụng"
+  },
+  {
+    "4F9B1": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "7AB49": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu chung Thuộc loại thiết bị  nguồn sử dụng kỹ thuật chuyển mạch, thiết kế dạng Module theo chức năng của từng khối."
+  },
+  {
+    "88C8E": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu chung Tất cả các khối đặt trong tủ liên hoàn, đồng bộ của hãng, tạo thành thiết bị cấp nguồn và nạp acquyhoàn chỉnh."
+  },
+  {
+    "4520B": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu chung Thời gian bảo hành: theo tiêu chuẩn của nhà sản xuất, tối thiểu 12 tháng."
+  },
+  {
+    "59F33": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Cấu hình thiết bị nguồn Kích thước: < 2U"
+  },
+  {
+    "DC2D6": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Cấu hình thiết bị nguồn Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 3"
+  },
+  {
+    "C8665": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Cấu hình thiết bị nguồn Công suất mỗi module chỉnh lưu: ≥ 1000W"
+  },
+  {
+    "BB4AA": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Cấu hình thiết bị nguồn Số lượng module chỉnh lưu trang bị kèm tủ nguồn: ≥ 3 module"
+  },
+  {
+    "56E49": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Cấu hình thiết bị nguồn Attomat DC: + Attomat cho tải: ●  Loại 30A: ≥ 02 cái ●  Loại 10A: ≥ 01 cái ●  Loại 03A: ≥ 01 cái + Attomat cho acquy: ●  Loại 50A: ≥ 01 cái"
+  },
+  {
+    "49B6A": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu vào AC Sử dụng được các điện áp L＋N＋PE/220VAC"
+  },
+  {
+    "EAB41": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu vào AC Dải điện áp đầu vào từ 85VAC ÷ 300VAC"
+  },
+  {
+    "48F08": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu vào AC Dải tần số AC đầu vào: từ 45Hz ÷ 65Hz."
+  },
+  {
+    "D2183": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu ra DC Điện áp đầu ra danh định -48VDC, cực dương đấu đất"
+  },
+  {
+    "A0FAB": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu ra DC Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC"
+  },
+  {
+    "3BAC2": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu ra DC Dòng tải max >50A"
+  },
+  {
+    "84573": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu ra DC Độ ổn định điện áp đầu ra: ≤1%"
+  },
+  {
+    "F7C38": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu ra DC Nhiễu băng rộng (Wide band noise): ≤ 20 mV rms (5Hz÷1MHz)"
+  },
+  {
+    "3804C": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Đầu ra DC Độ  gợn  sóng  đầu  ra  (đỉnh  –  đỉnh):  ≤  250  mV (0÷20MHz)"
+  },
+  {
+    "682E9": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Công suất mỗi module chỉnh lưu: ≥ 1000W"
+  },
+  {
+    "81A6C": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Hệ  số  công  suất  của  Rectifier:  ≥0.99  với tải từ 75÷100%"
+  },
+  {
+    "C255F": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Hiệu suất đỉnh module rectifier: ≥ 0,95"
+  },
+  {
+    "7DC3A": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100%"
+  },
+  {
+    "6C7E9": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Rectifier thay thế nóng được khi tủ nguồn đang hoạt động."
+  },
+  {
+    "2632B": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Rectifier hoạt động theo cơ chế chia tải"
+  },
+  {
+    "6BEC2": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED."
+  },
+  {
+    "807A2": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Yêu cầu với module chỉnh lưu (Rectifier) Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ."
+  },
+  {
+    "AB8A3": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Tính năng của thiết bị nguồn Bộ nguồn có chức năng cấp nguồn DC cho thiết bị viễn thông và nạp cho acquyở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode)."
+  },
+  {
+    "10C39": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Tính năng của thiết bị nguồn Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquymà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi  thì  bộ  thiết  bị  điều  khiển  phải  đảm  bảo  tự  động chuyển  đổi  lại  trạng  thái  làm  việc  ban  đầu  và  cũng không có sự gián đoạn nào."
+  },
+  {
+    "C8B27": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Tính năng của thiết bị nguồn Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection)."
+  },
+  {
+    "98577": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Tính năng của thiết bị nguồn Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/SNMP)."
+  },
+  {
+    "D60D2": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Tính năng của thiết bị nguồn Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo  vệ  acquykhông  cho  phóng  điện  khi  điện  áp  quá thấp."
+  },
+  {
+    "B5C7A": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Tính năng của thiết bị nguồn Hệ thống nguồn phải có tiếp đất, chống sét"
+  },
+  {
+    "8EF9B": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Tính năng của thiết bị nguồn Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ●  Lỗi AC đầu vào của Rectifier ●  Lỗi quá nhiệt của Rectifier ●  Lỗi quạt của Rectifier ●  Lỗi của Rectifier ●  Mất điện AC ●  Cảnh báo AC đầu vào thấp ●  Cảnh báo AC đầu vào cao ●  Cảnh báo DC cao ●  Cảnh báo DC thấp ●  Cảnh báo LVD ●  Cảnh báo dòng sạc Ắc quy cao"
+  },
+  {
+    "B132C": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Khối điều khiển và hiển thị Hiển thị bằng màn hình LCD, có khả năng hiển thị các thông số điện áp (U), dòng điện (I) và một số thông số khác như: cảnh báo"
+  },
+  {
+    "99749": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Khối điều khiển và hiển thị Bảng điều khiển phải gồm có nút điều khiển để thiết lập và điều chỉnh các thông số, màn hình hiển thị các thông số vận hành, đèn chỉ thị trạng thái, các cổng truy cập và giám sát từ xa."
+  },
+  {
+    "2BB3D": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Khối điều khiển và hiển thị Giao diện  cho cổng giao tiếp truy cập tủ nguồn tại chỗ qua máy tính và cổng giám sát tủ nguồn từ xa qua cổng Fasst Ethernet."
+  },
+  {
+    "EA502": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Khối điều khiển và hiển thị Cho phép cài đặt, thiết lập các thông số cho thiết bị nguồn."
+  },
+  {
+    "DB428": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Khối điều khiển và hiển thị Bảng điều khiển được đặt trước mặt máy, dễ quan sát."
+  },
+  {
+    "337EE": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Điều kiện làm việc ●  Dải nhiệt độ từ -10°C đến +60°C ●  Dải  độ ẩm từ 5% đến 90%"
+  },
+  {
+    "10A52": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Hệ thống làm mát Làm mát bằng quạt"
+  },
+  {
+    "3C934": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U) Điều kiện bảo hành Có cơ sở bảo hành chính hãng thiết bị nguồn tại Việt Nam."
+  },
+  {
+    "A63DF": "Card STMIX - Tổng đài OpenScape 4000 Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "CDB7C": "Card STMIX - Tổng đài OpenScape 4000 Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "19B71": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Chủng loại card: STMIX"
+  },
+  {
+    "F869B": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Part Number: Unify S30810-Q2343-X"
+  },
+  {
+    "2068C": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Số lượng 02 cổng GE (RJ45) tốc độ 1000 Mbps"
+  },
+  {
+    "A9195": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Khả năng cung cấp 240 thuê bao IP"
+  },
+  {
+    "4BEA9": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Khả năng kết nối 120 trung kế IP đồng thời"
+  },
+  {
+    "54BF2": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Có tính năng thay thế nóng “Hot plug” cho card"
+  },
+  {
+    "51168": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Đảm bảo cung cấp được kết nối IP tới các hệ thống khác."
+  },
+  {
+    "26DEB": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Bản quyền sử dụng trên card IP phải là vĩnh viễn."
+  },
+  {
+    "31B28": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Có tính  năng  hoạt  động  active/standby  với  card STMIX đang hoạt động."
+  },
+  {
+    "929BF": "Card STMIX - Tổng đài OpenScape 4000 Đặc tính kỹ thuật Tương thích với thiết bị tổng đài OpenScape 4000V8"
+  },
+  {
+    "D73D7": "Máy phát điện chạy xăng 10kW chống ồn Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "19BAC": "Máy phát điện chạy xăng 10kW chống ồn Yêu cầu chung Thiết bị mới 100% chưa qua sử dụng"
+  },
+  {
+    "9C489": "Máy phát điện chạy xăng 10kW chống ồn Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "C3B69": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Số pha máy phát điện: Máy phát 1 pha"
+  },
+  {
+    "9512B": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Kiểu động cơ của máy phát: Động cơ 4 thì, kiểu OHV, làm mát cưỡng bức bằng gió, 01 xi lanh"
+  },
+  {
+    "28351": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Loại đầu phát: Từ trường quay, tự kích từ, 2 cực"
+  },
+  {
+    "F5AE9": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Kiểu điều chỉnh điện áp: tụ điện /AVR"
+  },
+  {
+    "0B853": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Công suất liên tục: ≥ 9kW"
+  },
+  {
+    "5B104": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Công suất tối đa: ≥ 10kW"
+  },
+  {
+    "3C0E4": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Điện áp: 220V"
+  },
+  {
+    "7F7D3": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Tần số máy phát điện: 50 Hz"
+  },
+  {
+    "CE5EF": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Nhiên liệu dùng cho máy phát: Xăng"
+  },
+  {
+    "11B92": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Đường kính và khoảng chạy: 89 / 68"
+  },
+  {
+    "0A530": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Hệ số công suất: 1.0"
+  },
+  {
+    "E5605": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Tốc độ quay: 3000/3600 rpm"
+  },
+  {
+    "286A7": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Hệ thống đánh lửa: IC"
+  },
+  {
+    "BCCF0": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Dung tích xi lanh: 389 cc"
+  },
+  {
+    "A0CF8": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Dung tích nhớt: ≥ 1 lít"
+  },
+  {
+    "96203": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Le gió tự động có thể dễ dàng kết nối với tủ ATS"
+  },
+  {
+    "826AA": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Dung tích bình nhiên liệu: ≥ 20 lít"
+  },
+  {
+    "E399A": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Kiểu khởi động : Giật nổ + Đề nổ"
+  },
+  {
+    "D9CD1": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Độ ồn: ≤ 74db"
+  },
+  {
+    "1C50F": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Trọng lượng: ≤130kg, có bánh xe di chuyển"
+  },
+  {
+    "38283": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Có vỏ giảm thanh"
+  },
+  {
+    "7398A": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Vỏ máy được phủ sơn tĩnh điện để chống ăn mòn."
+  },
+  {
+    "5BFB5": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Bảng điều khiển được thiết kế thuận tiện cho việc theo dõi và điều khiển máy phát điện, có đồng hồ hiển thị các thông số điện áp, tần số…"
+  },
+  {
+    "41EA9": "Máy phát điện chạy xăng 10kW chống ồn Đặc tính kỹ thuật Phụ kiện kèm theo đầy đủ."
+  },
+  {
+    "A7460": "Máy đo E1, 64k Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "01A9E": "Máy đo E1, 64k Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "57065": "Máy đo E1, 64k Yêu cầu chung Thiết bị mới 100% chưa qua sử dụng"
+  },
+  {
+    "CA740": "Máy đo E1, 64k Đặc tính kỹ thuật chung Thiết bị phải có khả năng đo BER luồng E1 và n x 64kb/s với chức năng “Cấu hình tự động” (Autoconfig)"
+  },
+  {
+    "BC5BA": "Máy đo E1, 64k Đặc tính kỹ thuật chung Hỗ trợ dual port cho việc giám sát và xử lý sự cố cả 2 hướng"
+  },
+  {
+    "5A7FD": "Máy đo E1, 64k Đặc tính kỹ thuật chung Hỗ  trợ  các  chế  độ  kiểm  tra:  Terminate,  Monitor, Local Loopback"
+  },
+  {
+    "A9DF6": "Máy đo E1, 64k Đặc tính kỹ thuật chung Hỗ  trợ  kiểm  tra  luồng  2M  G.703,  và  tuân  theo G.821,G.826, M.2100"
+  },
+  {
+    "8A498": "Máy đo E1, 64k Đặc tính kỹ thuật chung Thiết bị đo là loại thiết bị cầm tay (handheld), gọn nhẹ có trọng lượng <= 1 kg bao gồm cả pin."
+  },
+  {
+    "6C076": "Máy đo E1, 64k Đặc tính kỹ thuật chung Thiết bị phải hoạt động được với pin (cả pin sạc và pin  thường)  tới  5  giờ  liên  tục.  Thiết  bị  phải  có  khả năng  vận  hành  trực  tiếp  từ  bộ  chuyển  đổi  nguồn AC/DC mà không cần có pin trong máy."
+  },
+  {
+    "6D3BC": "Máy đo E1, 64k Đặc tính kỹ thuật chung Hỗ trợ hiện thị màn hình màu giúp dễ dàng quan sát khi vận hành"
+  },
+  {
+    "1D8B9": "Máy đo E1, 64k Đặc tính kỹ thuật chung Hỗ  trợ  xuất  kết  quả  dưới  dạng  báo  cáo  chuyên nghiệp  giúp  kỹ  thuật  viên  thuật  viên  tiết  kiệm  được thời gian và công sức để tạo báo cáo đo kiểm sau mỗi bài đo."
+  },
+  {
+    "8F90E": "Máy đo E1, 64k Đặc tính kỹ thuật chung Hỗ trợ đo kiểm mức và tần số thoại"
+  },
+  {
+    "B52E2": "Máy đo E1, 64k Đặc tính kỹ thuật chung Thiết bị có khả năng nâng cấp để đo Jitter, Phân tích mặt nạ xung (Pulse Shape), Điều khiển từ xa (Remote Control)."
+  },
+  {
+    "81A24": "Máy đo E1, 64k Đặc tính kỹ thuật chung Thiết bị phải đáp ứng tiêu chuẩn an toàn sử dụng cho người  dùng theo  khuyến  nghị  của  Châu  Âu  (CE Marked)."
+  },
+  {
+    "7025D": "Máy đo E1, 64k Đặc tính kỹ thuật chung Thiết bị hỗ trợ bàn phím cứng thiết kế tương tự bàn phím điện thoại giúp kỹ thuật viên dễ dàng vận hành và thực hiện đo kiểm"
+  },
+  {
+    "5CB33": "Máy đo E1, 64k Thân máy Hỗ trợ hiển thị màn hình màu độ phân giải tối thiểu 320 x 240 điểm"
+  },
+  {
+    "A0C5F": "Máy đo E1, 64k Thân máy Thiết bị phải có 02 cổng đo kiểm để phục vụ đo giám sát và xử lý sự cố trên cả hai hướng của 1 luồng E1."
+  },
+  {
+    "CD0A8": "Máy đo E1, 64k Thân máy Thiết bị đo có cổng giao tiếp USB ngay trên thân máy chính để giao tiếp máy tính truyền kết quả đo"
+  },
+  {
+    "711AD": "Máy đo E1, 64k Thân máy Thiết bị cung cấp các đèn LED để chỉ thị các thông tin  đến  người  dùng,  như:  báo  đồng  bộ  (SYNC),  có khung  dữ  liệu  trên  đường  truyền  (DATA),  chế  độ Loopback (LPBK), cảnh báo pin (BATT)"
+  },
+  {
+    "3813C": "Máy đo E1, 64k Thân máy Yêu  cầu  về  cổng  phát  và  thu:  tuân  thủ  theo  chuẩn G.703"
+  },
+  {
+    "05C5B": "Máy đo E1, 64k Chế độ đo luồng E1/64kbps Cung  cấp  đo  kiểm  với  nhiều  chế  độ  đo  khác  nhau: Terminate, Monitor, Local Loopback"
+  },
+  {
+    "243FE": "Máy đo E1, 64k Chế độ đo luồng E1/64kbps Có đầy đủ các trúc khung tín hiệu: 2Mb/s unframed, ITU-T G.704, ITU-T G.704 CRC, ITU-T G.704 CAS, ITU-T G.704 CRC + CAS, Nx64kb/s, NFAS"
+  },
+  {
+    "0AA5F": "Máy đo E1, 64k Chế độ đo luồng E1/64kbps Có khả năng phát và phân tích các lỗi và cảnh báo"
+  },
+  {
+    "DEA12": "Máy đo E1, 64k Chế độ đo luồng E1/64kbps Có khả năng đo Trễ toàn trình (Round Trip Delay)"
+  },
+  {
+    "80D49": "Máy đo E1, 64k Chế độ đo luồng E1/64kbps Chuổi  bit  PRBS6,  PRBS7,  PRBS9(ITU-T  O.150, O.153), PRBS11(ITU-T O.150, O.152,  O.153), PRBS15(ITU-T  O.150,  O.151), PRBS20(ITU-T O.150, O.153), PRBS23(ITU-T O.150,  O.151),  PRBS6 inverted,  PRBS7 inverted, PRBS9 inverted, PRBS11 inverted, PRBS15 inverted, PRBS20  inverted,  PRBS23  inverted,  QRSS,  QRSS inverted,  QBF/FOX,  all0,  all1.  Mẫu  bit  người  dùng định nghĩa (đến 32 bit)."
+  },
+  {
+    "B8275": "Máy đo E1, 64k Chế độ đo luồng E1/64kbps Hỗ trợ đo các kết quả sau: LOS, LOF, AIS, RDI, CRC-LOM, CAS-LOM, MAIS, MRDI, LSS, All 0, All 1, Slip."
+  },
+  {
+    "9C068": "Máy đo E1, 64k Chế độ đo luồng E1/64kbps Code,  FAS  error,  CRC  error,  REBE,  MFAS  error, TSE, TSBE."
+  },
+  {
+    "AB9AF": "Máy đo E1, 64k Khả năng hiển thị kết quả: Có khả năng lưu kết quả và cấu hình đo vào bộ nhớ trong của máy."
+  },
+  {
+    "EF07D": "Máy đo E1, 64k Khả năng hiển thị kết quả: Có khả năng tự tạo báo cáo dạng pdf, txt và xuất ra máy tính"
+  },
+  {
+    "DDE6C": "Máy đo E1, 64k Phụ kiện đi kèm AC/DC adapter, Dây nhảy quang, túi đựng thiết bị, nắp nhựa bảo vệ màn hình"
+  },
+  {
+    "2436D": "Máy đo E1, 64k Môi trường hoạt động Nhiệt độ hoạt động từ 0°C tới +50°C"
+  },
+  {
+    "AA753": "Máy đo E1, 64k Môi trường hoạt động Nhiệt độ lưu trữ từ - 10°C to +60°C"
+  },
+  {
+    "FD6DC": "Máy đo OTDR khoảng cách xa Yêu cầu chung Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất."
+  },
+  {
+    "C2962": "Máy đo OTDR khoảng cách xa Yêu cầu chung Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+  },
+  {
+    "B4EEA": "Máy đo OTDR khoảng cách xa Yêu cầu chung Thiết bị mới 100% chưa qua sử dụng"
+  },
+  {
+    "AB725": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị sẽ được dùng để đo kiểm sợi quang đơn mốt tại bước sóng 1310±20nm, 1550±20nm. Dải động RMS tối thiểu 50/50dB tương ứng tại các bước sóng 1310nm và 1550nm."
+  },
+  {
+    "C5713": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị có thiết kế dưới dạng module dễ dàng tháo lắp, cho phép nâng cấp các tính năng đo khác ngay trên tuyến khi có nhu cầu mà không cần phải gửi máy về nhà sản xuất, khả năng đo kiểm tốt: + Dải chỉ số chiết suất thiết lập được: tối thiểu từ 1.30000 đến 1.70000 theo bước 0.00001 + Độ phân giải lấy mẫu tối thiểu 4cm + Số điểm lấy mẫu: ≥ 256,000 điểm + Độ rộng xung thiết lập được tối thiểu từ 2ns đến 20,000ns + Độ chính xác đo khoảng cách: ≤ ±0.75m ± độ phân giải lấy mẫu ± 1x 10-5 x khoảng cách + Vùng chết sự kiện ≤ 0.6 m; vùng chết suy hao ≤ 2.5 m"
+  },
+  {
+    "9B781": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị có màn hình hiển thị màu cảm ứng, ≥ 8 inches, độ phân giải ≥ 1280 × 800 điểm"
+  },
+  {
+    "1EA92": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị phải sử dụng hệ điều hành chuyên dụng Linux/ VxWorks."
+  },
+  {
+    "3404F": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị cho phép lưu kết quả đo dưới các định dạng .sor, txt và pdf"
+  },
+  {
+    "57E3C": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị phải hỗ trợ chức năng tự động phát hiện tín hiệu trên tuyến quang cần đo"
+  },
+  {
+    "2F142": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị phải được tích hợp sẵn tính năng đo công suất quang Power Meter và nguồn phát công suất quang Light Source trên module OTDR"
+  },
+  {
+    "C039C": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Ngôn ngữ hỗ trợ cho thiết bị: Tiếng Anh"
+  },
+  {
+    "354FB": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị phải có khả năng đưa ra được các đánh giá Đạt/Không đạt (Pass/Fail) đối với kết quả đo trên cơ sở so sánh với các mức ngưỡng tham số đo được định nghĩa trước bởi người dùng"
+  },
+  {
+    "37740": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị phải được cung cấp cùng phần mềm phân tích kết quả trên PC, cho phép mở đồng thời nhiều file kết quả trên cùng một cửa sổ, có khả năng tạo và in báo cáo chuyên nghiệp"
+  },
+  {
+    "CBEB9": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị hỗ trợ khả năng tạo báo cáo định dạng PDF và xem được các file trên PDF trực tiếp trên máy đo"
+  },
+  {
+    "15207": "Máy đo OTDR khoảng cách xa Đặc tính kỹ thuật chung Thiết bị có khả năng nâng cấp các module quang để đo kiểm tán sắc sợi quang CD, PMD, phân tích phổ quang DWDM và đo OSNR inband; phân tích đặc tuyến suy hao sợi quang (attenuation profile) trong tương lai khi có nhu cầu. Việc nâng cấp có thể tiến hành ngay trên tuyến bởi người dùng (mà không phải gửi về nhà máy) bằng cách cắm thêm các khối module đo tương ứng"
+  },
+  {
+    "A10DE": "Máy đo OTDR khoảng cách xa Thân máy chính Thân máy có cấu trúc module. Cho phép gắn tối thiểu 3 module đồng thời"
+  },
+  {
+    "35733": "Máy đo OTDR khoảng cách xa Thân máy chính Thiết bị được trang bị bộ nhớ trong tối thiểu 6GB, bộ nhớ ngoài hỗ trợ các định dạng FAT, FAT3 và Ext4"
+  },
+  {
+    "140AC": "Máy đo OTDR khoảng cách xa Thân máy chính Giao tiếp ngoài: ≥ 01 Cổng Ethernet RJ45 1000 Mbps cho kết nối mạng LAN; ≥ 02 cổng USB 2.0 để kết nối bàn phím ngoài, chuột ngoài, thẻ nhớ USB"
+  },
+  {
+    "0B93B": "Máy đo OTDR khoảng cách xa Thân máy chính Nguồn  cấp:  Điện  xoay  chiều  AC  và  nguồn  pin  LI- ION sạc, tháo lắp được. Thời gian sử dụng pin của thân máy tối thiểu 8 giờ"
+  },
+  {
+    "8C3AE": "Máy đo OTDR khoảng cách xa Thân máy chính Hiển  thị:  Màn  hình  màu  cảm  ứng,  tối  thiểu  8\",  độ phân giải tối thiểu 1280 x 800 điểm"
+  },
+  {
+    "97382": "Máy đo OTDR khoảng cách xa Thân máy chính Nhiệt độ hoạt động khi sử dụng pin: -10 tới +55 độ C"
+  },
+  {
+    "4498F": "Máy đo OTDR khoảng cách xa Thân máy chính Độ ẩm: 95%, không ngưng tụ"
+  },
+  {
+    "185E8": "Máy đo OTDR khoảng cách xa Thân máy chính Trọng  lượng:  ≤  4kg  (bao  gồm  thân  máy,  module OTDR và Pin sạc)"
+  },
+  {
+    "9CF55": "Máy đo OTDR khoảng cách xa Khối đo OTDR Giao diện đo: SC/PC dạng tháo lắp thay thế được"
+  },
+  {
+    "6BC9C": "Máy đo OTDR khoảng cách xa Khối đo OTDR Bước sóng công tác: 1310±20nm, 1550±20nm"
+  },
+  {
+    "0DCCD": "Máy đo OTDR khoảng cách xa Khối đo OTDR Độ rộng xung: Tối thiểu từ 2 ns tới 20µs"
+  },
+  {
+    "A1708": "Máy đo OTDR khoảng cách xa Khối đo OTDR Dải động (RMS): ≥ 50/50dB tương ứng tại 1310/1550nm"
+  },
+  {
+    "E94A4": "Máy đo OTDR khoảng cách xa Khối đo OTDR Vùng chết sự kiện: ≤ 0.6m tại bước sóng 1310nm và 1550nm"
+  },
+  {
+    "1B841": "Máy đo OTDR khoảng cách xa Khối đo OTDR Vùng chết suy hao: ≤ 2.5m tại bước sóng 1310nm và 1550nm"
+  },
+  {
+    "1459A": "Máy đo OTDR khoảng cách xa Khối đo OTDR Vùng chết suy hao đối với bộ chia quang (splitter): ≤ 15m sau splitter có suy hao 15dB"
+  },
+  {
+    "425BC": "Máy đo OTDR khoảng cách xa Khối đo OTDR Số điểm lấy mẫu: ≥ 256,000"
+  },
+  {
+    "96A1B": "Máy đo OTDR khoảng cách xa Khối đo OTDR Dải  chỉ  số  chiết  suất:  thiết  lập  được  từ  1.30000  tới 1.70000 theo bước 0.00001"
+  },
+  {
+    "E6AF3": "Máy đo OTDR khoảng cách xa Khối đo OTDR Thiết bị phải hỗ trợ các chế độ đo kiểm sau: + Chế độ đo theo cấu hình lưu sẵn: cho phép lựa chọn và đo theo file cấu hình được lưu trước + Chế độ đo tự động: thiết bị tự động lựa chọn các tham số đo phù hợp với tuyến quang + Chế độ đo nhân công: cho phép người sử dụng thiết lập chi tiết các tham số đo + Chế độ đo thời gian thực: đo liên tục theo thời gian thực, dùng để giám sát sự biến động, thay đổi của tuyến quang + Trong cùng 1 lần đo: thiết bị có khả năng thiết lập để phát đồng thời 3 xung với độ rộng xung khác nhau tại cùng 1 bước sóng"
+  },
+  {
+    "4CF3C": "Máy đo OTDR khoảng cách xa Đo khoảng cách Phương pháp đo: Tự động hoặc thông qua 2 con trỏ"
+  },
+  {
+    "F9ACD": "Máy đo OTDR khoảng cách xa Đo khoảng cách Dải khoảng cách hiển thị:  Có thể thiết  lập được tối thiểu từ 0.1km tới 400km"
+  },
+  {
+    "1977E": "Máy đo OTDR khoảng cách xa Đo khoảng cách Đơn vị đo khoảng cách: km, m"
+  },
+  {
+    "2F386": "Máy đo OTDR khoảng cách xa Đo khoảng cách Độ phân giải hiển thị: ≤1cm"
+  },
+  {
+    "C56B3": "Máy đo OTDR khoảng cách xa Đo khoảng cách Độ phân giải con trỏ: tối thiểu 1 cm"
+  },
+  {
+    "E4658": "Máy đo OTDR khoảng cách xa Đo khoảng cách Độ phân giải lấy mẫu: tối thiểu 4cm"
+  },
+  {
+    "FC518": "Máy đo OTDR khoảng cách xa Đo khoảng cách Độ  chính  xác:  ≤±0.75m  ±  độ  phân  giải  lấy  mẫu ±1x10-5 x khoảng cách"
+  },
+  {
+    "81693": "Máy đo OTDR khoảng cách xa Đo suy hao Phương  pháp  đo:  Tự  động,  thủ  công,  theo  phương pháp 2 điểm, 5 điểm"
+  },
+  {
+    "DCF7E": "Máy đo OTDR khoảng cách xa Đo suy hao Độ phân giải hiển thị: ≤0.001dB"
+  },
+  {
+    "A092A": "Máy đo OTDR khoảng cách xa Đo suy hao Độ tuyến tính: ≤±0.03dB/dB"
+  },
+  {
+    "F087A": "Máy đo OTDR khoảng cách xa Đo suy hao Mức  ngưỡng  thiết  lập:  0.01  tới  4.99dB  theo  bước 0.01dB"
+  },
+  {
+    "BB6F5": "Máy đo OTDR khoảng cách xa Đo phản xạ và suy  hao  phản hồi ORL Phương pháp đo: Phải hỗ trợ hai chế độ tự động hoặc bằng tay"
+  },
+  {
+    "92209": "Máy đo OTDR khoảng cách xa Đo phản xạ và suy  hao  phản hồi ORL Độ chính xác: ≤ ±2dB"
+  },
+  {
+    "55ED5": "Máy đo OTDR khoảng cách xa Đo phản xạ và suy  hao  phản hồi ORL Độ phân giải hiển thị: 0.01dB"
+  },
+  {
+    "494DC": "Máy đo OTDR khoảng cách xa Đo phản xạ và suy  hao  phản hồi ORL Mức  ngưỡng  thiết  lập:  -11dB  tới  -98dB  theo  bước 1dB"
+  },
+  {
+    "2CDEB": "Máy đo OTDR khoảng cách xa Chức năng đo công suất quang Power  Meter trên module OTDR Bước sóng hỗ trợ: 1310, 1550nm, 1490nm, 1625nm"
+  },
+  {
+    "71F4D": "Máy đo OTDR khoảng cách xa Chức năng đo công suất quang Power  Meter trên module OTDR Dải công suất đo:-5 tới -55dBm"
+  },
+  {
+    "5DBE7": "Máy đo OTDR khoảng cách xa Chức năng đo công suất quang Power  Meter trên module OTDR Độ chính xác: ±0.5dB tại giá trị -30dBm"
+  },
+  {
+    "753C6": "Máy đo OTDR khoảng cách xa Chức  năng  nguồn  phát  công suất quang Light Source trên module OTDR Bước sóng hỗ trợ: 1310, 1550nm"
+  },
+  {
+    "0BDA3": "Máy đo OTDR khoảng cách xa Chức  năng  nguồn  phát  công suất quang Light Source trên module OTDR Mức công suất phát: ≥ 0dBm"
+  },
+  {
+    "A1EB8": "Máy đo OTDR khoảng cách xa Chức  năng  nguồn  phát  công suất quang Light Source trên module OTDR Chế  độ  hoạt  động:  270Hz,  330Hz,  1kHz,  2kHz, TWINtest (đo đồng thời 2 bước sóng)"
+  },
+  {
+    "88985": "Máy đo OTDR khoảng cách xa Chức  năng  nguồn  phát  công suất quang Light Source trên module OTDR Độ ổn định công suất phát: ±0.1dB trong 1 giờ."
+  },
+  {
+    "B4E62": "Máy đo OTDR khoảng cách xa Phụ kiện Module đo, túi đựng thiết bị, AC/DC adapter, Pin sạc, dây nhảy quang"
+  },
+  {
+    "49FF9": "Máy đo OTDR khoảng cách xa Phụ kiện Tài liệu hướng dẫn kèm theo"
+  }
+]

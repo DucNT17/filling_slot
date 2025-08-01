@@ -11,7 +11,7 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 client = OpenAI()
 
 # Đường dẫn file markdown
-markdown_path = "D:\\study\\LammaIndex\\data\\bang_tuyen_bo.md"  # Thay bằng file markdown của bạn
+markdown_path = "D:\\study\\LammaIndex\\documents\\Chuong_V_Yeu_cau_ky_thuat-page-2-table-1.md"  # Thay bằng file markdown của bạn
 
 # Đọc nội dung markdown từ file bằng llama_index
 documents = SimpleDirectoryReader(input_files=[markdown_path]).load_data()
@@ -19,32 +19,44 @@ markdown_content = "\n".join([doc.text for doc in documents])
 
 # Prompt yêu cầu sinh JSON
 prompt = f"""
-Bạn là trợ lý trích xuất cấu trúc. Hãy phân tích Markdown sau và tạo JSON theo QUY TẮC.
+Bạn là trợ lý trích xuất cấu trúc. Hãy phân tích Markdown sau và tạo JSON theo QUY TẮC, chỉ sử dụng các bảng liên quan thông số kỹ thuật và các tiêu chuẩn tối thiểu — thường là bảng gồm 3 cột: "STT", "Hàng hóa", "Yêu cầu kỹ thuật".
 
 MỤC TIÊU JSON:
-{{
-  "ten_san_pham": "<string>",
-  "cac_muc": [
-    {{
-      "ten_hang_hoa": "<string>",
-      "thong_so_ky_thuat": {{
-        "<ID1>": "<một thông số atomic>",
-        "<ID2>": "<...>"
-      }}
-    }},
-    ...
-  ]
-}}
+[
+  {{
+    "ten_san_pham": "<string>",
+    "cac_muc": [
+      {{
+        "ten_hang_hoa": "<string>",
+        "thong_so_ky_thuat": {{
+          "<ID1>": "<string hoặc list [<tên>, <mô tả>]>",
+          "<ID2>": "<...>"
+        }}
+      }},
+      ...
+    ]
+  }},
+  ...
+]
 
 QUY TẮC:
-1. Lấy 'ten_san_pham' từ dòng tiêu đề có tên hàng hoá chính.
-2. Mỗi nhóm nội dung (ví dụ 'Yêu cầu chung', 'Cấu hình thiết bị nguồn', 'Đầu vào AC', 'Đầu ra DC') là một phần tử trong mảng "cac_muc".
-3. Trường 'thong_so_ky_thuat' là dict:
-   - Key = viết tắt 2-3 chữ cái đầu (không dấu, in hoa) của 'ten_hang_hoa' + số thứ tự 3 chữ số (bắt đầu 001).
-   - Value = một câu/bullet/leaf cuối cùng sau chuẩn hóa.
-4. Bỏ ký hiệu (-, +, ●, <br/>) và flatten phân cấp như "Attomat DC: PL (Priority LLVD) Loại 32A: ≥ 02 cái".
-5. Không suy diễn, chỉ dùng nội dung gốc.
-6. JSON hợp lệ, UTF-8.
+1. Mỗi phần lớn bắt đầu bằng tiêu đề tên sản phẩm sẽ tạo ra một phần tử trong danh sách JSON (một sản phẩm).
+2. Trường 'ten_san_pham' lấy từ dòng tiêu đề đầu tiên thể hiện tên hàng hóa chính.
+3. Mỗi bảng kỹ thuật bên dưới tiêu đề là một nhóm 'cac_muc' của sản phẩm đó.
+4. Trong mỗi bảng:
+   - 'ten_hang_hoa' lấy từ cột "Hàng hóa" tại các dòng có giá trị ở cột "STT".
+   - Với mục 'Yêu cầu chung':
+     - Nếu cột “Yêu cầu kỹ thuật” chứa nhiều mục gạch đầu dòng bắt đầu bằng dấu `-`:
+       👉 **Mỗi mục bắt đầu bằng `-` là một thông số riêng biệt (atomic), lưu dưới một key riêng.**
+       👉 Mỗi mục `- ...` sẽ được lưu dạng `"KEY": "<nội dung không có dấu -" >`.
+   - Với mục 'Thông số kỹ thuật':
+     - Nếu dòng con có cả "Hàng hóa" và "Yêu cầu kỹ thuật" → lưu dưới dạng `"KEY": ["<Hàng hóa>", "<Yêu cầu kỹ thuật>"]`.
+5. Mã hóa key: viết tắt 3 chữ cái đầu (không dấu, in hoa) của 'ten_hang_hoa' + số thứ tự 3 chữ số (bắt đầu từ 001).
+6. Chuẩn hóa nội dung:
+   - Bỏ dấu `-` đầu dòng nếu có.
+   - Không gộp nhiều dòng vào 1 key. Mỗi dòng kỹ thuật là một key riêng biệt, theo thứ tự.
+7. Không suy diễn, không thêm dữ liệu ngoài.
+8. Trả về JSON hợp lệ (UTF-8), KHÔNG chú thích hay giải thích gì thêm.
 
 DỮ LIỆU GỐC:
 ---
@@ -53,6 +65,10 @@ DỮ LIỆU GỐC:
 
 HÃY TRẢ LỜI CHỈ BẰNG JSON HỢP LỆ.
 """
+
+
+
+
 
 # Gọi OpenAI qua llama_index hoặc OpenAI client trực tiếp
 response = client.responses.create(
