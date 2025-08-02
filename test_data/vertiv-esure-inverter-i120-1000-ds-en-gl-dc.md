@@ -1,10 +1,12 @@
-
-
+# Chunk 1
 # Vertiv™ eSure™ Inverter
 I120-1000
 
 If you're looking for a reliable AC and DC backup solution without sacrificing space and efficiency, Vertiv™ eSure™ Inverter is the perfect choice.
 
+
+
+# Chunk 2
 ## Benefits
 
 - Optimally support fluctuating load requirements at 5G and edge sites over a wide operating temperature range
@@ -13,6 +15,9 @@ If you're looking for a reliable AC and DC backup solution without sacrificing s
 - Maximize site availability thanks to zero transfer time
 - Ensure full control of site performance with NCU supervising complete back-up solution
 
+
+
+# Chunk 3
 ## Description
 
 The eSure™ Inverter I120-1000 is based on Vertiv's long experience from both highly reliable DC power and UPS systems, combining the best technologies from two worlds. The result is a power dense dual input (AC and DC) inverter with zero transfer time to keep important equipment running at any time. With the dual conversion topology of this inverter we can ensure that the load is running in the most efficient way and the rectifier investment can be kept to a minimum – supporting only battery recharge and DC loads.
@@ -27,10 +32,10 @@ The eSure Inverter offers a highly reliable, modular AC back-up solution that ca
 
 
 I120-1000 AC/AC Peak Efficiency Curve at 120 VAC Nominal
-[[__PAGE_1__]]
 
 
 
+# Chunk 4
 ## Technical Specifications
 
 | AC Input     | AC Input                                        |
@@ -89,6 +94,8 @@ I120-1000 AC/AC Peak Efficiency Curve at 120 VAC Nominal
 | Weight                 | 1.15 kg / 2.54 lbs                             |
 
 
+
+# Chunk 5
 ## Figures
 
 ```mermaid
@@ -114,6 +121,9 @@ graph LR
     O["Output Power vs. Temperature<br>96 VAC < Vin < 140 VAC"]
 ```
 
+
+
+# Chunk 6
 ## Ordering Information
 
 | Part Number | Description                                            |
@@ -126,4 +136,6 @@ Vertiv.com | Vertiv Headquarters, 505 N Cleveland Ave, Westerville, OH, 43082, U
 © 2023 Vertiv Group Corp. All rights reserved. Vertiv™ and the Vertiv logo are trademarks or registered trademarks of Vertiv Group Corp. All other names and logos referred to are trade names, trademarks or registered trademarks of their respective owners. While every precaution has been taken to ensure accuracy and completeness here, Vertiv Group Corp. assumes no responsibility, and disclaims all liability, for damages resulting from use of this information or for any errors or omissions. Specifications, rebates and other promotional offers are subject to change at Vertiv's sole discretion upon notice.
 
 I120-1000 (12/2023)
-[[__PAGE_2__]]
+
+
+

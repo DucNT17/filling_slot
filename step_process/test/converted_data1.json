@@ -1,0 +1,703 @@
+[
+  {
+    "ten_san_pham": "Tải giả xả acquy",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "DC225": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "0A6FE": "Thiết bị mới 100% chưa qua sử dụng",
+          "31EEB": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây",
+          "8A5FA": "Thời  gian  bảo  hành:  theo  tiêu  chuẩn  của  nhà  sản xuất, tối thiểu 12 tháng."
+        }
+      },
+      {
+        "ten_hang_hoa": "Thông số kỹ thuật",
+        "thong_so_ky_thuat": {
+          "F2B04": [
+            "Điện trở tiếp địa",
+            "< 0.1 Ohm"
+          ],
+          "98F5F": [
+            "Độ ồn",
+            "< 75 dB khi hoạt động hết công suất."
+          ],
+          "9CA26": [
+            "Điều kiện nhiệt độ",
+            "-  Dải nhiệt độ hoạt động: 0 ÷ 40°C,  -  Dải nhiệt độ lưu kho: -25°C ÷70°C."
+          ],
+          "9F5A9": [
+            "Điều kiện độ ẩm",
+            "-  Độ ẩm tương đối từ 5 ÷ 95%, không đọng sương."
+          ],
+          "056D8": [
+            "Điện áp acquy cao nhất – tính theo giá trị tuyệt đối",
+            "≥ 270 V"
+          ],
+          "26FC6": [
+            "Điện áp acquy nhỏ nhất",
+            "≤ 18 V"
+          ],
+          "58118": [
+            "Công suất lớn nhất có thể xả - tương ứng với 1 bộ",
+            "≥ 16 kW"
+          ],
+          "E1802": [
+            "Dòng xả lớn nhất với dải điện áp  24V  DC  ÷  120V  DC)  – tương ứng với 1 bộ",
+            "≥ 130A"
+          ],
+          "A0B48": [
+            "Dòng xả lớn nhất với dải điện áp  220V  DC  ÷  240V  DC)  – tương ứng với 1 bộ",
+            "≥ 70 A"
+          ],
+          "56B2C": [
+            "Các chế độ xả",
+            "-  Gồm 4 chế độ: dòng không đổi, công suất không đổi, theo đặc tính dòng cho trước, điều chỉnh thủ công."
+          ],
+          "FEF17": [
+            "Bước công suất điều chỉnh xả tải",
+            "100 W"
+          ],
+          "1537E": [
+            "Dải điện áp acquy định mức",
+            "-  Bao gồm: 24, 48, 110, 240 V DC"
+          ],
+          "91F8C": [
+            "Dải cài đặt acquy",
+            "-  Tự động, 4 mức danh định, cài đặt khi bắt đầu test"
+          ],
+          "87C51": [
+            "Với mức điện áp danh định là 24V",
+            "-  Dải điện áp của acquy là 20 ÷ 34 V DC"
+          ],
+          "972EF": [
+            "Với mức điện áp danh định là 48V",
+            "-  Dải điện áp của acquy là 34 ÷ 60 V DC"
+          ],
+          "691F3": [
+            "Với mức điện áp danh định là 72V",
+            "-  Dải điện áp của acquy là 60 ÷ 84 V DC"
+          ],
+          "E343B": [
+            "Với mức điện áp danh định là 110/120V",
+            "-  Dải điện áp của acquy là 84 ÷ 140 V DC"
+          ],
+          "6DFF2": [
+            "Với mức điện áp danh định là 240V",
+            "-  Dải điện áp của acquy là 140 ÷ 270 V DC"
+          ],
+          "ED698": [
+            "Điện áp khởi đầu cực đại với mức điện áp danh định 24V",
+            "-  Dải điện áp của acquy là 20 ÷ 35 V DC"
+          ],
+          "AF6B1": [
+            "Điện áp khởi đầu cực đại với mức điện áp danh định 48V",
+            "-  Dải điện áp của acquy là 34 ÷ 65 V DC"
+          ],
+          "C56F6": [
+            "Điện áp khởi đầu cực đại với mức điện áp danh định 72V",
+            "-  Dải điện áp của acquy là 58 ÷ 97 V DC"
+          ],
+          "20665": [
+            "Điện áp khởi đầu cực đại với mức điện áp danh định 110V",
+            "-  Dải điện áp của acquy là 84 ÷ 140 V DC"
+          ],
+          "5C229": [
+            "Điện áp khởi đầu cực đại với mức điện áp danh định 240V",
+            "-  Dải điện áp của acquy là 169 ÷ 270 V DC"
+          ],
+          "A8D90": [
+            "Độ  phân  giải  khi  đo  điện  áp acquy",
+            "≤ 0,1 V DC"
+          ],
+          "6A872": [
+            "Độ  chính  xác  khi  đo  điện  áp acquy",
+            "≤ 1% với dải cực đại là 2,7 V"
+          ],
+          "D8C59": [
+            "Độ phân giải khi đo dòng của acquy",
+            "≤ 1 A"
+          ],
+          "B9DFE": [
+            "Độ  chính  xác  khi  đo  dòng acquy",
+            "≤ 1% với dải cực đại là 1,3 A, bắt đầu từ 15 A"
+          ],
+          "A4474": [
+            "Chu  kì  cập  nhật  hiển  thị  các chỉ số điện áp và dòng điện",
+            "≤ 15 s"
+          ],
+          "E4A15": [
+            "Độ phân giải về thời gian",
+            "≤ 1 s"
+          ],
+          "63684": [
+            "Thông  báo  kết  thúc  đo  bằng âm thành",
+            "-  Có (5 tones)"
+          ],
+          "CB7EC": [
+            "Kiểu hiển thị",
+            "-  Đồ họa tối thiểu 128 x 64 điểm"
+          ],
+          "3CEBD": [
+            "Đèn nền hiển thị",
+            "-  Có"
+          ],
+          "4BDFE": [
+            "Số lượng bộ nhớ kết quả đo",
+            "≥ 8"
+          ],
+          "B03D1": [
+            "Thời lượng ghi lớn nhất trong quá trình test",
+            "≥ 15 giờ, với độ phân giải là 15 giây"
+          ],
+          "BB197": [
+            "Các  kết  quả  đo  hiển  thị  trên màn hình gồm:",
+            "-  Ngày, giờ, dòng xả trong (Internal discharge current), dòng  xả  ngoài  (External  discharge  current),  điện  áp acquy, dung lượng xả, thời gian đã thử tải."
+          ],
+          "F12BC": [
+            "Các  chế  độ  cài  đặt  điều  kiện dừng test gồm:",
+            "-  Điện áp nhỏ nhất, dung lượng lớn nhất, thời gian test tối đa, cảnh báo hệ thống, ngừng test bằng cơ chế điều khiển từ xa"
+          ],
+          "626E9": [
+            "Khả năng nâng cấp Firmware",
+            "-  Có"
+          ],
+          "D11C0": [
+            "Bộ điều khiển của thiết bị.",
+            "-  Hệ thống số, với 2 bộ vi xử lý"
+          ],
+          "281E7": [
+            "Bảo vệ chống ngược cực pin",
+            "-  Có"
+          ],
+          "F71FF": [
+            "Tự động làm mát thiết bị khi kết thúc quá trình test",
+            "-  Có"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "ten_san_pham": "Đồng hồ đo nội trở acquy",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "24B96": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "3560C": "Thiết bị mới 100% chưa qua sử dụng",
+          "32C3F": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+        }
+      },
+      {
+        "ten_hang_hoa": "Các tính năng",
+        "thong_so_ky_thuat": {
+          "42940": "Tự động tính toán trở kháng và lưu kết quả để xác định ngay chất lượng acquy",
+          "144B9": "Cho phép kết nối máy tính qua phần mềm phân tích",
+          "BA62D": "Có thể sử dụng để kiểm tra các loại acquy như: acquy axit, acquy kiềm (NiCD), acquy Lithium-ion"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đặc tính kỹ thuật",
+        "thong_so_ky_thuat": {
+          "99A90": "Dải đo nội trở: + 3 mΩ: độ phân giải 1µΩ + 30 mΩ: độ phân giải 10µΩ + 300 mΩ: độ phân giải 0.1 mΩ + 3 Ω: độ phân giải 1mΩ + 30 Ω: độ phân giải 10mΩ + 300 Ω: độ phân giải 100 mΩ",
+          "E94EA": "Dải đo điện áp: + 5 VDC : độ phân giải 1mV + 50 VDC: độ phân giải 10mV + 500 VDC : độ phân giải 100mV",
+          "46CD9": "Dải đo dòng điện DC/AC: + 4A DC: độ phân giải 1mA + 40A DC: độ phân giải 10mA + 400A DC: độ phân giải 100mA + 1000A DC: độ phân giải 1A + 4A AC: độ phân giải 1mA + 40A AC: độ phân giải 10mA + 400A AC: độ phân giải 100mA + 1000A AC: độ phân giải 1A"
+        }
+      },
+      {
+        "ten_hang_hoa": "Thân máy",
+        "thong_so_ky_thuat": {
+          "2108B": "Màn hình cảm ứng kích thước ≥ 160 x 90 mm",
+          "C45CE": "Bộ nhớ lưu trữ ≥ 8Gb",
+          "9B258": "Bản tin lưu trữ kết quả đo nội trở:  ≥ 1000 bản tin",
+          "CB307": "Bản tin lưu trữ kết quả đo điện áp:  ≥ 500 bản tin"
+        }
+      },
+      {
+        "ten_hang_hoa": "Pin",
+        "thong_so_ky_thuat": {
+          "38996": "Chủng loại Pin: Li-ion, dung lượng ≥ 5.4Ah",
+          "66605": "Thời gian hoạt động sau khi sạc đầy ≥ 8h"
+        }
+      },
+      {
+        "ten_hang_hoa": "Phụ kiện",
+        "thong_so_ky_thuat": {
+          "4F299": "Túi  đựng  thiết  bị,  AC/DC  adapter  sử  dụng  nguồn 220VAC",
+          "CE72D": "Toàn bộ phụ kiện hỗ trợ đo kiểm theo khuyến nghị của nhà sản xuất",
+          "8F456": "Bộ que đo 2 tiếp điểm",
+          "87C3C": "Phần mềm đọc và phân tích kết quả",
+          "53C74": "Tài liệu hướng dẫn kèm theo"
+        }
+      }
+    ]
+  },
+  {
+    "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "AF58D": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ rõ ràng, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "7682C": "Thiết bị mới 100% chưa qua sử dụng",
+          "17280": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây",
+          "3639A": "Tuân thủ tiêu chuẩn IEC 60950-1",
+          "6121A": "Thuộc loại thiết bị  nguồn sử dụng kỹ thuật chuyển mạch, thiết kế dạng Module theo chức năng của từng khối.",
+          "80A0B": "Tất cả các khối đặt trong tủ liên hoàn, đồng bộ của hãng, tạo thành thiết bị cấp nguồn và nạp acquyhoàn chỉnh.",
+          "B92BA": "Thời gian bảo hành: theo tiêu chuẩn của nhà sản xuất, tối thiểu 12 tháng."
+        }
+      },
+      {
+        "ten_hang_hoa": "Cấu hình thiết bị nguồn",
+        "thong_so_ky_thuat": {
+          "8D610": "Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4",
+          "BD899": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+          "2F153": "Số lượng module chỉnh lưu trang bị kèm tủ nguồn: ≥ 3 module",
+          "8DFFC": "Attomat DC: + PL (Priority LLVD) ● Loại 32A: ≥ 02 cái ● Loại 16A: ≥ 01 cái + NPL (Non Priority LLVD): ● Loại 63A: ≥ 02 cái ● Loại 32A: ≥ 03 cái ● Loại 16A: ≥ 02 cái + Attomat cho acquy: ●  Loại 125A: ≥ 02 cái"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đầu vào AC",
+        "thong_so_ky_thuat": {
+          "8987F": "Sử dụng được các điện áp L＋N＋PE/220VAC",
+          "618EE": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+          "BC5EE": "Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz.",
+          "25A16": "Có tính năng chống sét"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đầu ra DC",
+        "thong_so_ky_thuat": {
+          "E909D": "Điện áp đầu ra danh định -48VDC, cực dương đấu đất",
+          "F5652": "Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC",
+          "71220": "Độ ổn định điện áp đầu ra: ≤1%",
+          "7A27D": "Nhiễu băng rộng (Wide band noise): ≤20mV rms (5Hz÷1MHz)",
+          "F526C": "Độ  gợn  sóng  đầu ra (đỉnh  –  đỉnh):≤  250  mV (0÷20MHz)"
+        }
+      },
+      {
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "thong_so_ky_thuat": {
+          "928A1": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+          "588D9": "Hệ số công suất (power factor) của Rectifier: ≥0.99 với tải từ 50÷100%",
+          "BDE2D": "Hiệu suất đỉnh (peak efficiency) module rectifier: ≥ 0,95",
+          "7A893": "Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100% tại điện áp 220VAC",
+          "BD136": "Rectifier thay thế nóng được khi tủ nguồn đang hoạt động.",
+          "1C827": "Rectifier hoạt động theo cơ chế chia tải",
+          "FB3C3": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+          "3CA26": "Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ."
+        }
+      },
+      {
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "thong_so_ky_thuat": {
+          "068B5": "Bộ nguồn có chức năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode).",
+          "F66A5": "Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquy mà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi thì bộ thiết bị điều khiển phải đảm bảo tự động chuyển  đổi  lại  trạng  thái  làm  việc  ban  đầu  và  cũng không có sự gián đoạn nào.",
+          "C5529": "Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection).",
+          "2AE98": "Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/ SNMP).",
+          "49B2B": "Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo vệ acquy không cho phóng điện khi điện áp  quá thấp.",
+          "BCBE4": "Hệ thống nguồn phải có tiếp đất, chống sét",
+          "85906": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ●  Lỗi AC đầu vào của Rectifier ●  Lỗi quá nhiệt của Rectifier ●  Lỗi quạt của Rectifier ●  Lỗi của Rectifier ●  Mất điện AC ●  Cảnh báo AC đầu vào thấp ●  Cảnh báo AC đầu vào cao ●  Cảnh báo DC cao ●  Cảnh báo DC thấp ●  Cảnh báo LVD ●  Cảnh báo dòng sạc Ắc quy cao"
+        }
+      },
+      {
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "thong_so_ky_thuat": {
+          "BD0CF": "Hiển thị bằng màn hình LCD, có khả năng hiển thị các thông số điện áp (U), dòng điện (I) và một số thông số khác như: cảnh báo, hiển thị chế độ nạp acquy.",
+          "7D499": "Bảng điều khiển phải gồm có nút điều khiển để thiết lập và điều chỉnh các thông số, màn hình hiển thị các thông số vận hành, đèn chỉ thị trạng thái, các cổng truy cập và giám sát từ xa.",
+          "7D4FC": "Cổng kết nối: RS485, Ethernet, USB",
+          "8E394": "Giao thức kết nối: IPv4, HTTPS, SNMP V2/V3",
+          "33A04": "Sử dụng màn hình LCD màu",
+          "35761": "Cho phép cài đặt, thiết lập các thông số cho thiết bị nguồn.",
+          "AAAF6": "Bảng điều khiển được đặt trước mặt máy, dễ quan sát."
+        }
+      },
+      {
+        "ten_hang_hoa": "Điều kiện làm việc",
+        "thong_so_ky_thuat": {
+          "D5538": "●  Dải nhiệt độ từ -10°C đến +60°C ●  Dải độ ẩm từ 5% đến 95%"
+        }
+      },
+      {
+        "ten_hang_hoa": "Hệ thống làm mát",
+        "thong_so_ky_thuat": {
+          "7B492": "Làm mát bằng quạt"
+        }
+      },
+      {
+        "ten_hang_hoa": "Điều kiện bảo hành",
+        "thong_so_ky_thuat": {
+          "4ED27": "Có cơ sở bảo hành chính hãng thiết bị nguồn tại Việt Nam."
+        }
+      },
+      {
+        "ten_hang_hoa": "Acquy kèm theo",
+        "thong_so_ky_thuat": {
+          "8D0F0": "02 dàn Ac quy 12V - 200Ah (08 bình):",
+          "27E78": "Ắcquy phải là loại Axít chì, vỏ bình kín không phải bảo dưỡng (loại VLRA) và không ảnh hưởng đến môi trường, cho phép bố trí chung trong phòng máy với các thiết bị điện khác, chất liệu vỏ bình acquy là nhựa ABS.",
+          "2E4D7": "Thời  hạn  sản  xuất  acquy  không  quá  1  năm  tính  từ ngày cấp hàng.",
+          "BD0FC": "Điện áp nạp ở 25oC: +  Chế  độ  nạp  đệm  (Float  mode):  2.25V/cell  hoặc 13.6V/bình + Chế độ nạp bổ sung (Boost mode): 2.35-2.4V/cell hoặc 14.4V/bình",
+          "0BF3F": "Độ tự xả sau 03 tháng: dung lượng ắcquy ≥ 90% dung lượng danh định",
+          "3ABE1": "Đầu cực: dạng M6 hoặc M8",
+          "7CE4E": "Quy cách dàn ắcquy: + Mỗi dàn ắcquy gồm 4 bình. + Điện áp danh định mỗi bình là 12VDC. + Điện áp cả tổ là 48VDC",
+          "286B2": "Dung lượng dàn ắcquy≥ 200Ah.",
+          "C9C68": "Nội trở ≤ 4.5mΩ",
+          "046B8": "Mỗi dàn acquy phải gồm đầy đủ cáp nối giữa các bình",
+          "0AB94": "Kèm phụ kiện lắp đặt (cầu nối giữa các bình, kẹp cực, giá đỡ..)"
+        }
+      }
+    ]
+  },
+  {
+    "ten_san_pham": "Bộ chuyển đổi nguồn AC/DC loại nhỏ (1U)",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "E3C0B": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ rõ ràng, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "0D76B": "Thiết bị mới 100% chưa qua sử dụng",
+          "CEAAF": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây",
+          "C0023": "Thuộc loại thiết bị  nguồn sử dụng kỹ thuật chuyển mạch, thiết kế dạng Module theo chức năng của từng khối.",
+          "AEA61": "Tất cả các khối đặt trong tủ liên hoàn, đồng bộ của hãng, tạo thành thiết bị cấp nguồn và nạp acquyhoàn chỉnh.",
+          "9D5FD": "Thời gian bảo hành: theo tiêu chuẩn của nhà sản xuất, tối thiểu 12 tháng."
+        }
+      },
+      {
+        "ten_hang_hoa": "Cấu hình thiết bị nguồn",
+        "thong_so_ky_thuat": {
+          "69031": "Kích thước: < 2U",
+          "830B3": "Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 3",
+          "C3712": "Công suất mỗi module chỉnh lưu: ≥ 1000W",
+          "E4A84": "Số lượng module chỉnh lưu trang bị kèm tủ nguồn: ≥ 3 module",
+          "B1341": "Attomat DC: + Attomat cho tải: ●  Loại 30A: ≥ 02 cái ●  Loại 10A: ≥ 01 cái ●  Loại 03A: ≥ 01 cái + Attomat cho acquy: ●  Loại 50A: ≥ 01 cái"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đầu vào AC",
+        "thong_so_ky_thuat": {
+          "B3A16": "Sử dụng được các điện áp L＋N＋PE/220VAC",
+          "3BCF4": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+          "05558": "Dải tần số AC đầu vào: từ 45Hz ÷ 65Hz."
+        }
+      },
+      {
+        "ten_hang_hoa": "Đầu ra DC",
+        "thong_so_ky_thuat": {
+          "72382": "Điện áp đầu ra danh định -48VDC, cực dương đấu đất",
+          "87BA7": "Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC",
+          "52EB2": "Dòng tải max >50A",
+          "25E95": "Độ ổn định điện áp đầu ra: ≤1%",
+          "3DFC6": "Nhiễu băng rộng (Wide band noise): ≤ 20 mV rms (5Hz÷1MHz)",
+          "B3DC4": "Độ  gợn  sóng  đầu  ra  (đỉnh  –  đỉnh):  ≤  250  mV (0÷20MHz)"
+        }
+      },
+      {
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "thong_so_ky_thuat": {
+          "E53A8": "Công suất mỗi module chỉnh lưu: ≥ 1000W",
+          "FBC4A": "Hệ  số  công  suất  của  Rectifier:  ≥0.99  với tải từ 75÷100%",
+          "E3CDB": "Hiệu suất đỉnh module rectifier: ≥ 0,95",
+          "02B25": "Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100%",
+          "285EC": "Rectifier thay thế nóng được khi tủ nguồn đang hoạt động.",
+          "30C57": "Rectifier hoạt động theo cơ chế chia tải",
+          "2D7CF": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+          "51851": "Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ."
+        }
+      },
+      {
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "thong_so_ky_thuat": {
+          "422EA": "Bộ nguồn có chức năng cấp nguồn DC cho thiết bị viễn thông và nạp cho acquyở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode).",
+          "197C5": "Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquymà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi  thì  bộ  thiết  bị  điều  khiển  phải  đảm  bảo  tự  động chuyển  đổi  lại  trạng  thái  làm  việc  ban  đầu  và  cũng không có sự gián đoạn nào.",
+          "EB09B": "Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection).",
+          "60BE4": "Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/SNMP).",
+          "06FC4": "Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo  vệ  acquykhông  cho  phóng  điện  khi  điện  áp  quá thấp.",
+          "00704": "Hệ thống nguồn phải có tiếp đất, chống sét",
+          "94260": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ●  Lỗi AC đầu vào của Rectifier ●  Lỗi quá nhiệt của Rectifier ●  Lỗi quạt của Rectifier ●  Lỗi của Rectifier ●  Mất điện AC ●  Cảnh báo AC đầu vào thấp ●  Cảnh báo AC đầu vào cao ●  Cảnh báo DC cao ●  Cảnh báo DC thấp ●  Cảnh báo LVD ●  Cảnh báo dòng sạc Ắc quy cao"
+        }
+      },
+      {
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "thong_so_ky_thuat": {
+          "A0BF3": "Hiển thị bằng màn hình LCD, có khả năng hiển thị các thông số điện áp (U), dòng điện (I) và một số thông số khác như: cảnh báo",
+          "78D5A": "Bảng điều khiển phải gồm có nút điều khiển để thiết lập và điều chỉnh các thông số, màn hình hiển thị các thông số vận hành, đèn chỉ thị trạng thái, các cổng truy cập và giám sát từ xa.",
+          "8E463": "Giao diện  cho cổng giao tiếp truy cập tủ nguồn tại chỗ qua máy tính và cổng giám sát tủ nguồn từ xa qua cổng Fasst Ethernet.",
+          "DF998": "Cho phép cài đặt, thiết lập các thông số cho thiết bị nguồn.",
+          "F3DAE": "Bảng điều khiển được đặt trước mặt máy, dễ quan sát."
+        }
+      },
+      {
+        "ten_hang_hoa": "Điều kiện làm việc",
+        "thong_so_ky_thuat": {
+          "68002": "●  Dải nhiệt độ từ -10°C đến +60°C ●  Dải  độ ẩm từ 5% đến 90%"
+        }
+      },
+      {
+        "ten_hang_hoa": "Hệ thống làm mát",
+        "thong_so_ky_thuat": {
+          "06D67": "Làm mát bằng quạt"
+        }
+      },
+      {
+        "ten_hang_hoa": "Điều kiện bảo hành",
+        "thong_so_ky_thuat": {
+          "E204F": "Có cơ sở bảo hành chính hãng thiết bị nguồn tại Việt Nam."
+        }
+      }
+    ]
+  },
+  {
+    "ten_san_pham": "Card STMIX - Tổng đài OpenScape 4000",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "A0590": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "B9764": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đặc tính kỹ thuật",
+        "thong_so_ky_thuat": {
+          "55640": "Chủng loại card: STMIX",
+          "14D20": "Part Number: Unify S30810-Q2343-X",
+          "AEEE2": "Số lượng 02 cổng GE (RJ45) tốc độ 1000 Mbps",
+          "61632": "Khả năng cung cấp 240 thuê bao IP",
+          "19D29": "Khả năng kết nối 120 trung kế IP đồng thời",
+          "7D25F": "Có tính năng thay thế nóng “Hot plug” cho card",
+          "A47EC": "Đảm bảo cung cấp được kết nối IP tới các hệ thống khác.",
+          "51F66": "Bản quyền sử dụng trên card IP phải là vĩnh viễn.",
+          "92BE0": "Có tính  năng  hoạt  động  active/standby  với  card STMIX đang hoạt động.",
+          "41806": "Tương thích với thiết bị tổng đài OpenScape 4000V8"
+        }
+      }
+    ]
+  },
+  {
+    "ten_san_pham": "Máy phát điện chạy xăng 10kW chống ồn",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "02E91": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "1E73F": "Thiết bị mới 100% chưa qua sử dụng",
+          "F11AC": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đặc tính kỹ thuật",
+        "thong_so_ky_thuat": {
+          "BB64E": "Số pha máy phát điện: Máy phát 1 pha",
+          "1B9C4": "Kiểu động cơ của máy phát: Động cơ 4 thì, kiểu OHV, làm mát cưỡng bức bằng gió, 01 xi lanh",
+          "49699": "Loại đầu phát: Từ trường quay, tự kích từ, 2 cực",
+          "CE1A3": "Kiểu điều chỉnh điện áp: tụ điện /AVR",
+          "FDECE": "Công suất liên tục: ≥ 9kW",
+          "6BD41": "Công suất tối đa: ≥ 10kW",
+          "2B2FD": "Điện áp: 220V",
+          "2985C": "Tần số máy phát điện: 50 Hz",
+          "22D1C": "Nhiên liệu dùng cho máy phát: Xăng",
+          "43975": "Đường kính và khoảng chạy: 89 / 68",
+          "43082": "Hệ số công suất: 1.0",
+          "F3F47": "Tốc độ quay: 3000/3600 rpm",
+          "7E12D": "Hệ thống đánh lửa: IC",
+          "210EE": "Dung tích xi lanh: 389 cc",
+          "C7D24": "Dung tích nhớt: ≥ 1 lít",
+          "A876D": "Le gió tự động có thể dễ dàng kết nối với tủ ATS",
+          "84955": "Dung tích bình nhiên liệu: ≥ 20 lít",
+          "F11D3": "Kiểu khởi động : Giật nổ + Đề nổ",
+          "29380": "Độ ồn: ≤ 74db",
+          "A25EC": "Trọng lượng: ≤130kg, có bánh xe di chuyển",
+          "146A5": "Có vỏ giảm thanh",
+          "7F918": "Vỏ máy được phủ sơn tĩnh điện để chống ăn mòn.",
+          "D2816": "Bảng điều khiển được thiết kế thuận tiện cho việc theo dõi và điều khiển máy phát điện, có đồng hồ hiển thị các thông số điện áp, tần số…",
+          "BF881": "Phụ kiện kèm theo đầy đủ."
+        }
+      }
+    ]
+  },
+  {
+    "ten_san_pham": "Máy đo E1, 64k",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "12828": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "15DC7": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây",
+          "3BD09": "Thiết bị mới 100% chưa qua sử dụng"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đặc tính kỹ thuật chung",
+        "thong_so_ky_thuat": {
+          "9D21C": "Thiết bị phải có khả năng đo BER luồng E1 và n x 64kb/s với chức năng “Cấu hình tự động” (Autoconfig)",
+          "E570D": "Hỗ trợ dual port cho việc giám sát và xử lý sự cố cả 2 hướng",
+          "C2E39": "Hỗ  trợ  các  chế  độ  kiểm  tra:  Terminate,  Monitor, Local Loopback",
+          "FBFC8": "Hỗ  trợ  kiểm  tra  luồng  2M  G.703,  và  tuân  theo G.821,G.826, M.2100",
+          "44AE9": "Thiết bị đo là loại thiết bị cầm tay (handheld), gọn nhẹ có trọng lượng <= 1 kg bao gồm cả pin.",
+          "9F75D": "Thiết bị phải hoạt động được với pin (cả pin sạc và pin  thường)  tới  5  giờ  liên  tục.  Thiết  bị  phải  có  khả năng  vận  hành  trực  tiếp  từ  bộ  chuyển  đổi  nguồn AC/DC mà không cần có pin trong máy.",
+          "15635": "Hỗ trợ hiện thị màn hình màu giúp dễ dàng quan sát khi vận hành",
+          "7E19E": "Hỗ  trợ  xuất  kết  quả  dưới  dạng  báo  cáo  chuyên nghiệp  giúp  kỹ  thuật  viên  thuật  viên  tiết  kiệm  được thời gian và công sức để tạo báo cáo đo kiểm sau mỗi bài đo.",
+          "69F17": "Hỗ trợ đo kiểm mức và tần số thoại",
+          "EFE46": "Thiết bị có khả năng nâng cấp để đo Jitter, Phân tích mặt nạ xung (Pulse Shape), Điều khiển từ xa (Remote Control).",
+          "60FC8": "Thiết bị phải đáp ứng tiêu chuẩn an toàn sử dụng cho người  dùng theo  khuyến  nghị  của  Châu  Âu  (CE Marked).",
+          "D3C83": "Thiết bị hỗ trợ bàn phím cứng thiết kế tương tự bàn phím điện thoại giúp kỹ thuật viên dễ dàng vận hành và thực hiện đo kiểm"
+        }
+      },
+      {
+        "ten_hang_hoa": "Thân máy",
+        "thong_so_ky_thuat": {
+          "EEC39": "Hỗ trợ hiển thị màn hình màu độ phân giải tối thiểu 320 x 240 điểm",
+          "35329": "Thiết bị phải có 02 cổng đo kiểm để phục vụ đo giám sát và xử lý sự cố trên cả hai hướng của 1 luồng E1.",
+          "02147": "Thiết bị đo có cổng giao tiếp USB ngay trên thân máy chính để giao tiếp máy tính truyền kết quả đo",
+          "9995B": "Thiết bị cung cấp các đèn LED để chỉ thị các thông tin  đến  người  dùng,  như:  báo  đồng  bộ  (SYNC),  có khung  dữ  liệu  trên  đường  truyền  (DATA),  chế  độ Loopback (LPBK), cảnh báo pin (BATT)",
+          "5DC12": "Yêu  cầu  về  cổng  phát  và  thu:  tuân  thủ  theo  chuẩn G.703"
+        }
+      },
+      {
+        "ten_hang_hoa": "Chế độ đo luồng E1/64kbps",
+        "thong_so_ky_thuat": {
+          "BE146": "Cung  cấp  đo  kiểm  với  nhiều  chế  độ  đo  khác  nhau: Terminate, Monitor, Local Loopback",
+          "FEBB8": "Có đầy đủ các trúc khung tín hiệu: 2Mb/s unframed, ITU-T G.704, ITU-T G.704 CRC, ITU-T G.704 CAS, ITU-T G.704 CRC + CAS, Nx64kb/s, NFAS",
+          "19FA4": "Có khả năng phát và phân tích các lỗi và cảnh báo",
+          "143F9": "Có khả năng đo Trễ toàn trình (Round Trip Delay)",
+          "A2135": "Chuổi  bit  PRBS6,  PRBS7,  PRBS9(ITU-T  O.150, O.153), PRBS11(ITU-T O.150, O.152,  O.153), PRBS15(ITU-T  O.150,  O.151), PRBS20(ITU-T O.150, O.153), PRBS23(ITU-T O.150,  O.151),  PRBS6 inverted,  PRBS7 inverted, PRBS9 inverted, PRBS11 inverted, PRBS15 inverted, PRBS20  inverted,  PRBS23  inverted,  QRSS,  QRSS inverted,  QBF/FOX,  all0,  all1.  Mẫu  bit  người  dùng định nghĩa (đến 32 bit).",
+          "6B908": "Hỗ trợ đo các kết quả sau: LOS, LOF, AIS, RDI, CRC-LOM, CAS-LOM, MAIS, MRDI, LSS, All 0, All 1, Slip.",
+          "C3A24": "Code,  FAS  error,  CRC  error,  REBE,  MFAS  error, TSE, TSBE."
+        }
+      },
+      {
+        "ten_hang_hoa": "Khả năng hiển thị kết quả:",
+        "thong_so_ky_thuat": {
+          "A047E": "Có khả năng lưu kết quả và cấu hình đo vào bộ nhớ trong của máy.",
+          "8D003": "Có khả năng tự tạo báo cáo dạng pdf, txt và xuất ra máy tính"
+        }
+      },
+      {
+        "ten_hang_hoa": "Phụ kiện đi kèm",
+        "thong_so_ky_thuat": {
+          "01781": "AC/DC adapter, Dây nhảy quang, túi đựng thiết bị, nắp nhựa bảo vệ màn hình"
+        }
+      },
+      {
+        "ten_hang_hoa": "Môi trường hoạt động",
+        "thong_so_ky_thuat": {
+          "E4B91": "Nhiệt độ hoạt động từ 0°C tới +50°C",
+          "AB9ED": "Nhiệt độ lưu trữ từ - 10°C to +60°C"
+        }
+      }
+    ]
+  },
+  {
+    "ten_san_pham": "Máy đo OTDR khoảng cách xa",
+    "cac_muc": [
+      {
+        "ten_hang_hoa": "Yêu cầu chung",
+        "thong_so_ky_thuat": {
+          "339C9": "Các loại thiết bị, vật tư, phụ kiện phải có nguồn gốc xuất xứ, có chứng nhận chất lượng sản phẩm của nhà sản xuất.",
+          "BF646": "Thiết bị phải được sản xuất từ năm 2021 trở lại đây",
+          "96F62": "Thiết bị mới 100% chưa qua sử dụng"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đặc tính kỹ thuật chung",
+        "thong_so_ky_thuat": {
+          "EE31F": "Thiết bị sẽ được dùng để đo kiểm sợi quang đơn mốt tại bước sóng 1310±20nm, 1550±20nm. Dải động RMS tối thiểu 50/50dB tương ứng tại các bước sóng 1310nm và 1550nm.",
+          "998CF": "Thiết bị có thiết kế dưới dạng module dễ dàng tháo lắp, cho phép nâng cấp các tính năng đo khác ngay trên tuyến khi có nhu cầu mà không cần phải gửi máy về nhà sản xuất, khả năng đo kiểm tốt: + Dải chỉ số chiết suất thiết lập được: tối thiểu từ 1.30000 đến 1.70000 theo bước 0.00001 + Độ phân giải lấy mẫu tối thiểu 4cm + Số điểm lấy mẫu: ≥ 256,000 điểm + Độ rộng xung thiết lập được tối thiểu từ 2ns đến 20,000ns + Độ chính xác đo khoảng cách: ≤ ±0.75m ± độ phân giải lấy mẫu ± 1x 10-5 x khoảng cách + Vùng chết sự kiện ≤ 0.6 m; vùng chết suy hao ≤ 2.5 m",
+          "CF898": "Thiết bị có màn hình hiển thị màu cảm ứng, ≥ 8 inches, độ phân giải ≥ 1280 × 800 điểm",
+          "089F4": "Thiết bị phải sử dụng hệ điều hành chuyên dụng Linux/ VxWorks.",
+          "ABA44": "Thiết bị cho phép lưu kết quả đo dưới các định dạng .sor, txt và pdf",
+          "6BA12": "Thiết bị phải hỗ trợ chức năng tự động phát hiện tín hiệu trên tuyến quang cần đo",
+          "EC3AB": "Thiết bị phải được tích hợp sẵn tính năng đo công suất quang Power Meter và nguồn phát công suất quang Light Source trên module OTDR",
+          "3384F": "Ngôn ngữ hỗ trợ cho thiết bị: Tiếng Anh",
+          "1A61C": "Thiết bị phải có khả năng đưa ra được các đánh giá Đạt/Không đạt (Pass/Fail) đối với kết quả đo trên cơ sở so sánh với các mức ngưỡng tham số đo được định nghĩa trước bởi người dùng",
+          "08D1F": "Thiết bị phải được cung cấp cùng phần mềm phân tích kết quả trên PC, cho phép mở đồng thời nhiều file kết quả trên cùng một cửa sổ, có khả năng tạo và in báo cáo chuyên nghiệp",
+          "C1A2C": "Thiết bị hỗ trợ khả năng tạo báo cáo định dạng PDF và xem được các file trên PDF trực tiếp trên máy đo",
+          "6F386": "Thiết bị có khả năng nâng cấp các module quang để đo kiểm tán sắc sợi quang CD, PMD, phân tích phổ quang DWDM và đo OSNR inband; phân tích đặc tuyến suy hao sợi quang (attenuation profile) trong tương lai khi có nhu cầu. Việc nâng cấp có thể tiến hành ngay trên tuyến bởi người dùng (mà không phải gửi về nhà máy) bằng cách cắm thêm các khối module đo tương ứng"
+        }
+      },
+      {
+        "ten_hang_hoa": "Thân máy chính",
+        "thong_so_ky_thuat": {
+          "E332D": "Thân máy có cấu trúc module. Cho phép gắn tối thiểu 3 module đồng thời",
+          "8C2A6": "Thiết bị được trang bị bộ nhớ trong tối thiểu 6GB, bộ nhớ ngoài hỗ trợ các định dạng FAT, FAT3 và Ext4",
+          "F60FC": "Giao tiếp ngoài: ≥ 01 Cổng Ethernet RJ45 1000 Mbps cho kết nối mạng LAN; ≥ 02 cổng USB 2.0 để kết nối bàn phím ngoài, chuột ngoài, thẻ nhớ USB",
+          "4BBD7": "Nguồn  cấp:  Điện  xoay  chiều  AC  và  nguồn  pin  LI- ION sạc, tháo lắp được. Thời gian sử dụng pin của thân máy tối thiểu 8 giờ",
+          "F3A29": "Hiển  thị:  Màn  hình  màu  cảm  ứng,  tối  thiểu  8\",  độ phân giải tối thiểu 1280 x 800 điểm",
+          "8966F": "Nhiệt độ hoạt động khi sử dụng pin: -10 tới +55 độ C",
+          "51DFB": "Độ ẩm: 95%, không ngưng tụ",
+          "8C627": "Trọng  lượng:  ≤  4kg  (bao  gồm  thân  máy,  module OTDR và Pin sạc)"
+        }
+      },
+      {
+        "ten_hang_hoa": "Khối đo OTDR",
+        "thong_so_ky_thuat": {
+          "86571": "Giao diện đo: SC/PC dạng tháo lắp thay thế được",
+          "EE0A9": "Bước sóng công tác: 1310±20nm, 1550±20nm",
+          "B9EEE": "Độ rộng xung: Tối thiểu từ 2 ns tới 20µs",
+          "41C68": "Dải động (RMS): ≥ 50/50dB tương ứng tại 1310/1550nm",
+          "1942B": "Vùng chết sự kiện: ≤ 0.6m tại bước sóng 1310nm và 1550nm",
+          "CE42A": "Vùng chết suy hao: ≤ 2.5m tại bước sóng 1310nm và 1550nm",
+          "E6F14": "Vùng chết suy hao đối với bộ chia quang (splitter): ≤ 15m sau splitter có suy hao 15dB",
+          "31282": "Số điểm lấy mẫu: ≥ 256,000",
+          "C6568": "Dải  chỉ  số  chiết  suất:  thiết  lập  được  từ  1.30000  tới 1.70000 theo bước 0.00001",
+          "49B51": "Thiết bị phải hỗ trợ các chế độ đo kiểm sau: + Chế độ đo theo cấu hình lưu sẵn: cho phép lựa chọn và đo theo file cấu hình được lưu trước + Chế độ đo tự động: thiết bị tự động lựa chọn các tham số đo phù hợp với tuyến quang + Chế độ đo nhân công: cho phép người sử dụng thiết lập chi tiết các tham số đo + Chế độ đo thời gian thực: đo liên tục theo thời gian thực, dùng để giám sát sự biến động, thay đổi của tuyến quang + Trong cùng 1 lần đo: thiết bị có khả năng thiết lập để phát đồng thời 3 xung với độ rộng xung khác nhau tại cùng 1 bước sóng"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đo khoảng cách",
+        "thong_so_ky_thuat": {
+          "77DEA": "Phương pháp đo: Tự động hoặc thông qua 2 con trỏ",
+          "EAE9C": "Dải khoảng cách hiển thị:  Có thể thiết  lập được tối thiểu từ 0.1km tới 400km",
+          "AE56C": "Đơn vị đo khoảng cách: km, m",
+          "3A331": "Độ phân giải hiển thị: ≤1cm",
+          "7B2A6": "Độ phân giải con trỏ: tối thiểu 1 cm",
+          "9D15F": "Độ phân giải lấy mẫu: tối thiểu 4cm",
+          "9058F": "Độ  chính  xác:  ≤±0.75m  ±  độ  phân  giải  lấy  mẫu ±1x10-5 x khoảng cách"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đo suy hao",
+        "thong_so_ky_thuat": {
+          "6D387": "Phương  pháp  đo:  Tự  động,  thủ  công,  theo  phương pháp 2 điểm, 5 điểm",
+          "8BC37": "Độ phân giải hiển thị: ≤0.001dB",
+          "65F59": "Độ tuyến tính: ≤±0.03dB/dB",
+          "DDFFA": "Mức  ngưỡng  thiết  lập:  0.01  tới  4.99dB  theo  bước 0.01dB"
+        }
+      },
+      {
+        "ten_hang_hoa": "Đo phản xạ và suy  hao  phản hồi ORL",
+        "thong_so_ky_thuat": {
+          "C43AC": "Phương pháp đo: Phải hỗ trợ hai chế độ tự động hoặc bằng tay",
+          "F69DE": "Độ chính xác: ≤ ±2dB",
+          "C09AF": "Độ phân giải hiển thị: 0.01dB",
+          "DD174": "Mức  ngưỡng  thiết  lập:  -11dB  tới  -98dB  theo  bước 1dB"
+        }
+      },
+      {
+        "ten_hang_hoa": "Chức năng đo công suất quang Power  Meter trên module OTDR",
+        "thong_so_ky_thuat": {
+          "CBE0B": "Bước sóng hỗ trợ: 1310, 1550nm, 1490nm, 1625nm",
+          "E810C": "Dải công suất đo:-5 tới -55dBm",
+          "67AC0": "Độ chính xác: ±0.5dB tại giá trị -30dBm"
+        }
+      },
+      {
+        "ten_hang_hoa": "Chức  năng  nguồn  phát  công suất quang Light Source trên module OTDR",
+        "thong_so_ky_thuat": {
+          "498F7": "Bước sóng hỗ trợ: 1310, 1550nm",
+          "B4620": "Mức công suất phát: ≥ 0dBm",
+          "F053B": "Chế  độ  hoạt  động:  270Hz,  330Hz,  1kHz,  2kHz, TWINtest (đo đồng thời 2 bước sóng)",
+          "F948A": "Độ ổn định công suất phát: ±0.1dB trong 1 giờ."
+        }
+      },
+      {
+        "ten_hang_hoa": "Phụ kiện",
+        "thong_so_ky_thuat": {
+          "0D83A": "Module đo, túi đựng thiết bị, AC/DC adapter, Pin sạc, dây nhảy quang",
+          "92CEE": "Tài liệu hướng dẫn kèm theo"
+        }
+      }
+    ]
+  }
+]

@@ -9,7 +9,7 @@
         "summary": "The Vertiv™ NetSure™ Control Unit (NCU) offers enhanced remote monitoring and control features with a user-friendly interface and secure connectivity.",
         "table_name": "None",
         "figure_name": "None",
-        "document_id": "5ad6f8a1-6846-11f0-a0b5-38f3abb08dd1",
+        "document_id": "e9468efa-6acb-11f0-be9a-d21c9e6a59d7",
         "chunk_id": "Controller_Brochure_1",
         "type": "chunk_document"
     },
@@ -20,10 +20,10 @@
         "page": 1,
         "level1": "Vertiv™ NetSure™ Control Unit (NCU)",
         "level2": "Benefits",
-        "summary": "The text outlines the benefits of a system that offers user-friendly monitoring, extensive connectivity, advanced management controls, quick setup, and energy cost reduction.",
+        "summary": "The text outlines the benefits of a system that offers user-friendly monitoring, extensive connectivity options, advanced management controls, quick setup, and energy cost reduction.",
         "table_name": "None",
         "figure_name": "None",
-        "document_id": "5ad6f8a1-6846-11f0-a0b5-38f3abb08dd1",
+        "document_id": "e9468efa-6acb-11f0-be9a-d21c9e6a59d7",
         "chunk_id": "Controller_Brochure_2",
         "type": "chunk_document"
     },
@@ -34,10 +34,10 @@
         "page": 1,
         "level1": "Vertiv™ NetSure™ Control Unit (NCU)",
         "level2": "Description",
-        "summary": "The NetSure Control Unit (NCU) is a versatile controller for DC power applications that supports remote monitoring, load management, and battery management features.",
+        "summary": "The NetSure Control Unit (NCU) is a versatile controller for DC power applications, offering remote monitoring, load management, and battery management features.",
         "table_name": "None",
         "figure_name": "None",
-        "document_id": "5ad6f8a1-6846-11f0-a0b5-38f3abb08dd1",
+        "document_id": "e9468efa-6acb-11f0-be9a-d21c9e6a59d7",
         "chunk_id": "Controller_Brochure_3",
         "type": "chunk_document"
     },
@@ -48,10 +48,10 @@
         "page": 2,
         "level1": "Vertiv™ NetSure™ Control Unit (NCU)",
         "level2": "Technical Specifications",
-        "summary": "The text provides detailed technical specifications for two models, M830B and M830D, including power supply, environmental conditions, compliance standards, mechanical dimensions, and inputs/outputs.",
+        "summary": "The text provides detailed technical specifications for two models, M830B and M830D, including power supply, environmental conditions, standards compliance, mechanical dimensions, and inputs/outputs.",
         "table_name": "Technical Specifications of M830B and M830D",
         "figure_name": "None",
-        "document_id": "5ad6f8a1-6846-11f0-a0b5-38f3abb08dd1",
+        "document_id": "e9468efa-6acb-11f0-be9a-d21c9e6a59d7",
         "chunk_id": "Controller_Brochure_4",
         "type": "chunk_document"
     },
@@ -65,14 +65,15 @@
         "summary": "The text provides detailed ordering information for various models of NCU controllers, optional interface boards, and supervision modules.",
         "table_name": "Ordering Information for NCU Controllers and Modules",
         "figure_name": "None",
-        "document_id": "5ad6f8a1-6846-11f0-a0b5-38f3abb08dd1",
+        "document_id": "e9468efa-6acb-11f0-be9a-d21c9e6a59d7",
         "chunk_id": "Controller_Brochure_5",
         "type": "chunk_document"
     },
-    "5ad6f8a1-6846-11f0-a0b5-38f3abb08dd1": {
+    "e9468efa-6acb-11f0-be9a-d21c9e6a59d7": {
         "file_name": "Controller_Brochure",
         "product_name": "Vertiv™ NetSure™ Control Unit (NCU)",
-        "document_id": "5ad6f8a1-6846-11f0-a0b5-38f3abb08dd1",
-        "type": "summary_document"
+        "document_id": "e9468efa-6acb-11f0-be9a-d21c9e6a59d7",
+        "type": "summary_document",
+        "summary": "**Product Category**: DC Power Management Controller\n\n**High-Level Feature Summary**:\n- Provides remote monitoring and control of DC power systems with a user-friendly interface.\n- Supports various communication protocols for seamless network integration.\n- Manages battery and generator operations, optimizing energy use and reducing costs.\n- Allows quick setup with pre-programmed configuration files and extensive monitoring capabilities."
     }
 }
