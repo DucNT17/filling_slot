@@ -1,6 +1,7 @@
 from step3_retrieve import retrieve_results
 from openai import OpenAI
 import json 
+import time
 
 client = OpenAI()
 
@@ -66,7 +67,7 @@ def track_reference(pdf_path, collection_name):
     context_queries, product_keys = retrieve_results(pdf_path, collection_name)
     for key in context_queries:
         value = context_queries[key]["query"]
-        content = context_queries[key]["content"]
+        content = context_queries[key]["relevant_context"]
         # Ví dụ user prompt
         user_prompt = f'''
         Yêu cầu: {value}
@@ -74,9 +75,10 @@ def track_reference(pdf_path, collection_name):
         '''
 
         # Gọi hàm đánh giá
-        result = evaluate_technical_requirement(thread_id, user_prompt, assistant_id)
-        if result:
-            print(json.dumps(result, indent=2, ensure_ascii=False))
+        result = evaluate_technical_requirement(user_prompt, assistant_id)
+        context_queries[key]["response"] = result
+    
+    return context_queries, product_keys
 
 # Hàm tạo Assistant bằng code
 def create_assistant():
@@ -88,7 +90,12 @@ def create_assistant():
     )
     return assistant.id
 
-# Hàm cập nhật Assistant (nếu cần sửa cấu hình)
+# Hàm tạo thread
+def create_thread():
+    thread = client.beta.threads.create()
+    return thread.id
+
+# === UPDATE ASSISTANT ===
 def update_assistant(assistant_id):
     assistant = client.beta.assistants.update(
         assistant_id=assistant_id,
@@ -98,36 +105,47 @@ def update_assistant(assistant_id):
     )
     return assistant.id
 
-# Hàm gửi yêu cầu tới thread (như code trước)
-def evaluate_technical_requirement(thread_id, user_prompt, assistant_id):
+# === EVALUATE TECHNICAL REQUIREMENT ===
+def evaluate_technical_requirement(user_prompt, assistant_id):
+    # 1. Tạo thread riêng cho mỗi lần gọi
+    thread = client.beta.threads.create()
+    thread_id = thread.id
+
+    # 2. Gửi message vào thread
     client.beta.threads.messages.create(
         thread_id=thread_id,
         role="user",
         content=user_prompt
     )
 
+    # 3. Tạo run
     run = client.beta.threads.runs.create(
         thread_id=thread_id,
         assistant_id=assistant_id,
-        tools=[{"type": "function", "function": FUNCTION_SCHEMA}],
         tool_choice={"type": "function", "function": {"name": "danh_gia_ky_thuat"}}
     )
 
-    while run.status in ["queued", "in_progress"]:
+    # 4. Chờ assistant xử lý (tối đa 20s)
+    for _ in range(20):
         run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run.id)
-    
-    if run.status == "completed":
-        messages = client.beta.threads.messages.list(thread_id=thread_id)
-        for message in messages.data:
-            if message.role == "assistant" and message.content:
-                for content in message.content:
-                    if content.type == "tool_calls":
-                        tool_call = content.tool_calls[0]
-                        if tool_call.function.name == "danh_gia_ky_thuat":
-                            return json.loads(tool_call.function.arguments)
-    return None
+        if run.status not in ["queued", "in_progress"]:
+            break
+        time.sleep(1)
 
-# Hàm tạo thread
-def create_thread():
-    thread = client.beta.threads.create()
-    return thread.id
+    # 5. Lấy arguments trực tiếp
+    if run.status == "requires_action":
+        call = run.required_action.submit_tool_outputs.tool_calls[0]
+        print(f"👉 Assistant đã gọi tool: {call.function.name}")
+        print("🧠 Dữ liệu JSON assistant muốn trả về:")
+        print(call.function.arguments)
+        return call.function.arguments
+
+    elif run.status == "completed":
+        messages = client.beta.threads.messages.list(thread_id=thread_id)
+        for msg in messages.data:
+            print(f"[{msg.role}] {msg.content[0].text.value}")
+        return None
+
+    else:
+        print(f"Run status: {run.status}")
+        return None
