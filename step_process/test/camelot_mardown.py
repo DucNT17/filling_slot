@@ -118,8 +118,6 @@ def main():
     file_path = os.path.dirname(args.path)
 
     written = []
-    longest_table_info = None
-    max_content_length = 0
 
     # iterate over found tables
     for i, table in enumerate(tables):
@@ -154,26 +152,14 @@ def main():
                 # keep track of written tables so that are not written again in the main iteration
                 written.append(continued_table)
 
-        # convert to markdown
+        # convert to markdown and write to file
         markdown_content = table_to_markdown(all_table_data)
         
-        # calculate content length (number of characters)
-        content_length = len(markdown_content)
-        
-        # check if this table has the longest content so far
-        if content_length > max_content_length:
-            max_content_length = content_length
-            longest_table_info = {
-                'file_name': file_name,
-                'markdown_content': markdown_content,
-                'table': table,
-                'page': table.parsing_report['page'],
-                'order': table.parsing_report['order'],
-                'content_length': content_length
-            }
-
-    # write only the longest table to file
-    return longest_table_info["markdown_content"]
+        with open(os.path.join(file_path, file_name), 'w', encoding='utf-8') as md_file:
+            # Add table title
+            md_file.write(f"# Table from {pdf_file_name} - Page {table.parsing_report['page']}\n\n")
+            md_file.write(markdown_content)
+            md_file.write("\n")
 
 if __name__ == "__main__":
     main()

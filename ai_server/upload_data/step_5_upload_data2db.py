@@ -1,4 +1,4 @@
-from config_db import config_db
+from ai_server.config_db import config_db
 from step_4_node_metadata import get_node_metadata
 from llama_index.core import StorageContext, VectorStoreIndex
 from dotenv import load_dotenv
