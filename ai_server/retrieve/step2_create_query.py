@@ -10,27 +10,19 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def llm_create_query(path_pdf):
     converted_data = extract_table_json_camelot(path_pdf)
-    context_prompts = create_context_prompts(converted_data)
-    queries = []
-    for item in context_prompts:
-        for key, value in item.items():
-            prompt = prompt_create_query(value)
-            response = client.responses.create(
-                model="gpt-4o-mini",  
-                input=prompt,
-                temperature=0
-            )
+    context_queries, product_keys = create_json(converted_data)
+    for key in context_queries:
+        context_prompt = context_queries[key]
+        prompt = prompt_create_query(context_prompt)
+        response = client.responses.create(
+            model="gpt-4o-mini",
+            input=prompt,
+            temperature=0
+        )
+        output_text = response.output_text.strip()
+        context_queries[key]["query"] = output_text
+    return context_queries, product_keys
 
-            output_text = response.output_text.strip()
-            queries.append(
-                {
-                    "key": key,
-                    "value": value,
-                    "query": output_text
-                }
-            )
-    return queries
-    
 
 def prompt_create_query(context_prompt):
     prompt =  f"""
@@ -70,8 +62,10 @@ Trả lời từng `context_prompt` theo cấu trúc như trên.
     """
     return prompt
 
-def create_context_prompts(converted_data):
-    context_prompts = []
+def create_json(converted_data):
+    context_prompts = {}  # Đổi từ list sang dict
+    product_keys = {}
+
     for item in converted_data:
         ten_san_pham = item['ten_san_pham']
         for muc in item['cac_muc']:
@@ -82,9 +76,12 @@ def create_context_prompts(converted_data):
                     value_str = ' '.join(value)
                 else:
                     value_str = value
-                query = {
-                    key: f"{ten_san_pham} {ten_hang_hoa} {value_str}"
+                context_prompts[key] = {
+                    "ten_san_pham": ten_san_pham,
+                    "ten_hang_hoa": ten_hang_hoa,
+                    "value": value_str
                 }
-                context_prompts.append(query)
-    return context_prompts
-
+                if ten_san_pham not in product_keys:
+                    product_keys[ten_san_pham] = []
+                product_keys[ten_san_pham].append(key)
+    return context_prompts, product_keys
