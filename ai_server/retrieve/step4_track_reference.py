@@ -9,16 +9,17 @@ SYSTEM_PROMPT = """
 Bạn được cung cấp:
 - Một hoặc nhiều đoạn văn bản (chunk) từ tài liệu kỹ thuật, kèm metadata: tên file, mục, bảng/hình (nếu có), số trang
 - Một yêu cầu kỹ thuật cụ thể.
+- Một đoạn văn mẫu.
 
-#Yêu cầu:
+#Yêu cầu trả lời bằng tiếng việt:
 # 1. Tìm thông tin kỹ thuật liên quan trực tiếp đến yêu cầu kỹ thuật.
-# 2. Trích xuất giá trị thông số để xác định khả năng đáp ứng theo yêu cầu.
+# 2. Trích xuất giá trị thông số để xác định khả năng đáp ứng theo yêu cầu và trả về đoạn văn tương tự giống đoạn văn mẫu không thêm bớt nhưng thông số phải chính xác có trong tài liệu không được bịa đặt.
 # 3. Dẫn chứng rõ: file, section, table/figure name (nếu có), page, nội dung trích dẫn của những tài liệu liên quan, những tài liệu khác không liên quan thì bỏ qua.
 
 # #Output: JSON gồm các trường:
 - yeu_cau_ky_thuat
 - kha_nang_dap_ung
-- tai_lieu_tham_chieu" }
+- tai_lieu_tham_chieu" 
 
 # Ví dụ:
 Input:
@@ -28,6 +29,7 @@ Metadata:
 - file: "Netsure-731-A41-user-manual.pdf"  
 - section: "Table 1-1 Configuration of power system"  
 - page: 2"
+Đoạn văn mẫu: Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4 (ví dụ tìm trong tài liệu số lượng là 5 thì trả về "Số lượng khe cắm module chỉnh lưu (Rectifier): 5")
 """
 
 # Định nghĩa function schema
@@ -68,15 +70,27 @@ def track_reference(pdf_path, collection_name):
     for key in context_queries:
         value = context_queries[key]["query"]
         content = context_queries[key]["relevant_context"]
+        form = context_queries[key]["yeu_cau_ky_thuat_chi_tiet"]
         # Ví dụ user prompt
         user_prompt = f'''
         Yêu cầu: {value}
         Chunk và metadata: {content}
+        Đoạn văn mẫu: {form}
         '''
 
         # Gọi hàm đánh giá
         result = evaluate_technical_requirement(user_prompt, assistant_id)
-        context_queries[key]["response"] = result
+        if isinstance(result, str):
+            result = json.loads(result)
+        context_queries[key]["kha_nang_dap_ung"] = result['kha_nang_dap_ung']
+        context_queries[key]["tai_lieu_tham_chieu"] = {
+            "file": result['tai_lieu_tham_chieu']['file'],
+            "section": result['tai_lieu_tham_chieu'].get('section', ''),
+            "table_or_figure": result['tai_lieu_tham_chieu'].get('table_or_figure', ''),
+            "page": result['tai_lieu_tham_chieu'].get('page', 0),
+            "evidence": result['tai_lieu_tham_chieu'].get('evidence', '')
+        }
+        context_queries[key].pop("relevant_context", None)  # Xoá trường không cần thiết
     
     return context_queries, product_keys
 

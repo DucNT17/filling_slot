@@ -73,15 +73,27 @@ def create_json(converted_data):
             thong_so_ky_thuat = muc['thong_so_ky_thuat']
             for key, value in thong_so_ky_thuat.items():
                 if isinstance(value, list):
+                    q = value[0]
+                    k = value[1]
                     value_str = ' '.join(value)
                 else:
+                    q = None
+                    k = value
                     value_str = value
+
+                # Ghi vào context_prompts
                 context_prompts[key] = {
                     "ten_san_pham": ten_san_pham,
                     "ten_hang_hoa": ten_hang_hoa,
-                    "value": value_str
+                    "value": value_str,
+                    "yeu_cau_ky_thuat_chi_tiet": k,
+                    "yeu_cau_ky_thuat": q
                 }
+
+                # Ghi vào product_keys
                 if ten_san_pham not in product_keys:
-                    product_keys[ten_san_pham] = []
-                product_keys[ten_san_pham].append(key)
+                    product_keys[ten_san_pham] = {}
+                if ten_hang_hoa not in product_keys[ten_san_pham]:
+                    product_keys[ten_san_pham][ten_hang_hoa] = []
+                product_keys[ten_san_pham][ten_hang_hoa].append(key)
     return context_prompts, product_keys

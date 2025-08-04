@@ -24,13 +24,13 @@ def retrieve_results(path_pdf, collection_name):
     for product in product_keys:
         file_names = retrieve_document(product, collection_name)
         items = product_keys[product]
-        for item in items:
-            if item not in context_queries:
-                continue
-            query = context_queries[item]["query"]
-            content = retrieve_chunk(file_names, query, collection_name)
-            context_queries[item]["relevant_context"] = content
-
+        for key in items:
+            for item in items[key]:
+                if item not in context_queries:
+                    continue
+                query = context_queries[item]["query"]
+                content = retrieve_chunk(file_names, query, collection_name)
+                context_queries[item]["relevant_context"] = content
     return context_queries, product_keys
 
 def retrieve_document(query_str, collection_name):
