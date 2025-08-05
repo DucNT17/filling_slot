@@ -16,7 +16,7 @@ from llama_index.core.vector_stores import (
     FilterOperator,
     FilterCondition
 )
-from step2_create_query import llm_create_query
+from retrieve.step3_create_query import llm_create_query
 from config_db import config_db
 
 def retrieve_results(path_pdf, collection_name):
