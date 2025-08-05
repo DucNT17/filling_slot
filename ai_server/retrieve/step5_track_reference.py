@@ -1,4 +1,4 @@
-from step3_retrieve import retrieve_results
+from retrieve.step4_retrieve import retrieve_results
 from openai import OpenAI
 import json 
 import time
@@ -80,6 +80,7 @@ def track_reference(pdf_path, collection_name):
 
         # Gọi hàm đánh giá
         result = evaluate_technical_requirement(user_prompt, assistant_id)
+        print("asssssssssss: ", result)
         if isinstance(result, str):
             result = json.loads(result)
         context_queries[key]["kha_nang_dap_ung"] = result['kha_nang_dap_ung']

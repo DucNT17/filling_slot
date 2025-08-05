@@ -1,4 +1,4 @@
-from step1_extract_table_camelot import extract_table_json_camelot
+from retrieve.step2_process_json import process_json_to_list
 from llama_index.core import Settings
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -9,7 +9,7 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def llm_create_query(path_pdf):
-    converted_data = extract_table_json_camelot(path_pdf)
+    converted_data = process_json_to_list(path_pdf)
     context_queries, product_keys = create_json(converted_data)
     for key in context_queries:
         context_prompt = context_queries[key]
