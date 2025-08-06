@@ -1,7 +1,7 @@
 from docx import Document
 from docx.shared import Pt
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
-from retrieve.step6_adapt_or_not import adapt_or_not
+from ai_server.retrieve.step6_adapt_or_not import adapt_or_not
 def create_json_to_docx(path_pdf, collection_name):
     context_queries, product_keys = adapt_or_not(path_pdf, collection_name)
     print("=== Bắt đầu tạo file Word ===")
@@ -69,7 +69,7 @@ def create_docx_file(context_queries, product_keys):
     # Lưu file
     doc.save("D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung2.docx")
 
-create_json_to_docx("D:/study/LammaIndex/documents/test.pdf", "thong_tin_san_pham")
+create_json_to_docx("D:/study/LammaIndex/documents/test.pdf", "hello_my_friend")
 
 
 

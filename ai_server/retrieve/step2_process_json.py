@@ -1,6 +1,7 @@
-from retrieve.step1_extract_table_camelot import extract_table_json_camelot
+from ai_server.retrieve.step1_extract_table_camelot import extract_table_json_camelot
 import uuid
 import re
+import json
 
 # [{'ten_san_pham': 'Tải giả xả acquy',
 #   'cac_muc': [{'ten_hang_hoa': 'Yêu cầu chung',
@@ -10,7 +11,20 @@ import re
 #      '60BF4': 'Thời  gian  bảo  hành:  theo  tiêu  chuẩn  của  nhà  sản xuất, tối thiểu 12 tháng.'}}]
 def process_json_to_list(path_pdf):
     data = extract_table_json_camelot(path_pdf)
-    converted_data = convert_to_new_format(data)
+    converted_data = convert_to_new_format(data)# Chuyển đổi sang định dạng JSON
+    
+    # Lưu converted_data vào file JSON
+    import os
+    output_filename = os.path.splitext(os.path.basename(path_pdf))[0] + "_converted.json"
+    output_path = os.path.join("output", output_filename)
+    
+    # Tạo thư mục output nếu chưa tồn tại
+    os.makedirs("output", exist_ok=True)
+    
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(converted_data, f, ensure_ascii=False, indent=2)
+    
+    print(f"Đã lưu converted_data vào: {output_path}")
     return converted_data
 
 

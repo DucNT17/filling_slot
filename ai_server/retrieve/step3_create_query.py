@@ -1,4 +1,4 @@
-from retrieve.step2_process_json import process_json_to_list
+from ai_server.retrieve.step2_process_json import process_json_to_list
 from llama_index.core import Settings
 from openai import OpenAI
 from dotenv import load_dotenv

@@ -1,4 +1,4 @@
-from step_2_process_data_md import process_data_md
+from ai_server.upload_data.step_2_process_data_md import process_data_md
 from llama_index.core import Document
 from llama_index.core.node_parser import MarkdownNodeParser
 
