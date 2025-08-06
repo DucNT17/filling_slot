@@ -54,7 +54,7 @@ def table_to_json(table_data, table_info):
     
     return json_data
 
-def get_continued_tables(tables, threshold= 15):
+def get_continued_tables(tables, threshold= 50):
 
     continued_tables = {}
     previous_table = False
@@ -115,7 +115,7 @@ def get_continued_tables(tables, threshold= 15):
     # return the combined tables
     return continued_tables
 
-def get_biggest_table(pdf_path, threshold= 15):
+def get_biggest_table(pdf_path, threshold= 50):
     tables = camelot.read_pdf(pdf_path, flavor = 'lattice', pages = 'all')
     continued_tables = get_continued_tables(tables, threshold)
 

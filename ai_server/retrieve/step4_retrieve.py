@@ -16,8 +16,8 @@ from llama_index.core.vector_stores import (
     FilterOperator,
     FilterCondition
 )
-from retrieve.step3_create_query import llm_create_query
-from config_db import config_db
+from ai_server.retrieve.step3_create_query import llm_create_query
+from ai_server.config_db import config_db
 
 def retrieve_results(path_pdf, collection_name):
     context_queries, product_keys = llm_create_query(path_pdf)
@@ -60,7 +60,7 @@ def retrieve_chunk(file_names, query_str, collection_name):
     
     filters_chunk = MetadataFilters(
         filters=[
-            MetadataFilter(key="file_name", operator=FilterOperator.IN, value=file_names),
+            # MetadataFilter(key="file_name", operator=FilterOperator.IN, value=file_names),
             MetadataFilter(key="type", operator=FilterOperator.EQ, value="chunk_document"),
         ],
         condition=FilterCondition.AND,

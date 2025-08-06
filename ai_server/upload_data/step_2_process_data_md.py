@@ -1,4 +1,4 @@
-from step_1_config_parser import config_parser
+from ai_server.upload_data.step_1_config_parser import config_parser
 import re
 
 PAGE_MARKER_TEMPLATE = "[[__PAGE_{page}__]]"

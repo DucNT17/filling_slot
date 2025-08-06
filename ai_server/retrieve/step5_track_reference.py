@@ -1,4 +1,4 @@
-from retrieve.step4_retrieve import retrieve_results
+from ai_server.retrieve.step4_retrieve import retrieve_results
 from openai import OpenAI
 import json 
 import time
@@ -14,9 +14,9 @@ Bạn được cung cấp:
 #Yêu cầu trả lời bằng tiếng việt:
 # 1. Tìm thông tin kỹ thuật liên quan trực tiếp đến yêu cầu kỹ thuật.
 # 2. Trích xuất giá trị thông số để xác định khả năng đáp ứng theo yêu cầu và trả về đoạn văn tương tự giống đoạn văn mẫu không thêm bớt nhưng thông số phải chính xác có trong tài liệu không được bịa đặt.
-# 3. Dẫn chứng rõ: file, section, table/figure name (nếu có), page, nội dung trích dẫn của những tài liệu liên quan, những tài liệu khác không liên quan thì bỏ qua.
+# 3. Dẫn chứng rõ: file, section, table/figure name (nếu có), page, nội dung trích dẫn của những tài liệu liên quan, nội dung trích dẫn giữ nguyên không được dịch , những tài liệu khác không liên quan thì bỏ qua.
 
-# #Output: JSON gồm các trường:
+# #Output: chỉ trả về dưới dạng JSON gồm các trường:
 - yeu_cau_ky_thuat
 - kha_nang_dap_ung
 - tai_lieu_tham_chieu" 
@@ -56,6 +56,34 @@ FUNCTION_SCHEMA = {
         "required": ["yeu_cau_ky_thuat", "kha_nang_dap_ung", "tai_lieu_tham_chieu"]
     }
 }
+def extract_first_json_object(json_str: str):
+    s = json_str.strip()
+    
+    # Tìm dấu '{' đầu tiên
+    start_index = s.find('{')
+    if start_index == -1:
+        print("❌ Không tìm thấy JSON object nào.")
+        return None
+
+    # Duyệt từ đó để tìm dấu '}' kết thúc object đầu tiên
+    brace_count = 0
+    for i in range(start_index, len(s)):
+        if s[i] == '{':
+            brace_count += 1
+        elif s[i] == '}':
+            brace_count -= 1
+            if brace_count == 0:
+                end_index = i + 1  # Cắt đến sau dấu '}'
+                break
+    else:
+        print("❌ Không tìm thấy JSON đóng đúng.")
+        return None
+
+    first_json_str = s[start_index:end_index]
+
+    # Kiểm tra xem có parse được không
+    result = json.loads(first_json_str)
+    return result
 
 def track_reference(pdf_path, collection_name):
     # Ví dụ sử dụng
@@ -80,9 +108,8 @@ def track_reference(pdf_path, collection_name):
 
         # Gọi hàm đánh giá
         result = evaluate_technical_requirement(user_prompt, assistant_id)
-        print("asssssssssss: ", result)
         if isinstance(result, str):
-            result = json.loads(result)
+            result = extract_first_json_object(result)
         context_queries[key]["kha_nang_dap_ung"] = result['kha_nang_dap_ung']
         context_queries[key]["tai_lieu_tham_chieu"] = {
             "file": result['tai_lieu_tham_chieu']['file'],

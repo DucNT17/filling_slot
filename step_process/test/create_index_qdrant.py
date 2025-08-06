@@ -27,26 +27,26 @@ aclient = AsyncQdrantClient(
 )
 
 # ✅ Thay tên collection thật của bạn tại đây
-collection_name = "thong_tin_san_pham"
+collection_name = "hello_my_friend"
 
 # Tạo index cho 'document_id'
 try:
     client.create_payload_index(
         collection_name=collection_name,
-        field_name="product_name",
+        field_name="file_name",
         field_schema=PayloadSchemaType.KEYWORD
     )
     print("✅ Index created for 'product_name'")
 except Exception as e:
     print("⚠️ Could not create index for 'product_name':", e)
 
-# # Tạo index cho 'type'
-# try:
-#     client.create_payload_index(
-#         collection_name=collection_name,
-#         field_name="type",
-#         field_schema=PayloadSchemaType.KEYWORD
-#     )
-#     print("✅ Index created for 'type'")
-# except Exception as e:
-#     print("⚠️ Could not create index for 'type':", e)
+# Tạo index cho 'type'
+try:
+    client.create_payload_index(
+        collection_name=collection_name,
+        field_name="type",
+        field_schema=PayloadSchemaType.KEYWORD
+    )
+    print("✅ Index created for 'type'")
+except Exception as e:
+    print("⚠️ Could not create index for 'type':", e)

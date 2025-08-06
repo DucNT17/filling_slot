@@ -1,4 +1,4 @@
-from step_3_chunking import get_nodes_from_document
+from ai_server.upload_data.step_3_chunking import get_nodes_from_document
 import re
 from llama_index.core import Document
 from llama_index.core.prompts import PromptTemplate
