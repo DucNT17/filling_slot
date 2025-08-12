@@ -17,7 +17,7 @@ payload = {
     "facetGroups": [],
     "pageSize": 10,
     "pageNumber": 0,
-    "productTypeId": "178d52d8-ace5-43fc-b46b-0c0054e8d94b"
+    "productTypeId": "b62d802f-f832-45e8-8262-9d33e88a8fbe"
 }
 
 def sanitize_folder_name(name):
@@ -28,12 +28,13 @@ def sanitize_folder_name(name):
 def crawl_product_details(product_page_url):
     """Crawl thông tin chi tiết từ trang sản phẩm"""
     try:
+        product_page_url += '#/benefits-features'  # Thêm phần này vào cuối URL
         # Tạo URL đầy đủ nếu cần
         if not product_page_url.startswith('https://www.vertiv.com'):
             if product_page_url.startswith('/'):
-                product_page_url = 'https://www.vertiv.com' + product_page_url
+                product_page_url = 'https://www.vertiv.com' + product_page_url +'#/benefits-features'
             else:
-                product_page_url = 'https://www.vertiv.com/' + product_page_url
+                product_page_url = 'https://www.vertiv.com/' + product_page_url + '#/benefits-features'
         
         print(f"Đang crawl thông tin từ: {product_page_url}")
         
@@ -55,23 +56,27 @@ def crawl_product_details(product_page_url):
                     description = next_p.get_text(strip=True)
             
             # Lấy key benefits từ div class="key-benefits key-benefits--newline"
-            key_benefits = ""
-            key_benefits_element = soup.find('div', class_='list-bullets-component')
-            if key_benefits_element:
-                key_benefits_texts = key_benefits_element.find_all(text=True, recursive=True)
-                key_benefits = ' '.join(key_benefits_texts).strip()
-            
+            features_benefits = "Benefits: "
+            key_benefits_element = soup.find_all('div', class_='presentation-content')
+            for i, element in enumerate(key_benefits_element, start=1):
+                if element:
+                    features_benefits_texts = element.find_all(text=True, recursive=True)
+                    features_benefits += ' '.join(features_benefits_texts).strip() + " "
+                if i == 1:
+                    features_benefits += "Features: "
+                
+
             return {
                 "description": description,
-                "key_benefits": key_benefits
+                "features_benefits": features_benefits
             }
         else:
             print(f"Lỗi khi crawl {product_page_url}: {response.status_code}")
-            return {"description": "", "key_benefits": ""}
+            return {"description": "", "features_benefits": ""}
             
     except Exception as e:
         print(f"Lỗi khi crawl thông tin từ {product_page_url}: {str(e)}")
-        return {"description": "", "key_benefits": ""}
+        return {"description": "", "features_benefits": ""}
 
 def download_pdf(url, folder_path, filename):
     """Tải file PDF từ URL và lưu vào thư mục"""
@@ -130,7 +135,7 @@ def get_all_products():
 all_products = get_all_products()
 
 # Tạo thư mục downloads nếu chưa có
-downloads_dir = "downloads"
+downloads_dir = "downloads1"
 if not os.path.exists(downloads_dir):
     os.makedirs(downloads_dir)
 
@@ -197,14 +202,16 @@ for item in all_products:
             "product_name": display_name,
             "product_type": product_type,
             "description": product_details["description"],
-            "key_benefits": product_details["key_benefits"],
-            "folder_path": product_folder
+            "features_benefits": product_details["features_benefits"],
+            "folder_path": product_folder,
+            "downloaded_files": downloaded_files,
+            "product_page_url": product_page_url
         }
         
         products_info.append(product_info)
 
 # Lưu thông tin tất cả sản phẩm vào file JSON
-json_file_path = os.path.join(downloads_dir, "power-control-and-monitoring.json")
+json_file_path = os.path.join(downloads_dir, "dc-power-systems.json")
 with open(json_file_path, 'w', encoding='utf-8') as f:
     json.dump(products_info, f, ensure_ascii=False, indent=2)
 

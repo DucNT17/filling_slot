@@ -1,9 +1,9 @@
 from docx import Document
 from docx.shared import Pt
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
-from ai_server.retrieve.step6_adapt_or_not import adapt_or_not
+from ai_server.retrieve.step4_retrieve import retrieve_results
 def create_json_to_docx(path_pdf, collection_name):
-    context_queries, product_keys = adapt_or_not(path_pdf, collection_name)
+    context_queries, product_keys = retrieve_results(path_pdf, collection_name)
     print("=== Bắt đầu tạo file Word ===")
     create_docx_file(context_queries, product_keys)
     print("=== Đã tạo file Word thành công ===")
@@ -38,7 +38,7 @@ def create_docx_file(context_queries, product_keys):
     # Ghi từng dòng
     for product, hang_hoa_dict in product_keys.items():
         for idx, (ten_hang_hoa, items) in enumerate(hang_hoa_dict.items(), start=1):
-            ma_ids = items[:-2]  # Các ID
+            ma_ids = items[:-3]  # Các ID
             dap_ung = items[-2]  # ví dụ: "đáp ứng"
             ho_so = items[-1]    # tài liệu tham chiếu
 
@@ -67,9 +67,9 @@ def create_docx_file(context_queries, product_keys):
                         run.font.size = Pt(9)
 
     # Lưu file
-    doc.save("D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung2.docx")
+    doc.save("D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.docx")
 
-create_json_to_docx("D:/study/LammaIndex/documents/test.pdf", "hello_my_friend")
+create_json_to_docx("D:/study/LammaIndex/documents/test.pdf", "hello_my_friend_test")
 
 
 

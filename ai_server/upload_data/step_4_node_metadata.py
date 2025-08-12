@@ -5,19 +5,19 @@ from llama_index.core.prompts import PromptTemplate
 from llama_index.core import Settings
 import json
 import uuid
+import os
 
 PAGE_MARKER_TEMPLATE = "[[__PAGE_{page}__]]"
 PAGE_MARKER_RE = re.compile(r"\[\[__PAGE_(\d+)__\]\]")
 HEADING_RE = re.compile(r'^\s*(#{1,6})\s+(.*\S)\s*$') 
 
-
-def get_node_metadata(pdf_path):
-    nodes, file_name, product_name, merged_text  = get_nodes_from_document(pdf_path)
-    document_id = uuid.uuid1() 
+def get_node_metadata(pdf_path, product_id):
+    nodes  = get_nodes_from_document(pdf_path)
     metadata_dict = {}
     current_page = 0  # bắt đầu theo yêu cầu của bạn
-    summary_document = ""
     documents = []
+    current_level1 = None
+    current_level2 = None
     for idx, node in enumerate(nodes, start=1):
         pages_found = find_all_pages_in_text(node.text)
 
@@ -56,13 +56,11 @@ def get_node_metadata(pdf_path):
         node.metadata["level2"] = current_level2
 
         summary_info = get_llm_summary(node.text)
-        node.metadata["summary"] = summary_info["summary"]
         node.metadata["table_name"] = summary_info["table_name"]
         node.metadata["figure_name"] = summary_info["figure_name"]
-        node.metadata["document_id"] = str(document_id)
+        node.metadata["product_id"] = str(product_id)
         node.metadata["chunk_id"] = f"{node.metadata["file_name"]}_{idx}"
         node.metadata["type"] = "chunk_document"
-        summary_document += node.metadata["summary"] + "\n"
         documents.append(
             Document(
                 text=cleaned_text,
@@ -71,53 +69,26 @@ def get_node_metadata(pdf_path):
         )
         # Lưu metadata
         metadata_dict[idx] = dict(node.metadata)
-    documents.append(
-        Document(
-            text=get_llm_summary_document(merged_text),
-            metadata={
-                "file_name": file_name,
-                "product_name": product_name,
-                "document_id": str(document_id),
-                "type": "summary_document"
-            }
-        )
-    )
-    metadata_dict[str(document_id)] = dict({
-                "file_name": file_name,
-                "product_name": product_name,
-                "document_id": str(document_id),
-                "type": "summary_document",
-                "summary": get_llm_summary_document(merged_text)
-            })
+    output_dir = "D:/study/LammaIndex/output"
+    os.makedirs(output_dir, exist_ok=True)
+    output_file = f"{output_dir}/{nodes[0].metadata['file_name']}.md"
+    with open(output_file, "w", encoding="utf-8") as f:
+        for idx, node in enumerate(nodes, start=1):
+            f.write(f"# Chunk {idx}\n")
+            f.write(node.text + "\n\n\n\n")
+
+    print(f"Đã ghi {len(nodes)} chunk vào {output_file}")
     return documents
-
- 
-
-def get_llm_summary_document(document_content: str) -> str:
-    template = (
-        """You are a product classification and summarization assistant.
-            Your task is to read the attached document and produce a short and concise summary that includes:
-            1. **Product Category**: What kind of product is this? Identify its general type (e.g., power controller, DC power system, battery management unit).
-            2. **High-Level Feature Summary**: In 3–4 bullet points, describe the product’s main functions and capabilities in a concise, non-technical way.
-            Keep the total summary under 100 words. Focus on clarity and high-level classification
-            .\n"
-        "Document:\n---\n{document_content}\n---\nSummary:"""
-    )
-    prompt_template = PromptTemplate(template)
-    response = Settings.llm.predict(prompt_template, document_content=document_content)
-    return response.strip()
 
 def get_llm_summary(node_content: str) -> dict:
     """
     Gọi LLM để lấy thông tin từ node_content:
-    - summary: 1 câu tóm tắt ngắn gọn.
     - table_name: tên bảng (hoặc 'None' nếu không có).
     - figure_name: tên hình (hoặc 'None' nếu không có).
     Trả về dict.
     """
     template = (
         "Analyze the following text and provide a JSON object with the fields:\n"
-        "- summary: A one-sentence summary of the text.\n"
         "- table_name: If a table is present, provide its name; if the table is only named like 'Table 1.1' or has no name, infer a meaningful name like 'Table 1-1 Configuration of power system'; otherwise, return 'None'.\n"
         "- figure_name: The name of the figure if present, otherwise 'None'.\n\n"
         "Text:\n---\n{node_content}\n---\n\n"
@@ -128,9 +99,9 @@ def get_llm_summary(node_content: str) -> dict:
     # Ví dụ response: {"summary": "This text describes ...", "table_name": "Table 1", "figure_name": "None"}
     response = re.sub(r"^```(json)?|```$", "", response, flags=re.MULTILINE).strip()
     result = json.loads(response)
-    print(result)
+    # print(result)
     # Đảm bảo luôn có 3 key
-    for key in ["summary", "table_name", "figure_name"]:
+    for key in ["table_name", "figure_name"]:
         result.setdefault(key, "None")
     return result 
     

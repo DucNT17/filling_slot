@@ -1,9 +1,8 @@
-from ai_server.retrieve.step4_retrieve import retrieve_results
 from openai import OpenAI
 import json 
 import time
 
-client = OpenAI()
+clientOpenAI = OpenAI()
 
 SYSTEM_PROMPT = """
 Bạn được cung cấp:
@@ -81,7 +80,7 @@ def extract_first_json_object(json_str: str):
     result = json.loads(first_json_str)
     return result
 
-def track_reference(pdf_path, collection_name):
+def track_reference(context_queries,kha_nang_dap_ung_tham_chieu_step):
     # Ví dụ sử dụng
     assistant_id = create_assistant()
     print(f"Assistant ID: {assistant_id}")
@@ -89,11 +88,9 @@ def track_reference(pdf_path, collection_name):
     # Tạo thread
     thread_id = create_thread()
     print(f"Thread ID: {thread_id}")
-
-    context_queries, product_keys = retrieve_results(pdf_path, collection_name)
-    for key in context_queries:
+    for key in kha_nang_dap_ung_tham_chieu_step:
         value = context_queries[key]["value"]
-        content = context_queries[key]["relevant_context"]
+        content = kha_nang_dap_ung_tham_chieu_step[key]["relevant_context"]
         form = context_queries[key]["yeu_cau_ky_thuat_chi_tiet"]
         # Ví dụ user prompt
         user_prompt = f'''
@@ -106,21 +103,21 @@ def track_reference(pdf_path, collection_name):
         result = evaluate_technical_requirement(user_prompt, assistant_id)
         if isinstance(result, str):
             result = extract_first_json_object(result)
-        context_queries[key]["kha_nang_dap_ung"] = result.get('kha_nang_dap_ung', "")
-        context_queries[key]["tai_lieu_tham_chieu"] = {
+        kha_nang_dap_ung_tham_chieu_step[key]["kha_nang_dap_ung"] = result.get('kha_nang_dap_ung', "")
+        kha_nang_dap_ung_tham_chieu_step[key]["tai_lieu_tham_chieu"] = {
             "file": result['tai_lieu_tham_chieu']['file'],
             "section": result['tai_lieu_tham_chieu'].get('section', ''),
             "table_or_figure": result['tai_lieu_tham_chieu'].get('table_or_figure', ''),
             "page": result['tai_lieu_tham_chieu'].get('page', 0),
             "evidence": result['tai_lieu_tham_chieu'].get('evidence', '')
         }
-        context_queries[key].pop("relevant_context", None)  # Xoá trường không cần thiết
+        kha_nang_dap_ung_tham_chieu_step[key].pop("relevant_context", None)  # Xoá trường không cần thiết
     
-    return context_queries, product_keys
+    return kha_nang_dap_ung_tham_chieu_step
 
 # Hàm tạo Assistant bằng code
 def create_assistant():
-    assistant = client.beta.assistants.create(
+    assistant = clientOpenAI.beta.assistants.create(
         name="Technical Document Evaluator",
         instructions=SYSTEM_PROMPT,
         model="gpt-4o-mini",
@@ -130,12 +127,12 @@ def create_assistant():
 
 # Hàm tạo thread
 def create_thread():
-    thread = client.beta.threads.create()
+    thread = clientOpenAI.beta.threads.create()
     return thread.id
 
 # === UPDATE ASSISTANT ===
 def update_assistant(assistant_id):
-    assistant = client.beta.assistants.update(
+    assistant = clientOpenAI.beta.assistants.update(
         assistant_id=assistant_id,
         instructions=SYSTEM_PROMPT,
         model="gpt-4o-mini",
@@ -146,18 +143,18 @@ def update_assistant(assistant_id):
 # === EVALUATE TECHNICAL REQUIREMENT ===
 def evaluate_technical_requirement(user_prompt, assistant_id):
     # 1. Tạo thread riêng cho mỗi lần gọi
-    thread = client.beta.threads.create()
+    thread = clientOpenAI.beta.threads.create()
     thread_id = thread.id
 
     # 2. Gửi message vào thread
-    client.beta.threads.messages.create(
+    clientOpenAI.beta.threads.messages.create(
         thread_id=thread_id,
         role="user",
         content=user_prompt
     )
 
     # 3. Tạo run
-    run = client.beta.threads.runs.create(
+    run = clientOpenAI.beta.threads.runs.create(
         thread_id=thread_id,
         assistant_id=assistant_id,
         tool_choice={"type": "function", "function": {"name": "danh_gia_ky_thuat"}}
@@ -165,7 +162,7 @@ def evaluate_technical_requirement(user_prompt, assistant_id):
 
     # 4. Chờ assistant xử lý (tối đa 20s)
     for _ in range(20):
-        run = client.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run.id)
+        run = clientOpenAI.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run.id)
         if run.status not in ["queued", "in_progress"]:
             break
         time.sleep(1)
@@ -179,7 +176,7 @@ def evaluate_technical_requirement(user_prompt, assistant_id):
         return call.function.arguments
 
     elif run.status == "completed":
-        messages = client.beta.threads.messages.list(thread_id=thread_id)
+        messages = clientOpenAI.beta.threads.messages.list(thread_id=thread_id)
         for msg in messages.data:
             print(f"[{msg.role}] {msg.content[0].text.value}")
         return None
