@@ -1,0 +1,450 @@
+{
+    "96103": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Cấu hình thiết bị nguồn",
+        "value": "Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4",
+        "yeu_cau_ky_thuat_chi_tiet": "Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có cấu hình thiết bị nguồn với số lượng khe cắm module chỉnh lưu (Rectifier) là bao nhiêu? Có phải là ≥ 4 không?",
+        "kha_nang_dap_ung": "Số lượng khe cắm module chỉnh lưu (Rectifier): 4",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Table 1-1 Configuration of power system",
+            "table_or_figure": "Table 1-1",
+            "page": 8,
+            "evidence": "Maximum configuration：4 pieces"
+        }
+    },
+    "277B7": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Cấu hình thiết bị nguồn",
+        "value": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+        "yeu_cau_ky_thuat_chi_tiet": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC sang 48VDC có công suất mỗi module chỉnh lưu là bao nhiêu? Có phải là ≥ 3000W không, và thiết bị này có kèm theo 02 dàn acquy 200Ah không?",
+        "kha_nang_dap_ung": "Công suất mỗi module chỉnh lưu: 3000W Maximum",
+        "tai_lieu_tham_chieu": {
+            "file": "Converter_Brochure.pdf",
+            "section": "DC Output Specifications",
+            "table_or_figure": "None",
+            "page": 2,
+            "evidence": "Công suất mỗi module chỉnh lưu: 3000W Maximum"
+        }
+    },
+    "794FC": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Cấu hình thiết bị nguồn",
+        "value": "Số lượng module chỉnh lưu trang bị kèm tủ nguồn: ≥ 3 module",
+        "yeu_cau_ky_thuat_chi_tiet": "Số lượng module chỉnh lưu trang bị kèm tủ nguồn: ≥ 3 module",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC đi kèm với 02 dàn acquy 200Ah có cấu hình thiết bị nguồn như thế nào? Số lượng module chỉnh lưu trang bị kèm tủ nguồn là bao nhiêu, có phải là ≥ 3 module không?",
+        "kha_nang_dap_ung": "Số lượng module chỉnh lưu trang bị kèm tủ nguồn: 4 module",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Table 1-1 Configuration of power system",
+            "table_or_figure": "",
+            "page": 8,
+            "evidence": "Maximum configuration: 4 pieces"
+        }
+    },
+    "3ACE9": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Cấu hình thiết bị nguồn",
+        "value": "Attomat DC: + PL (Priority LLVD) ● Loại 32A: ≥ 02 cái ● Loại 16A: ≥ 01 cái + NPL (Non Priority LLVD): ● Loại 63A: ≥ 02 cái ● Loại 32A: ≥ 03 cái ● Loại 16A: ≥ 02 cái + Attomat cho acquy: ● Loại 125A: ≥ 02 cái",
+        "yeu_cau_ky_thuat_chi_tiet": "Attomat DC: + PL (Priority LLVD) ● Loại 32A: ≥ 02 cái ● Loại 16A: ≥ 01 cái + NPL (Non Priority LLVD): ● Loại 63A: ≥ 02 cái ● Loại 32A: ≥ 03 cái ● Loại 16A: ≥ 02 cái + Attomat cho acquy: ● Loại 125A: ≥ 02 cái",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC đi kèm với 02 dàn acquy 200Ah có cấu hình thiết bị nguồn như thế nào? Cụ thể, số lượng và loại attomat DC cần thiết là gì, bao gồm: 02 cái loại 32A, 01 cái loại 16A cho PL (Priority LLVD); 02 cái loại 63A, 03 cái loại 32A, 02 cái loại 16A cho NPL (Non Priority LLVD); và 02 cái loại 125A cho acquy?",
+        "kha_nang_dap_ung": "- Loại 32A: 02 cái; - Loại 16A: 01 cái; - Loại 63A: 02 cái; - Loại 32A: 03 cái; - Loại 16A: 02 cái; - Loại 125A: 02 cái .",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Table 2-1 AC Cable Specifications",
+            "table_or_figure": "Table 1-1 Configuration of power system",
+            "page": 10,
+            "evidence": "Battery MCB: 2×125A/1P; AC output MCB: 1×16A/1P; Load route rated current | Max. output current | Min. cable CSA | Max cable length (volt drop: 0.5V with min. CSA) | Max. cable CSA | Max cable length (volt drop: 0.5V with max. CSA) : 63A | 50A | 16mm2 | 9m | 25mm2 | 14m; 32A | 25A | 10mm2 | 11m | 25mm2 | 29m; 16A | 12A | 6 mm2 | 14m | 25mm2 | 48m."
+        }
+    },
+    "992F3": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Sử dụng được các điện áp L＋N＋PE/220VAC",
+        "yeu_cau_ky_thuat_chi_tiet": "Sử dụng được các điện áp L＋N＋PE/220VAC",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC này có thể sử dụng với các điện áp nào? Có phải là L＋N＋PE/220VAC và đi kèm với 02 dàn acquy 200Ah không?",
+        "kha_nang_dap_ung": "Sử dụng được các điện áp L＋N＋PE/220VAC",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Table 1-1 Configuration of power system",
+            "table_or_figure": "Table 1-1",
+            "page": 8,
+            "evidence": "AC power distribution: L＋N＋PE/220Vac/ 220VDC"
+        }
+    },
+    "E90A0": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+        "yeu_cau_ky_thuat_chi_tiet": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có dải điện áp đầu vào AC là bao nhiêu? Có phải là từ 85VAC đến 300VAC không, và nó có kèm theo 02 dàn acquy 200Ah không?",
+        "kha_nang_dap_ung": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+        "tai_lieu_tham_chieu": {
+            "file": "Converter_Brochure.pdf",
+            "section": "AC Input Specifications",
+            "table_or_figure": "None",
+            "page": 2,
+            "evidence": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC"
+        }
+    },
+    "26AB9": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz.",
+        "yeu_cau_ky_thuat_chi_tiet": "Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz.",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC đi kèm với 02 dàn acquy 200Ah có dải tần số AC đầu vào là bao nhiêu? Có phải là từ 45 Hz đến 65 Hz không?",
+        "kha_nang_dap_ung": "Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz.",
+        "tai_lieu_tham_chieu": {
+            "file": "Converter_Brochure.pdf",
+            "section": "AC Input Specifications",
+            "table_or_figure": "None",
+            "page": 2,
+            "evidence": "Line Frequency: 45 to 65Hz"
+        }
+    },
+    "0F7D2": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Có tính năng chống sét",
+        "yeu_cau_ky_thuat_chi_tiet": "Có tính năng chống sét",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có tính năng chống sét và đi kèm với 02 dàn acquy 200Ah. Vậy bộ chuyển đổi này có những thông số kỹ thuật gì và tính năng chống sét hoạt động như thế nào?",
+        "kha_nang_dap_ung": "Có tính năng chống sét",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "Lightning protection features",
+            "page": 29,
+            "evidence": "At AC side: The AC input side can withstand five times of simulated lightning voltage of 5Kv at 10/700μs, for the positive and negative polarities respectively. It can withstand five times of simulated lightning surge current of 20Ka at 8/20μs, for the positive and negative polarities respectively."
+        }
+    },
+    "5C1A5": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Điện áp đầu ra danh định -48VDC, cực dương đấu đất",
+        "yeu_cau_ky_thuat_chi_tiet": "Điện áp đầu ra danh định -48VDC, cực dương đấu đất",
+        "yeu_cau_ky_thuat": null,
+        "query": "Điện áp đầu ra danh định của bộ chuyển đổi nguồn 220VAC/48VDC là bao nhiêu? Có phải là -48VDC với cực dương đấu đất không?",
+        "kha_nang_dap_ung": "Điện áp đầu ra danh định -48VDC",
+        "tai_lieu_tham_chieu": {
+            "file": "Converter_Brochure.pdf",
+            "section": "DC Output",
+            "table_or_figure": "DC Output Specifications",
+            "page": 2,
+            "evidence": "Output voltage, Adjustment Range: -42 to -58VDC"
+        }
+    },
+    "09D89": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC",
+        "yeu_cau_ky_thuat_chi_tiet": "Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC kèm theo 02 dàn acquy 200Ah có dải điện áp đầu ra DC là bao nhiêu? Có phải là từ -43.2VDC tới -57.6VDC không?",
+        "kha_nang_dap_ung": "Dải điện áp đầu ra là -42 đến -58VDC",
+        "tai_lieu_tham_chieu": {
+            "file": "Converter_Brochure.pdf",
+            "section": "DC Output",
+            "table_or_figure": "DC Output Specifications",
+            "page": 2,
+            "evidence": "|- Output voltage, Adjustment Range | -42 to -58VDC |"
+        }
+    },
+    "4731B": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Độ ổn định điện áp đầu ra: ≤1%",
+        "yeu_cau_ky_thuat_chi_tiet": "Độ ổn định điện áp đầu ra: ≤1%",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có độ ổn định điện áp đầu ra là bao nhiêu? Có phải là ≤1% không, và bộ này có kèm theo 02 dàn acquy 200Ah không?",
+        "kha_nang_dap_ung": "Không có thông tin cụ thể về độ ổn định điện áp đầu ra trong tài liệu.",
+        "tai_lieu_tham_chieu": {
+            "file": "Converter_Brochure.pdf",
+            "section": "N/A",
+            "table_or_figure": "",
+            "page": 1,
+            "evidence": "Không có thông tin về độ ổn định điện áp đầu ra trong tài liệu."
+        }
+    },
+    "2188A": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Nhiễu băng rộng (Wide band noise): ≤20mV rms (5Hz÷1MHz)",
+        "yeu_cau_ky_thuat_chi_tiet": "Nhiễu băng rộng (Wide band noise): ≤20mV rms (5Hz÷1MHz)",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC kèm theo 02 dàn acquy 200Ah có mức nhiễu băng rộng đầu ra DC là bao nhiêu? Có phải là ≤20mV rms trong dải tần từ 5Hz đến 1MHz không?",
+        "kha_nang_dap_ung": "≤2mV (300～3400Hz)",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Table 1-1 Technical Data of NetSure 732 Subrack Power System",
+            "table_or_figure": "",
+            "page": 28,
+            "evidence": "Nhiễu (peak-peak) (rated output): ≤200mV（0～20MHz） và Weighted noise (rated output): ≤2mV（300～3400Hz）"
+        }
+    },
+    "656E3": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Độ gợn sóng đầu ra (đỉnh – đỉnh):≤ 250 mV (0÷20MHz)",
+        "yeu_cau_ky_thuat_chi_tiet": "Độ gợn sóng đầu ra (đỉnh – đỉnh):≤ 250 mV (0÷20MHz)",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có độ gợn sóng đầu ra (đỉnh – đỉnh) tối đa là bao nhiêu, và có phải là ≤ 250 mV trong dải tần 0÷20MHz không?",
+        "kha_nang_dap_ung": "Độ gợn sóng đầu ra (đỉnh – đỉnh):≤ 200mV (0～20MHz)",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Table 1-1 Technical Data of NetSure 732 Subrack Power System",
+            "table_or_figure": "",
+            "page": 28,
+            "evidence": "Độ gợn sóng đầu ra (đỉnh – đỉnh):≤ 200mV（0～20MHz）"
+        }
+    },
+    "F916B": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+        "yeu_cau_ky_thuat_chi_tiet": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+        "yeu_cau_ky_thuat": null,
+        "query": "Công suất tối thiểu của mỗi module chỉnh lưu trong bộ chuyển đổi nguồn 220VAC/48VDC (kèm theo 02 dàn acquy 200Ah) là bao nhiêu? Có phải là ≥ 3000W không?",
+        "kha_nang_dap_ung": "Công suất mỗi module chỉnh lưu: 3000W Maximum",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_Brochure.pdf",
+            "section": "DC Output",
+            "table_or_figure": "DC Output Specifications",
+            "page": 2,
+            "evidence": "Công suất mỗi module chỉnh lưu: 3000W Maximum"
+        }
+    },
+    "8502B": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Hệ số công suất (power factor) của Rectifier: ≥0.99 với tải từ 50÷100%",
+        "yeu_cau_ky_thuat_chi_tiet": "Hệ số công suất (power factor) của Rectifier: ≥0.99 với tải từ 50÷100%",
+        "yeu_cau_ky_thuat": null,
+        "query": "Hệ số công suất tối thiểu của module chỉnh lưu (Rectifier) trong bộ chuyển đổi nguồn 220VAC/48VDC với 02 dàn acquy 200Ah là bao nhiêu khi tải nằm trong khoảng 50% đến 100%? Có phải là ≥0.99 không?",
+        "kha_nang_dap_ung": "Hệ số công suất (power factor) của Rectifier: ≥0.99 với tải từ 50÷100%",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_Brochure.pdf",
+            "section": "Description",
+            "table_or_figure": "System Configuration of NetSure™ 732 A41",
+            "page": 1,
+            "evidence": "Power Factor: ≥0.99(applicable to AC input)"
+        }
+    },
+    "78D05": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Hiệu suất đỉnh (peak efficiency) module rectifier: ≥ 0,95",
+        "yeu_cau_ky_thuat_chi_tiet": "Hiệu suất đỉnh (peak efficiency) module rectifier: ≥ 0,95",
+        "yeu_cau_ky_thuat": null,
+        "query": "Hiệu suất đỉnh của module chỉnh lưu (Rectifier) trong bộ chuyển đổi nguồn 220VAC/48VDC kèm theo 02 dàn acquy 200Ah là bao nhiêu? Có phải đạt ≥ 0,95 không?",
+        "kha_nang_dap_ung": ">95.5%",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_Brochure.pdf",
+            "section": "System Configuration of NetSure™ 732 A41",
+            "table_or_figure": "",
+            "page": 1,
+            "evidence": "Hiệu suất: >95.5%"
+        }
+    },
+    "D0AA4": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100% tại điện áp 220VAC",
+        "yeu_cau_ky_thuat_chi_tiet": "Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100% tại điện áp 220VAC",
+        "yeu_cau_ky_thuat": null,
+        "query": "Tổng độ méo hài THD của module chỉnh lưu (Rectifier) trong bộ chuyển đổi nguồn 220VAC/48VDC là bao nhiêu khi tải nằm trong khoảng 50% đến 100% tại điện áp 220VAC? Có phải yêu cầu là ≤5% không?",
+        "kha_nang_dap_ung": "Tổng độ méo hài THD của Rectifier: 4.5% với tải từ 50÷100% tại điện áp 220VAC",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Technical And Engineering Data",
+            "table_or_figure": "None",
+            "page": 29,
+            "evidence": "Tổng độ méo hài THD của Rectifier: 4.5% với tải từ 50÷100% tại điện áp 220VAC"
+        }
+    },
+    "90A03": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Rectifier thay thế nóng được khi tủ nguồn đang hoạt động.",
+        "yeu_cau_ky_thuat_chi_tiet": "Rectifier thay thế nóng được khi tủ nguồn đang hoạt động.",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có yêu cầu gì đối với module chỉnh lưu (Rectifier)? Có phải là Rectifier phải có khả năng thay thế nóng khi tủ nguồn đang hoạt động không?",
+        "kha_nang_dap_ung": "Rectifier modules can be inserted or removed with power applied (hot swappable).",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "C400/48-3000e3 Replacement",
+            "table_or_figure": "",
+            "page": 25,
+            "evidence": "Rectifier modules can be inserted or removed with power applied (hot swappable)."
+        }
+    },
+    "66172": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Rectifier hoạt động theo cơ chế chia tải",
+        "yeu_cau_ky_thuat_chi_tiet": "Rectifier hoạt động theo cơ chế chia tải",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC kèm theo 02 dàn acquy 200Ah yêu cầu module chỉnh lưu (Rectifier) hoạt động theo cơ chế chia tải. Có đúng như vậy không?",
+        "kha_nang_dap_ung": "Rectifiers can work in parallel and share the current. The unbalanceness is better than ± 5%.",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "",
+            "page": 29,
+            "evidence": "Current sharing: The rectifiers can work in parallel and share the current. The unbalanceness is better than ± 5%."
+        }
+    },
+    "88C14": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+        "yeu_cau_ky_thuat_chi_tiet": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+        "yeu_cau_ky_thuat": null,
+        "query": "Trạng thái hoạt động của bộ chỉnh lưu (Rectifier) trong bộ chuyển đổi nguồn 220VAC/48VDC được hiển thị như thế nào? Có phải là bằng đèn LED không?",
+        "kha_nang_dap_ung": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "4.2 Rectifier Fault Handling",
+            "table_or_figure": "",
+            "page": 24,
+            "evidence": "Power Indicator (Green), Protection Indicator (Yellow), Alarm Indicator (Red): The symptoms of usual rectifier faults include: power indicator (green) off, protection indicator (yellow) on, protection indicator blink, fault indicator (red) on and fault indicator blink."
+        }
+    },
+    "A1813": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ.",
+        "yeu_cau_ky_thuat_chi_tiet": "Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ.",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC kèm theo 02 dàn acquy 200Ah yêu cầu module chỉnh lưu (Rectifier) có khả năng điều chỉnh tốc độ quạt như thế nào? Có phải là theo chế độ tự động hoặc full tốc độ không?",
+        "kha_nang_dap_ung": "Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ.",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": null,
+            "page": 29,
+            "evidence": "Rectifier fan speed can be set to auto or full speed."
+        }
+    },
+    "B5749": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Bộ nguồn có chức năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode).",
+        "yeu_cau_ky_thuat_chi_tiet": "Bộ nguồn có chức năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode).",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có những tính năng gì? Nó có khả năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung, và quá trình nạp có được chuyển tự động giữa các chế độ không? Bộ nguồn này sử dụng công nghệ chuyển mạch (switch mode) như thế nào?",
+        "kha_nang_dap_ung": "Bộ nguồn eSure™ C400/48-3000e3 thiết kế để cung cấp nguồn DC -48V cho thiết bị và có khả năng hoạt động hiệu quả, với công nghệ chuyển mạch mới nhất.",
+        "tai_lieu_tham_chieu": {
+            "file": "Converter_Brochure.pdf",
+            "section": "Description",
+            "table_or_figure": "None",
+            "page": 1,
+            "evidence": "The eSure™ C400/48-3000e3 high-efficiency converter is designed to operate from a nominal 400V DC or 200VAC source to provide nominal -48V DC load power, which is adjustable to application needs. The C400/48-3000e3 is a constant power converter designed with the latest patented switch mode technology."
+        }
+    },
+    "4CC2F": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquy mà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi thì bộ thiết bị điều khiển phải đảm bảo tự động chuyển đổi lại trạng thái làm việc ban đầu và cũng không có sự gián đoạn nào.",
+        "yeu_cau_ky_thuat_chi_tiet": "Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquy mà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi thì bộ thiết bị điều khiển phải đảm bảo tự động chuyển đổi lại trạng thái làm việc ban đầu và cũng không có sự gián đoạn nào.",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có tính năng gì trong việc tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC bị ngắt? Nó có thể chuyển từ bộ nắn nạp sang nguồn dự phòng nóng acquy mà không có sự gián đoạn nào không? Và sau khi điện áp AC được phục hồi, bộ thiết bị điều khiển có đảm bảo tự động chuyển đổi lại trạng thái làm việc ban đầu mà không có sự gián đoạn nào không?",
+        "kha_nang_dap_ung": "Không có thông tin cụ thể về khả năng tự động chuyển đổi nguồn mà không có sự gián đoạn nêu trong các chunk.",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Technical and Engineering Data for NetSure 732 Subrack Power System",
+            "table_or_figure": "",
+            "page": 29,
+            "evidence": "Lock out at the second over-voltage. When the output voltage reaches the software protection point, the rectifier will shut down, and restart automatically after 5 seconds."
+        }
+    },
+    "0EE91": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection).",
+        "yeu_cau_ky_thuat_chi_tiet": "Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection).",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC đi kèm với 02 dàn acquy 200Ah có tính năng gì? Có phải hệ thống này được trang bị chức năng LLVD (Load Low Voltage Disconnection) không?",
+        "kha_nang_dap_ung": "Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection).",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "None",
+            "page": 29,
+            "evidence": "LLVD: Default: -44.0 ± 0.2Vdc, configurable through controller（If it is used for outdoor，the default is-－46.6±0.2Vdc）"
+        }
+    },
+    "0D76B": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/ SNMP).",
+        "yeu_cau_ky_thuat_chi_tiet": "Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/ SNMP).",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có tính năng gì để giám sát hoạt động của hệ thống nguồn từ xa qua cổng Ethernet? Có phải là thông qua web pages hoặc SNMP không?",
+        "kha_nang_dap_ung": "Có thể giám sát hệ thống nguồn từ xa thông qua cổng Ethernet và các giao thức như SNMP.",
+        "tai_lieu_tham_chieu": {
+            "file": "Controller_Brochure.pdf",
+            "section": "Description",
+            "table_or_figure": "",
+            "page": 1,
+            "evidence": "...enable remote monitoring and control of modern communication sites.... expanded information and alarm data can be monitored or controlled via password protected and encrypted web browsers... SNMP version 2 or 3..."
+        }
+    },
+    "0649F": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo vệ acquy không cho phóng điện khi điện áp quá thấp.",
+        "yeu_cau_ky_thuat_chi_tiet": "Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo vệ acquy không cho phóng điện khi điện áp quá thấp.",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC có những tính năng gì? Có phải bao gồm mạch bảo vệ để chống quá điện áp, quá tải và dòng ngắn mạch, cũng như bảo vệ acquy không cho phóng điện khi điện áp quá thấp không?",
+        "kha_nang_dap_ung": "Mạch bảo vệ quá điện áp, quá tải và dòng ngắn mạch đã được lắp sẵn trong tủ nguồn NetSure 732, đảm bảo an toàn cho hệ thống. Cụ thể, rectifier cung cấp bảo vệ quá điện áp với điểm bảo vệ phần cứng là 59.5V ± 0.5V và yêu cầu phải khôi phục hoạt động bằng tay. Ngoài ra, bảo vệ phần mềm có thể được cấu hình qua bộ điều khiển, với điểm bảo vệ nằm giữa 56V và 59V. Ngoài ra là các tính năng bảo vệ nhằm ngăn ngừa sự phóng điện của acquy khi điện áp quá thấp.",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "",
+            "page": 29,
+            "evidence": "Mạch bảo vệ quá điện áp và bảo vệ dòng ngắn mạch đã được lắp sẵn trong tủ nguồn."
+        }
+    },
+    "F74FE": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Hệ thống nguồn phải có tiếp đất, chống sét",
+        "yeu_cau_ky_thuat_chi_tiet": "Hệ thống nguồn phải có tiếp đất, chống sét",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC sang 48VDC đi kèm với 02 dàn acquy 200Ah có những tính năng gì? Hệ thống nguồn này có yêu cầu về tiếp đất và chống sét không?",
+        "kha_nang_dap_ung": "Hệ thống nguồn NetSure 732 A41 có tính năng tiếp đất và có khả năng chịu đựng xung điện sét với 5 lần dòng xung sét giả lập 20Ka tại 8/20μs",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "",
+            "page": 29,
+            "evidence": "It can withstand five times of simulated lightning surge current of 20Ka at 8/20μs."
+        }
+    },
+    "D701F": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ● Lỗi AC đầu vào của Rectifier ● Lỗi quá nhiệt của Rectifier ● Lỗi quạt của Rectifier ● Lỗi của Rectifier ● Mất điện AC ● Cảnh báo AC đầu vào thấp ● Cảnh báo AC đầu vào cao ● Cảnh báo DC cao ● Cảnh báo DC thấp ● Cảnh báo LVD ● Cảnh báo dòng sạc Ắc quy cao",
+        "yeu_cau_ky_thuat_chi_tiet": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ● Lỗi AC đầu vào của Rectifier ● Lỗi quá nhiệt của Rectifier ● Lỗi quạt của Rectifier ● Lỗi của Rectifier ● Mất điện AC ● Cảnh báo AC đầu vào thấp ● Cảnh báo AC đầu vào cao ● Cảnh báo DC cao ● Cảnh báo DC thấp ● Cảnh báo LVD ● Cảnh báo dòng sạc Ắc quy cao",
+        "yeu_cau_ky_thuat": null,
+        "query": "Bộ chuyển đổi nguồn 220VAC/48VDC kèm theo 02 dàn acquy 200Ah có những tính năng cảnh báo nào? Có phải bao gồm các lỗi như: lỗi AC đầu vào của Rectifier, lỗi quá nhiệt của Rectifier, lỗi quạt của Rectifier, lỗi của Rectifier, mất điện AC, cảnh báo AC đầu vào thấp, cảnh báo AC đầu vào cao, cảnh báo DC cao, cảnh báo DC thấp, cảnh báo LVD, và cảnh báo dòng sạc ắc quy cao không?",
+        "kha_nang_dap_ung": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ● Lỗi AC đầu vào của Rectifier ● Lỗi quá nhiệt của Rectifier ● Lỗi quạt của Rectifier ● Lỗi của Rectifier ● Mất điện AC ● Cảnh báo AC đầu vào thấp ● Cảnh báo AC đầu vào cao ● Cảnh báo DC cao ● Cảnh báo DC thấp ● Cảnh báo LVD ● Cảnh báo dòng sạc Ắc quy cao",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure_732_User_Manual.pdf",
+            "section": "Chapter 4 Troubleshooting",
+            "table_or_figure": "Table 4-1 Alarm Handling Methods",
+            "page": 23,
+            "evidence": "Chương 4 Cách xử lý cảnh báo mô tả các loại cảnh báo như Lỗi AC đầu vào của Rectifier, Lỗi quá nhiệt của Rectifier, Lỗi quạt của Rectifier, Lỗi của Rectifier, Mất điện AC, Cảnh báo AC đầu vào thấp, Cảnh báo AC đầu vào cao, Cảnh báo DC cao, Cảnh báo DC thấp, Cảnh báo LVD."
+        }
+    }
+}
