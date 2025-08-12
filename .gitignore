@@ -6,3 +6,5 @@ documents/
 output/
 **/__pycache__/
 downloads/
+downloads1/
+**/.ipynb_checkpoints/

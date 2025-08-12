@@ -32,7 +32,7 @@ def remove_duplicate_headers(markdown_content):
 
 def merge_markdown_content(parsed_docs):
     parts = []
-
+    product_name = "Unknown Product"
     for i, d in enumerate(parsed_docs, start=1):
         if i == 1:
             content = d.text.split('\n')

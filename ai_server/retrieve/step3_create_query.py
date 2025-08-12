@@ -11,16 +11,16 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 def llm_create_query(path_pdf):
     converted_data = process_json_to_list(path_pdf)
     context_queries, product_keys = create_json(converted_data)
-    for key in context_queries:
-        context_prompt = context_queries[key]
-        prompt = prompt_create_query(context_prompt)
-        response = client.responses.create(
-            model="gpt-4o-mini",
-            input=prompt,
-            temperature=0
-        )
-        output_text = response.output_text.strip()
-        context_queries[key]["query"] = output_text
+    # for key in context_queries:
+    #     context_prompt = context_queries[key]
+    #     prompt = prompt_create_query(context_prompt)
+    #     response = client.responses.create(
+    #         model="gpt-4o-mini",
+    #         input=prompt,
+    #         temperature=0
+    #     )
+    #     output_text = response.output_text.strip()
+    #     context_queries[key]["query"] = output_text
     return context_queries, product_keys
 
 

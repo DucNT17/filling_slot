@@ -7,10 +7,9 @@ def get_nodes_from_document(pdf_path):
     big_document = Document(
         text=merged_text,
         metadata={
-            "file_name": file_name,
-            "product_name": product_name,
+            "file_name": file_name
         },
     )
     md_parser = MarkdownNodeParser(include_metadata=True, include_prev_next_rel=True)
     nodes = md_parser.get_nodes_from_documents([big_document])
-    return nodes, file_name, product_name, merged_text
+    return nodes

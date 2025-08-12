@@ -3,6 +3,7 @@ from qdrant_client import QdrantClient, AsyncQdrantClient
 from llama_index.core import Document, VectorStoreIndex, StorageContext, Settings
 from dotenv import load_dotenv
 from llama_index.embeddings.openai import OpenAIEmbedding
+from qdrant_client.http.models import PayloadSchemaType
 import os
 load_dotenv()
 
