@@ -1,5 +1,13 @@
-def compare_fuction(adapt_or_not_step):
+def sum_weights(adapt_or_not_step):
+    total_weight = 0
+    for key, value in adapt_or_not_step.items():
+        weight = value[0]
+        total_weight += weight
+    return total_weight
+
+def compare_function(adapt_or_not_step):
     sum = 0
+    total_weight = sum_weights(adapt_or_not_step)
     for key, value in adapt_or_not_step.items():
         weight = value[0]  # giả sử giá trị đầu tiên là trọng số
         fraction_str = value[1]  # giả sử value[1] là '5/7' hoặc '0.8'
@@ -9,9 +17,7 @@ def compare_fuction(adapt_or_not_step):
         else:
             x = float(fraction_str)
         weight = float(weight)
-        if weight <=2:
-            x *= 0.1
-        sum += x
+        sum += x * weight / total_weight
     return sum
 
 def merge_dicts(kha_nang_dap_ung_tham_chieu_step, context_queries):

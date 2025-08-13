@@ -26,7 +26,7 @@ from openai import OpenAI
 import time
 from ai_server.retrieve.track_reference_function import track_reference
 from ai_server.retrieve.adapt_or_not_function import adapt_or_not
-from ai_server.retrieve.compare_function import compare_fuction, merge_dicts
+from ai_server.retrieve.compare_function import compare_function, merge_dicts
 import re
 clientOpenAI = OpenAI()
 
@@ -101,7 +101,7 @@ def retrieve_results(path_pdf, collection_name):
             
             kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step = adapt_or_not(kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step, all_requirements, context_queries)
 
-            sum_local = compare_fuction(adapt_or_not_step)
+            sum_local = compare_function(adapt_or_not_step)
             if sum_local > sum:
                 sum = sum_local
                 kha_nang_dap_ung_tham_chieu_final = copy.deepcopy(kha_nang_dap_ung_tham_chieu_step)
