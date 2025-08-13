@@ -1,6 +1,7 @@
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
+# from step4_retrieve import retrieve_results
 # from ai_server.retrieve.step4_retrieve import retrieve_results
 import json
 def create_json_to_excel():
@@ -82,22 +83,38 @@ def create_excel_file(context_queries, product_keys):
         for hang_hoa_idx, (ten_hang_hoa, items) in enumerate(hang_hoa_dict.items(), start=1):
             ma_ids = items[:-3]  # Các ID
             dap_ung = items[-2]  # ví dụ: "đáp ứng"
-            ho_so = items[-1]    # tài liệu tham chiếu
             
             # Lấy danh sách các yêu cầu
             spec_list = []
             dap_ung_list = []
-            
+            ho_so_list = []
+            page_list = []
+
             for ma in ma_ids:
                 if ma in context_queries:
                     spec_list.append(context_queries[ma]['yeu_cau_ky_thuat_chi_tiet'])
                     dap_ung_list.append(context_queries[ma].get('kha_nang_dap_ung', ''))
-            
+                    ho_so_tham_khao = context_queries[ma].get("tai_lieu_tham_chieu")
+                    content = ""
+                    file = ho_so_tham_khao.get("file", "")
+                    if file:
+                        content = f"Tài liệu tham chiếu: {file}"
+                    section = ho_so_tham_khao.get("section", "")
+                    if section:
+                        content += f" - Mục: {section}"
+                    table_or_figure = ho_so_tham_khao.get("table_or_figure", "")
+                    if table_or_figure is not None and table_or_figure != "":
+                        content += f" - Có trong bảng/hình: {table_or_figure}"
+                    content += f" - Trang {ho_so_tham_khao.get('page', '')}: \n{ho_so_tham_khao.get('evidence', '')}"
+
+                    ho_so_list.append(content)
+                    page_list.append(int(ho_so_tham_khao.get('page', '')))
+
             # Lưu vị trí bắt đầu để merge sau
             start_row = current_row
             
             # Ghi từng spec thành một hàng riêng biệt
-            for spec_idx, (spec, dap_ung_item) in enumerate(zip(spec_list, dap_ung_list)):
+            for spec_idx, (spec, dap_ung_item, ho_so,page) in enumerate(zip(spec_list, dap_ung_list, ho_so_list,page_list)):
                 # Ghi dữ liệu vào các cell
                 if spec_idx == 0:
                     # Hàng đầu tiên: ghi số thứ tự hàng hóa
@@ -109,12 +126,12 @@ def create_excel_file(context_queries, product_keys):
                 # Ghi tên hàng hóa tạm thời (sẽ merge sau)
                 ws.cell(row=current_row, column=2).value = ten_hang_hoa if spec_idx == 0 else ""
                 
-                # Ghi spec và đáp ứng cho từng hàng
                 ws.cell(row=current_row, column=3).value = spec
-                ws.cell(row=current_row, column=4).value = dap_ung_item
-                
-                # Ghi tài liệu tham chiếu tạm thời (sẽ merge sau)
-                ws.cell(row=current_row, column=5).value = ho_so if spec_idx == 0 else ""
+                if page != 0:
+                    ws.cell(row=current_row, column=4).value = dap_ung_item
+
+                    # Ghi tài liệu tham chiếu cho từng hàng (không merge)
+                    ws.cell(row=current_row, column=5).value = ho_so
                 
                 # Ghi tình trạng đáp ứng tạm thời (sẽ merge sau)
                 ws.cell(row=current_row, column=6).value = dap_ung if spec_idx == 0 else ""
@@ -128,19 +145,19 @@ def create_excel_file(context_queries, product_keys):
                 
                 current_row += 1
             
-            # Merge các ô cho cột B, E, F (Tên hàng hóa, Tài liệu tham chiếu, Tình trạng đáp ứng)
+            # Merge các ô cho cột A, B, F (Hạng mục số, Tên hàng hóa, Tình trạng đáp ứng)
             if len(spec_list) > 1:
                 end_row = current_row - 1
+                
+                # Merge cột A (Hạng mục số)
+                ws.merge_cells(f'A{start_row}:A{end_row}')
+                ws.cell(row=start_row, column=1).value = str(hang_hoa_idx)
+                ws.cell(row=start_row, column=1).alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
                 
                 # Merge cột B (Tên hàng hóa)
                 ws.merge_cells(f'B{start_row}:B{end_row}')
                 ws.cell(row=start_row, column=2).value = ten_hang_hoa
                 ws.cell(row=start_row, column=2).alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
-                
-                # Merge cột E (Tài liệu tham chiếu)
-                ws.merge_cells(f'E{start_row}:E{end_row}')
-                ws.cell(row=start_row, column=5).value = ho_so
-                ws.cell(row=start_row, column=5).alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
                 
                 # Merge cột F (Tình trạng đáp ứng)
                 ws.merge_cells(f'F{start_row}:F{end_row}')

@@ -6,25 +6,34 @@ clientOpenAI = OpenAI()
 
 SYSTEM_PROMPT = """
 Bạn được cung cấp:
-- Một hoặc nhiều đoạn văn bản (chunk) từ tài liệu kỹ thuật, kèm metadata: tên file, mục, bảng/hình (nếu có), số trang
+- Một hoặc nhiều đoạn văn bản (chunk) trích từ tài liệu kỹ thuật, kèm metadata: tên file, mục/section, tên bảng hoặc hình (nếu có), số trang.
 - Một yêu cầu kỹ thuật cụ thể.
-- Một đoạn văn mẫu.
+- Một đoạn văn mẫu minh họa cách trình bày kết quả.
 
-Yêu cầu trả lời bằng tiếng việt:
-- 1. Tìm thông tin kỹ thuật liên quan trực tiếp đến yêu cầu kỹ thuật.
-- 2. Trích xuất giá trị thông số để xác định khả năng đáp ứng theo yêu cầu và trả về đoạn văn tương tự giống đoạn văn mẫu không thêm bớt nhưng thông số phải chính xác có trong tài liệu không được bịa đặt.
-- 3. Dẫn chứng rõ: file, section, table/figure name (nếu có), page, nội dung trích dẫn của những tài liệu liên quan, nội dung trích dẫn giữ nguyên không được dịch , những tài liệu khác không liên quan thì bỏ qua.
- 
+Yêu cầu chỉ trả lời bằng tiếng Việt (ngoại trừ dẫn chứng thì giữ nguyên ngôn ngữ gốc):
+1. Xác định thông tin kỹ thuật liên quan trực tiếp đến yêu cầu kỹ thuật trong các chunk được cung cấp.
+2. Trích xuất chính xác giá trị thông số từ tài liệu để đánh giá khả năng đáp ứng yêu cầu:
+    - Nếu không có thông tin về yêu cầu kỹ thuật, trả về chuỗi rỗng "".
+    - Không bịa đặt thông tin hoặc lấy thông tin không liên quan.
+    - Chỉ viết câu trả lời bằng tiếng Việt, giữ nguyên cấu trúc giống đoạn văn mẫu nhưng thông số phải chính xác trong các đoạn chunk được cung cấp.
+    - Không thêm hoặc bớt nội dung ngoài thông số thực tế từ các chunk.
+
+3. Cung cấp dẫn chứng từ metadata:
+    - file: chính xác tuyệt đối như metadata (không thay đổi tên). Nếu không có → ""
+    - section: nếu không có → ""
+    - table_or_figure: nếu không có → ""
+    - page: nếu không có → 0
+    - evidence:
+        + Nếu yêu cầu có nhiều phần, tách từng phần và tìm dẫn chứng riêng cho từng phần.
+        + Nếu thông tin ở dạng bảng hoặc liệt kê:
+            * Chỉ trích nguyên cụm mục và giá trị của hàng/mục chứa thông tin, không lấy toàn bộ bảng.
+            * Nếu mục nhiều cấp, giữ đầy đủ các cấp, nối bằng dấu ":" (ví dụ: "Others: Safety regulation: Conform to IEC60950-1 standards").
+        + Nếu chỉ có một mục → "Mục: Giá trị".
+        + Nếu thông tin ở dạng văn bản thường → lấy nguyên câu hoặc đoạn chứa thông tin.
+        + Giữ nguyên ngôn ngữ gốc, không dịch.
+        + Nếu không có thông tin → "".
+
 Trả kết quả bằng cách gọi function `danh_gia_ky_thuat` với các tham số phù hợp.
-# Ví dụ:
-Input:
-Yêu cầu: "Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4"  
-Chunk: "...NetSure 731 A41-S8: 4 rectifier slots (standard), expandable to 6..."  
-Metadata:  
-- file: "Netsure-731-A41-user-manual.pdf"  
-- section: "Table 1-1 Configuration of power system"  
-- page: 2"
-Đoạn văn mẫu: Số lượng khe cắm module chỉnh lưu (Rectifier): ≥ 4 (ví dụ tìm trong tài liệu số lượng là 5 thì trả về "Số lượng khe cắm module chỉnh lưu (Rectifier): 5")
 """
 
 # Định nghĩa function schema
@@ -34,18 +43,48 @@ FUNCTION_SCHEMA = {
     "parameters": {
         "type": "object",
         "properties": {
-            "yeu_cau_ky_thuat": {"type": "string"},
-            "kha_nang_dap_ung": {"type": "string"},
+            "yeu_cau_ky_thuat": {
+                "type": "string",
+                "description": "Yêu cầu kỹ thuật cần đánh giá (luôn có giá trị)."
+            },
+            "kha_nang_dap_ung": {
+                "type": "string",
+                "description": (
+                    "Kết quả đánh giá bằng tiếng Việt, giữ nguyên cấu trúc như đoạn mẫu, "
+                    "hoặc chuỗi rỗng nếu không có thông tin."
+                )
+            },
             "tai_lieu_tham_chieu": {
                 "type": "object",
                 "properties": {
-                    "file": {"type": "string"},
-                    "section": {"type": "string"},
-                    "table_or_figure": {"type": "string"},
-                    "page": {"type": "integer"},
-                    "evidence": {"type": "string"}
+                    "file": {
+                        "type": "string",
+                        "description": "Tên file chính xác tuyệt đối hoặc chuỗi rỗng nếu không có."
+                    },
+                    "section": {
+                        "type": "string",
+                        "description": "Tên section hoặc chuỗi rỗng nếu không có."
+                    },
+                    "table_or_figure": {
+                        "type": "string",
+                        "description": "Tên bảng/hình nếu có, ngược lại để chuỗi rỗng."
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Số trang chứa thông tin hoặc 0 nếu không xác định."
+                    },
+                    "evidence": {
+                        "type": "string",
+                        "description": (
+                            "Nguyên văn nội dung trích dẫn. "
+                            "Nếu trong bảng hoặc dạng liệt kê nhiều cấp, "
+                            "giữ nguyên toàn bộ chuỗi mục + giá trị (ví dụ: "
+                            "'Others: Safety regulation: Conform to IEC60950-1 standards'). "
+                            "Nếu không có thông tin → chuỗi rỗng."
+                        )
+                    }
                 },
-                "required": ["file", "section", "page", "evidence"]
+                "required": ["file", "section", "table_or_figure", "page", "evidence"]
             }
         },
         "required": ["yeu_cau_ky_thuat", "kha_nang_dap_ung", "tai_lieu_tham_chieu"]
