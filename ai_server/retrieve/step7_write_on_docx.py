@@ -69,7 +69,7 @@ def create_docx_file(context_queries, product_keys):
     # Lưu file
     doc.save("D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.docx")
 
-create_json_to_docx("D:/study/LammaIndex/documents/test.pdf", "hello_my_friend_test")
+create_json_to_docx("D:/study/LammaIndex/documents/E-HSMT Thi công 02 điều hòa chính xác Chuong V.pdf", "hello_my_friend")
 
 
 

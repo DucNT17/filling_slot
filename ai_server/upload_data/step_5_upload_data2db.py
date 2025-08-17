@@ -15,35 +15,33 @@ embedding = OpenAIEmbedding(model="text-embedding-3-small")
 Settings.llm = OpenAI(model="gpt-4o-mini", temperature=0.1)
 
 
-def create_docStore(category, product_line, product_name, description, features_benefits, brochure_file_path, file_brochure_name):
-    product_id = uuid.uuid1()
+def create_docStore(category, product_line, product_name, description, features_benefits, product_id):
     metadata = {
         "category": category,
         "product_line": product_line,
         "product_name": product_name,
+        "product_id": str(product_id),
         "summary": description + features_benefits,
         "product_id": str(product_id),
-        "type":"summary_document",
-        "brochure_file_path": brochure_file_path,
-        "file_brochure_name": file_brochure_name
+        "type":"summary_document"
     }
     return Document(
         text=description + features_benefits,
         metadata=metadata
     ), product_id
-def upload_data2db_from_folder(folder_path, collection_name, category, product_line, product_name, description, features_benefits, brochure_file_path, file_brochure_name):
-    documentStore, product_id = create_docStore(category, product_line, product_name, description, features_benefits, brochure_file_path, file_brochure_name)
-    upload_docStore2db(collection_name, documentStore)
-    for root, dirs, files in os.walk(folder_path):  # Duyệt tất cả thư mục con
-        for file in files:
-            if file.endswith(".pdf"):
-                full_path = os.path.join(root, file)
-                print("Uploading:", full_path)
-                upload_data2db(pdf_path=full_path, collection_name=collection_name, product_id=product_id)
+# def upload_data2db_from_folder(folder_path, collection_name, category, product_line, product_name, description, features_benefits, product_id):
+#     documentStore, product_id = create_docStore(category, product_line, product_name, description, features_benefits, product_id)
+#     upload_docStore2db(collection_name, documentStore)
+#     for root, dirs, files in os.walk(folder_path):  # Duyệt tất cả thư mục con
+#         for file in files:
+#             if file.endswith(".pdf"):
+#                 full_path = os.path.join(root, file)
+#                 print("Uploading:", full_path)
+#                 upload_data2db(pdf_path=full_path, collection_name=collection_name, product_id=product_id, filename_id=file_name_id)
 
-def upload_data2db(pdf_path, collection_name, product_id):
+def upload_data2db(pdf_path, collection_name, product_id, filename_id):
     vector_store = config_db(collection_name)
-    documents = get_node_metadata(pdf_path, product_id)
+    documents = get_node_metadata(pdf_path, product_id, filename_id)
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
     index = VectorStoreIndex.from_documents(
         documents,

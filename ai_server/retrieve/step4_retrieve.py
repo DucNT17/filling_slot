@@ -24,16 +24,20 @@ from ai_server.retrieve.step3_create_query import llm_create_query
 from ai_server.config_db import config_db, client as qdrantClient
 from openai import OpenAI
 import time
-from ai_server.retrieve.track_reference_function import track_reference
-from ai_server.retrieve.adapt_or_not_function import adapt_or_not
+from ai_server.retrieve.track_reference_function import track_reference_async
+from ai_server.retrieve.adapt_or_not_function import adapt_or_not_async
 from ai_server.retrieve.compare_function import compare_function, merge_dicts
 import re
+import asyncio
+from typing import Dict, Any, Tuple
+
 clientOpenAI = OpenAI()
 
-def retrieve_results(path_pdf, collection_name):
+async def retrieve_results(path_pdf, collection_name):
     context_queries, product_keys = llm_create_query(path_pdf)
     for product in product_keys:
         product_line = retrieve_product_line(product)
+        product_line = product_line.replace('"', '').replace("'", "")
         print(f"Product Line: {product_line}")
         query_str = f"{product}: "
 
@@ -88,18 +92,12 @@ def retrieve_results(path_pdf, collection_name):
 
             product_search_id = set(product_search_id)
             
-            for key in all_requirements:
-                for item in all_requirements[key]:
-                    if item not in context_queries:
-                        continue
-                    query = context_queries[item]["value"]
-                    content = retrieve_chunk(product_search_id, query, collection_name)
-                    if item not in kha_nang_dap_ung_tham_chieu_step:
-                        kha_nang_dap_ung_tham_chieu_step[item] = {}
-                    kha_nang_dap_ung_tham_chieu_step[item]['relevant_context'] = content
-            kha_nang_dap_ung_tham_chieu_step = track_reference(context_queries, kha_nang_dap_ung_tham_chieu_step)
-            
-            kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step = adapt_or_not(kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step, all_requirements, context_queries)
+            kha_nang_dap_ung_tham_chieu_step = await process_requirements_async_with_semaphore(
+                collection_name, all_requirements, context_queries, product_search_id, max_concurrent=5
+            )
+            kha_nang_dap_ung_tham_chieu_step = await track_reference_async(context_queries, kha_nang_dap_ung_tham_chieu_step)
+
+            kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step = await adapt_or_not_async(kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step, all_requirements, context_queries)
 
             sum_local = compare_function(adapt_or_not_step)
             if sum_local > sum:
@@ -149,6 +147,55 @@ def retrieve_document(collection_name, product_line, query_str):
 
     return product_ids
 
+async def retrieve_chunk_async(product_ids, query_str, collection_name):
+    """
+    Phiên bản async của retrieve_chunk
+    """
+    # Wrap các operations đồng bộ trong executor để không block event loop
+    loop = asyncio.get_event_loop()
+    vector_store = config_db(collection_name)
+    def _retrieve_sync():
+        index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
+        
+        filters_chunk = MetadataFilters(
+            filters=[
+                MetadataFilter(key="product_id", operator=FilterOperator.IN, value=product_ids),
+                MetadataFilter(key="type", operator=FilterOperator.EQ, value="chunk_document"),
+            ],
+            condition=FilterCondition.AND,
+        )
+        retriever_chunk = index.as_retriever(similarity_top_k=5, verbose=True, filters=filters_chunk)
+        
+        results = retriever_chunk.retrieve(query_str)
+        content = ""
+        for i, result in enumerate(results, start=1):
+            metadata = result.metadata
+            file_name = metadata["file_name"] + ".pdf"
+            page = metadata["page"]
+            table = metadata["table_name"]
+            figure_name = metadata.get("figure_name")
+            text = result.text.strip()
+            content += f"Chunk {i} trong file {file_name} tại trang {page}, có chứa bảng {table} và hình {figure_name} có nội dung:\n{text}\n\n"
+        return content
+    
+    # Chạy function đồng bộ trong thread pool để không block
+    return await loop.run_in_executor(None, _retrieve_sync)
+
+async def process_single_item(item: str, key: str, context_queries: Dict, product_search_id: Any, collection_name: str) -> tuple:
+    """
+    Xử lý một item đơn lẻ một cách bất đồng bộ
+    """
+    if item not in context_queries:
+        return item, None
+    
+    query = context_queries[item]["value"]
+    content = await retrieve_chunk_async(product_search_id, query, collection_name)
+    print(f"Processed item: {item}")  # In ra để theo dõi tiến trình
+    
+    return item, {
+        'relevant_context': content
+    }
+
 def retrieve_chunk(product_ids, query_str, collection_name):
     vector_store = config_db(collection_name)
     index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
@@ -176,7 +223,7 @@ def retrieve_chunk(product_ids, query_str, collection_name):
 
     return content
 
-def retrieve_product_line(product_name, assistant_id="asst_j5wHMN84dpSLXD2GMH5QifS0"):
+def retrieve_product_line(product_name, assistant_id="asst_CkhqaSBGeaIlLO5mY7puPybD"):
     thread = clientOpenAI.beta.threads.create()
     thread_id = thread.id
     # 2. Gửi message vào thread
@@ -295,3 +342,39 @@ def retrieve_component(collection_name, keyword_product_brochure):
             if product_id:
                 product_ids.append(product_id)
     return product_ids
+
+
+async def process_requirements_async_with_semaphore(collection_name,all_requirements: Dict, context_queries: Dict, product_search_id: Any, max_concurrent: int = 10) -> Dict:
+    """
+    Phiên bản async với giới hạn số lượng concurrent tasks
+    """
+    kha_nang_dap_ung_tham_chieu_step = {}
+    semaphore = asyncio.Semaphore(max_concurrent)
+    
+    async def process_with_semaphore(item: str, key: str):
+        async with semaphore:
+            return await process_single_item(item, key, context_queries, product_search_id, collection_name=collection_name)
+    
+    # Tạo danh sách tất cả các tasks với semaphore
+    tasks = []
+    for key in all_requirements:
+        for item in all_requirements[key]:
+            task = process_with_semaphore(item, key)
+            tasks.append(task)
+    
+    print(f"Bắt đầu xử lý {len(tasks)} tasks với tối đa {max_concurrent} concurrent...")
+    
+    # Chạy tất cả tasks đồng thời (nhưng giới hạn concurrent)
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    
+    # Xử lý kết quả
+    for result in results:
+        if isinstance(result, Exception):
+            print(f"Lỗi khi xử lý: {result}")
+            continue
+        
+        item, data = result
+        if data is not None:
+            kha_nang_dap_ung_tham_chieu_step[item] = data
+    
+    return kha_nang_dap_ung_tham_chieu_step

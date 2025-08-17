@@ -1,0 +1,111 @@
+import os
+from dotenv import load_dotenv
+from llama_index.core import VectorStoreIndex
+from llama_index.core.vector_stores import VectorStoreInfo
+from llama_index.vector_stores.qdrant import QdrantVectorStore
+from qdrant_client import QdrantClient, AsyncQdrantClient
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.llms.openai import OpenAI
+from llama_index.core.retrievers import VectorIndexAutoRetriever
+from llama_index.core.query_engine import RetrieverQueryEngine
+from llama_index.core.settings import Settings
+from llama_index.core import StorageContext, VectorStoreIndex
+from llama_index.core.vector_stores import (
+    MetadataFilter,
+    MetadataFilters,
+    FilterOperator,
+    FilterCondition
+)
+from ai_server.retrieve2.step3_create_query import llm_create_query
+from ai_server.config_db import config_db
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+async def retrieve_results(path_pdf, product_ids, collection_name, max_concurrent=10):
+    """
+    Async version of retrieve_results using semaphore for concurrency control
+    """
+    semaphore = asyncio.Semaphore(max_concurrent)
+    
+    # Run llm_create_query in thread pool since it's synchronous
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor() as executor:
+        context_queries, product_keys = await loop.run_in_executor(
+            executor, llm_create_query, path_pdf
+        )
+
+    # Collect all tasks to run concurrently
+    tasks = []
+    
+    for product in product_keys:
+        items = product_keys[product]
+        for key in items:
+            for item in items[key]:
+                if item not in context_queries:
+                    continue
+                
+                # Create async task for each retrieve operation
+                task = retrieve_chunk_with_semaphore(
+                    semaphore, 
+                    product_ids, 
+                    context_queries[item]["value"], 
+                    collection_name,
+                    item,
+                    context_queries
+                )
+                tasks.append(task)
+    
+    # Run all tasks concurrently
+    await asyncio.gather(*tasks)
+    
+    return context_queries, product_keys
+
+async def retrieve_chunk_with_semaphore(semaphore, product_ids, query, collection_name, item_key, context_queries):
+    """
+    Wrapper function to handle semaphore and update context_queries
+    """
+    async with semaphore:
+        content = await retrieve_chunk_async(product_ids, query, collection_name)
+        context_queries[item_key]["relevant_context"] = content
+
+async def retrieve_chunk_async(product_ids, query_str, collection_name):
+    """
+    Truly async version of retrieve_chunk using thread pool
+    """
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor() as executor:
+        content = await loop.run_in_executor(
+            executor, 
+            retrieve_chunk_sync, 
+            product_ids, 
+            query_str, 
+            collection_name
+        )
+    return content
+
+def retrieve_chunk_sync(product_ids, query_str, collection_name):
+    """
+    Synchronous version of retrieve_chunk (original logic)
+    """
+    vector_store = config_db(collection_name)
+    index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
+    filters_chunk = MetadataFilters(
+        filters=[
+            MetadataFilter(key="product_id", operator=FilterOperator.IN, value=product_ids),
+            MetadataFilter(key="type", operator=FilterOperator.EQ, value="chunk_document"),
+        ],
+        condition=FilterCondition.AND,
+    )
+    retriever_chunk = index.as_retriever(similarity_top_k=5, verbose=True, filters=filters_chunk)
+   
+    results = retriever_chunk.retrieve(query_str)
+    content = ""
+    for i, result in enumerate(results, start=1):
+        metadata = result.metadata
+        file_name = metadata["file_name"] + ".pdf"
+        page = metadata["page"]
+        table = metadata["table_name"]
+        figure_name = metadata.get("figure_name")
+        text = result.text.strip()
+        content += f"Chunk {i} trong file {file_name} tại trang {page}, có chứa bảng {table} và hình {figure_name} có nội dung:\n{text}\n\n"
+    return content

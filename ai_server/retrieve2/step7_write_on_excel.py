@@ -2,14 +2,15 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 # from step4_retrieve import retrieve_results
-from ai_server.retrieve.step4_retrieve import retrieve_results
+from ai_server.retrieve2.step6_adapt_or_not import adapt_or_not
 import json
 import asyncio
-async def create_json_to_excel(pdf_path, collection_name):
-    context_queries, product_keys = await retrieve_results(pdf_path, collection_name)
+async def create_json_to_excel(pdf_path, product_ids, collection_name):
+    context_queries, product_keys = await adapt_or_not(pdf_path, product_ids, collection_name)
     print("=== Bắt đầu tạo file Excel ===")
-    create_excel_file(context_queries, product_keys)
+    wb = create_excel_file(context_queries, product_keys)
     print("=== Đã tạo file Excel thành công ===")
+    return wb
 
 
 def create_excel_file(context_queries, product_keys):
@@ -183,15 +184,16 @@ def create_excel_file(context_queries, product_keys):
     for row in range(3, current_row):
         ws.row_dimensions[row].height = None  # Auto height
     
-    # Lưu file
-    output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung.xlsx"
-    wb.save(output_path)
-    print(f"Đã lưu file Excel tại: {output_path}")
+    return wb
+    # # Lưu file
+    # output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.xlsx"
+    # wb.save(output_path)
+    # print(f"Đã lưu file Excel tại: {output_path}")
 
-# Sử dụng
-async def main():
-    await create_json_to_excel("D:/study/LammaIndex/documents/test1.pdf", "hello_my_friend")
+# # Sử dụng
+# async def main():
+#     await create_json_to_excel("D:/study/LammaIndex/documents/test.pdf", ["c9ef7baa-78ec-11f0-978b-3bc1caf525a4"], "hello_my_friend")
 
-# Fix: Run the async function properly
-if __name__ == "__main__":
-    asyncio.run(main())
+# # Fix: Run the async function properly
+# if __name__ == "__main__":
+#     asyncio.run(main())
