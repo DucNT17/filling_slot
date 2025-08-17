@@ -11,7 +11,7 @@ PAGE_MARKER_TEMPLATE = "[[__PAGE_{page}__]]"
 PAGE_MARKER_RE = re.compile(r"\[\[__PAGE_(\d+)__\]\]")
 HEADING_RE = re.compile(r'^\s*(#{1,6})\s+(.*\S)\s*$') 
 
-def get_node_metadata(pdf_path, product_id):
+def get_node_metadata(pdf_path, product_id, filename_id):
     nodes  = get_nodes_from_document(pdf_path)
     metadata_dict = {}
     current_page = 0  # bắt đầu theo yêu cầu của bạn
@@ -56,6 +56,7 @@ def get_node_metadata(pdf_path, product_id):
         node.metadata["level2"] = current_level2
 
         summary_info = get_llm_summary(node.text)
+        node.metadata["filename_id"] = filename_id
         node.metadata["table_name"] = summary_info["table_name"]
         node.metadata["figure_name"] = summary_info["figure_name"]
         node.metadata["product_id"] = str(product_id)

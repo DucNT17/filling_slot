@@ -1,0 +1,104 @@
+SYSTEM_PROMPT = """
+Bạn được cung cấp:
+- Một hoặc nhiều đoạn văn bản (chunk) trích từ tài liệu kỹ thuật, kèm metadata: file, section, table_or_figure (nếu có), page.
+- Một yêu cầu kỹ thuật cụ thể.
+
+Nhiệm vụ của bạn:
+1. Xác định thông tin liên quan trực tiếp đến yêu cầu trong các chunk được cung cấp.
+2. Trích xuất chính xác giá trị/thông số để đánh giá khả năng đáp ứng:
+   - Nếu không tìm thấy thông tin → trả về "".
+   - Giữ nguyên cú pháp của yêu cầu kỹ thuật, chỉ thay phần thông số bằng giá trị thực tế từ chunk.
+   - Không bịa đặt hoặc suy diễn.
+   - Bắt buộc trả lời bằng Tiếng Việt.
+
+3. Cung cấp dẫn chứng (metadata) cho từng phần yêu cầu:
+   - file: giữ nguyên như metadata, nếu không có → "".
+   - section: nếu không có → "".
+   - table_or_figure: nếu không có → "".
+   - page: nếu không có → 0.
+   - evidence:
+     + Nếu yêu cầu gồm nhiều phần → tách dẫn chứng cho từng phần.
+     + Dạng bảng/liệt kê:
+         * Trích đúng cụm mục và giá trị của hàng chứa thông tin.
+         * Nếu mục nhiều cấp → nối cấp bằng dấu ":".
+     + Dạng 1 mục duy nhất → "Mục: Giá trị".
+     + Dạng văn bản thường → trích nguyên câu hoặc đoạn chứa thông tin.
+     + Giữ nguyên ngôn ngữ gốc, không dịch
+     + Nếu không có thông tin → "".
+
+Trả kết quả bằng cách gọi function `danh_gia_ky_thuat` với các tham số phù hợp.
+"""
+
+# Định nghĩa function schema
+FUNCTION_SCHEMA = {
+    "name": "danh_gia_ky_thuat",
+    "description": "Đánh giá khả năng đáp ứng của sản phẩm theo yêu cầu kỹ thuật từ chunk tài liệu.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "yeu_cau_ky_thuat": {
+                "type": "string",
+                "description": "Yêu cầu kỹ thuật cần đánh giá (luôn có giá trị)."
+            },
+            "kha_nang_dap_ung": {
+                "type": "string",
+                "description": (
+                    "Kết quả đánh giá bằng tiếng Việt, giữ nguyên cấu trúc như đoạn mẫu, "
+                    "hoặc chuỗi rỗng nếu không có thông tin."
+                )
+            },
+            "tai_lieu_tham_chieu": {
+                "type": "object",
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "description": "Tên file chính xác tuyệt đối hoặc chuỗi rỗng nếu không có."
+                    },
+                    "section": {
+                        "type": "string",
+                        "description": "Tên section hoặc chuỗi rỗng nếu không có."
+                    },
+                    "table_or_figure": {
+                        "type": "string",
+                        "description": "Tên bảng/hình nếu có, ngược lại để chuỗi rỗng."
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Số trang chứa thông tin hoặc 0 nếu không xác định."
+                    },
+                    "evidence": {
+                        "type": "string",
+                        "description": (
+                            "Nguyên văn nội dung trích dẫn. "
+                            "Nếu trong bảng hoặc dạng liệt kê nhiều cấp, "
+                            "giữ nguyên toàn bộ chuỗi mục + giá trị (ví dụ: "
+                            "'Others: Safety regulation: Conform to IEC60950-1 standards'). "
+                            "Nếu không có thông tin → chuỗi rỗng."
+                        )
+                    }
+                },
+                "required": ["file", "section", "table_or_figure", "page", "evidence"]
+            }
+        },
+        "required": ["yeu_cau_ky_thuat", "kha_nang_dap_ung", "tai_lieu_tham_chieu"]
+    }
+}
+
+
+prompt = f"""
+Bạn sẽ được cung cấp một danh sách các cặp “yêu cầu kỹ thuật || khả năng đáp ứng” trong file dap_ung_ky_thuat.
+Nhiệm vụ của bạn:
+1. Với từng cặp, đánh giá xem khả năng đáp ứng có thực sự đáp ứng yêu cầu kỹ thuật không.
+2. Tổng hợp kết quả:
+  – Nếu tất cả các yêu cầu đều được đáp ứng, trả về "Đáp ứng"
+  – Nếu không có yêu cầu nào được đáp ứng, trả về "Không đáp ứng"
+  – Nếu chỉ một phần yêu cầu được đáp ứng, trả về theo định dạng "Đáp ứng: x/y = z%", trong đó:
+       - x là số yêu cầu được đáp ứng
+       - y là tổng số yêu cầu
+       - z% là phần trăm làm tròn đến số nguyên gần nhất
+📤 Kết quả chỉ trả về dưới dạng JSON với cấu trúc sau: {{
+ "đáp ứng kỹ thuật": "<kết quả đánh giá>"
+}}
+
+Danh sách các cặp “yêu cầu kỹ thuật || khả năng đáp ứng” : {dap_ung_ky_thuat}
+"""

@@ -24,4 +24,4 @@ for item in data:
                 filename_without_ext = os.path.splitext(file_brochure_name)[0]
                 markdown_path = f"output/{filename_without_ext}.md" 
 
-    upload_data2db_from_folder(folder_path, collection_name="hello_my_friend_test", category="Critical Power", product_line=product_type, product_name=product_name, description=description, features_benefits=features_benefits, brochure_file_path=markdown_path, file_brochure_name=file_brochure_name)  
+    upload_data2db_from_folder(folder_path, collection_name="hello_my_friend", category="Critical Power", product_line=product_type, product_name=product_name, description=description, features_benefits=features_benefits, brochure_file_path=markdown_path, file_brochure_name=file_brochure_name)  

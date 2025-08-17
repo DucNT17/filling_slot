@@ -11,7 +11,7 @@ def config_parser(pdf_path):
         skip_diagonal_text=True,
         preserve_layout_alignment_across_pages=True,
         num_workers=4,
-        max_timeout=500,
+        max_timeout=1000,
     )  # hoặc "md"
     
     file_name = os.path.splitext(os.path.basename(pdf_path))[0]

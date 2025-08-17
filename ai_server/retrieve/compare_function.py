@@ -6,6 +6,7 @@ def sum_weights(adapt_or_not_step):
     return total_weight
 
 def compare_function(adapt_or_not_step):
+    print("sssssssssssssssss: ", adapt_or_not_step)
     sum = 0
     total_weight = sum_weights(adapt_or_not_step)
     for key, value in adapt_or_not_step.items():
@@ -13,9 +14,20 @@ def compare_function(adapt_or_not_step):
         fraction_str = value[1]  # giả sử value[1] là '5/7' hoặc '0.8'
         if '/' in fraction_str:
             numerator, denominator = fraction_str.split('/')
-            x = float(numerator) / float(denominator)
+            try:
+                numerator = float(numerator)
+                denominator = float(denominator)
+                if denominator == 0:  # mẫu bằng 0
+                    x = 0
+                else:
+                    x = numerator / denominator
+            except ValueError:  # tử hoặc mẫu có chữ (không phải số)
+                x = 0
         else:
-            x = float(fraction_str)
+            try:
+                x = float(fraction_str)  # nếu là số thập phân
+            except ValueError:
+                x = 0
         weight = float(weight)
         sum += x * weight / total_weight
     return sum
