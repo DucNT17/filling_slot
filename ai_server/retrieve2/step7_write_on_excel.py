@@ -5,8 +5,8 @@ from openpyxl.utils import get_column_letter
 from ai_server.retrieve2.step6_adapt_or_not import adapt_or_not
 import json
 import asyncio
-async def create_json_to_excel(pdf_path, product_ids, collection_name):
-    context_queries, product_keys = await adapt_or_not(pdf_path, product_ids, collection_name)
+async def create_json_to_excel(pdf_path, filename_ids, collection_name):
+    context_queries, product_keys = await adapt_or_not(pdf_path, filename_ids, collection_name)
     print("=== Bắt đầu tạo file Excel ===")
     wb = create_excel_file(context_queries, product_keys)
     print("=== Đã tạo file Excel thành công ===")
@@ -80,9 +80,31 @@ def create_excel_file(context_queries, product_keys):
         
         # Ghi các hàng hàng hóa con
         for hang_hoa_idx, (ten_hang_hoa, items) in enumerate(hang_hoa_dict.items(), start=1):
-            ma_ids = items[:-3]  # Các ID
+            ma_ids = items[:-2]  # Các ID
             dap_ung = items[-2]  # ví dụ: "đáp ứng"
-            
+            if '/' in dap_ung:
+                numerator, denominator = dap_ung.split('/')
+                try:
+                    numerator = int(numerator)
+                    denominator = int(denominator)
+                    if denominator == 0 or numerator == 0:  # mẫu bằng 0
+                        dap_ung = "Không đáp ứng"
+                    elif numerator == denominator:
+                        dap_ung = f"Đáp ứng"
+                    else:
+                        dap_ung = f"Đáp ứng : {numerator} / {denominator}"
+                except ValueError:  # tử hoặc mẫu có chữ (không phải số)
+                    dap_ung = "Không đáp ứng"
+            else:
+                try:
+                    dap_ung = int(dap_ung)
+                    if dap_ung == 0:  # nếu là số thập phân
+                        dap_ung = "Không đáp ứng"
+                    else:
+                        dap_ung = f"Đáp ứng"
+                except ValueError:
+                    dap_ung = "Không đáp ứng"
+
             # Lấy danh sách các yêu cầu
             spec_list = []
             dap_ung_list = []
@@ -126,7 +148,7 @@ def create_excel_file(context_queries, product_keys):
                 ws.cell(row=current_row, column=2).value = ten_hang_hoa if spec_idx == 0 else ""
                 
                 ws.cell(row=current_row, column=3).value = spec
-                if page != 0:
+                if dap_ung_item:
                     ws.cell(row=current_row, column=4).value = dap_ung_item
 
                     # Ghi tài liệu tham chiếu cho từng hàng (không merge)
@@ -189,7 +211,19 @@ def create_excel_file(context_queries, product_keys):
     # output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.xlsx"
     # wb.save(output_path)
     # print(f"Đã lưu file Excel tại: {output_path}")
-
+def create_json_to_excel1():
+    # context_queries, product_keys = await adapt_or_not(pdf_path, filename_ids, collection_name)
+    with open("D:/study/LammaIndex/output/context_queries.json", "r", encoding="utf-8") as f:
+        context_queries = json.load(f)
+    with open("D:/study/LammaIndex/output/product_keys.json", "r", encoding="utf-8") as f:
+        product_keys = json.load(f)
+    print("=== Bắt đầu tạo file Excel ===")
+    wb = create_excel_file(context_queries, product_keys)
+    print("=== Đã tạo file Excel thành công ===")
+    output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.xlsx"
+    wb.save(output_path)
+    print(f"Đã lưu file Excel tại: {output_path}")
+# create_json_to_excel1()
 # # Sử dụng
 # async def main():
 #     await create_json_to_excel("D:/study/LammaIndex/documents/test.pdf", ["c9ef7baa-78ec-11f0-978b-3bc1caf525a4"], "hello_my_friend")

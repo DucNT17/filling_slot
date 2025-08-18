@@ -11,14 +11,14 @@ load_dotenv()
 # Use AsyncOpenAI instead of OpenAI
 client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-async def adapt_or_not(path_pdf, product_ids, collection_name, max_concurrent=3):
+async def adapt_or_not(path_pdf, filename_ids, collection_name, max_concurrent=3):
     """
     Hàm này sẽ gọi các hàm khác để thực hiện quá trình truy xuất và đánh giá khả năng đáp ứng yêu cầu kỹ thuật.
     Reduced max_concurrent from 5 to 3 for OpenAI rate limits
     """
     semaphore = asyncio.Semaphore(max_concurrent)
 
-    context_queries, product_keys = await track_reference(path_pdf, product_ids, collection_name)
+    context_queries, product_keys = await track_reference(path_pdf, filename_ids, collection_name)
     assistant_id = "asst_SIWbRtRbvCxXS9dgqvtj9U8O"
     
     tasks = []
@@ -55,7 +55,9 @@ async def process_product_key(semaphore, context_queries, product_keys, product,
                     continue
                     
                 yeu_cau_ky_thuat = context_queries[item].get('yeu_cau_ky_thuat_chi_tiet', "")
-                kha_nang_dap_ung = context_queries[item].get('kha_nang_dap_ung', "")
+                kha_nang_dap_ung = context_queries[item].get('kha_nang_dap_ung', "Không đáp ứng")
+                if kha_nang_dap_ung == "":
+                    kha_nang_dap_ung = "Không đáp ứng"
                 dap_ung_ky_thuat += f"{yeu_cau_ky_thuat} || {kha_nang_dap_ung}\n"
 
                 tai_lieu = context_queries[item].get('tai_lieu_tham_chieu', {})

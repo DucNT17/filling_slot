@@ -28,29 +28,29 @@ aclient = AsyncQdrantClient(
 )
 
 # ✅ Thay tên collection thật của bạn tại đây
-collection_name = "hello_my_friend"
+collection_name = "hello_my_friend2"
 
 # Tạo index cho 'document_id'
 try:
     client.create_payload_index(
         collection_name=collection_name,
-        field_name="product_line",
+        field_name="filename_id",
         field_schema=PayloadSchemaType.KEYWORD,
     )
-    print("✅ Index created for 'product_line'")
+    print("✅ Index created for 'filename_id'")
 except Exception as e:
-    print("⚠️ Could not create index for 'product_line':", e)
+    print("⚠️ Could not create index for 'filename_id':", e)
 
-# Tạo index cho 'type'
-try:
-    client.create_payload_index(
-        collection_name=collection_name,
-        field_name="product_id",
-        field_schema=PayloadSchemaType.KEYWORD,
-    )
-    print("✅ Index created for 'product_id'")
-except Exception as e:
-    print("⚠️ Could not create index for 'product_id':", e)
+# # Tạo index cho 'type'
+# try:
+#     client.create_payload_index(
+#         collection_name=collection_name,
+#         field_name="product_id",
+#         field_schema=PayloadSchemaType.KEYWORD,
+#     )
+#     print("✅ Index created for 'product_id'")
+# except Exception as e:
+#     print("⚠️ Could not create index for 'product_id':", e)
 
 # Tạo index cho 'type'
 try:
@@ -62,15 +62,15 @@ try:
     print("✅ Index created for 'type'")
 except Exception as e:
     print("⚠️ Could not create index for 'type':", e)
-try:
-    client.create_payload_index(
-        collection_name=collection_name,
-        field_name="file_brochure_name",
-        field_schema=PayloadSchemaType.TEXT,
-    )
-    print("✅ Index created for 'file_brochure_name'")
-except Exception as e:
-    print("⚠️ Could not create index for 'file_brochure_name':", e)
+# try:
+#     client.create_payload_index(
+#         collection_name=collection_name,
+#         field_name="file_brochure_name",
+#         field_schema=PayloadSchemaType.TEXT,
+#     )
+#     print("✅ Index created for 'file_brochure_name'")
+# except Exception as e:
+#     print("⚠️ Could not create index for 'file_brochure_name':", e)
 
 
 # # Check indexes
