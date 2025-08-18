@@ -71,7 +71,7 @@ def extract_first_json_object(json_str: str):
     except json.JSONDecodeError:
         return DEFAULT_OBJECT
 
-async def track_reference(pdf_path, product_ids, collection_name, max_concurrent=5):
+async def track_reference(pdf_path, filename_ids, collection_name, max_concurrent=5):
     """
     Async version of track_reference with concurrent processing
     Note: Reduced max_concurrent from 10 to 5 for OpenAI rate limits
@@ -87,7 +87,7 @@ async def track_reference(pdf_path, product_ids, collection_name, max_concurrent
     print(f"Thread ID: {thread_id}")
 
     # Retrieve results
-    context_queries, product_keys = await retrieve_results(pdf_path, product_ids, collection_name)
+    context_queries, product_keys = await retrieve_results(pdf_path, filename_ids, collection_name)
     
     # Tạo danh sách tasks để xử lý đồng thời
     tasks = []

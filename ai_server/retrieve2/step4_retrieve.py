@@ -21,7 +21,7 @@ from ai_server.config_db import config_db
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
-async def retrieve_results(path_pdf, product_ids, collection_name, max_concurrent=10):
+async def retrieve_results(path_pdf, filename_ids, collection_name, max_concurrent=10):
     """
     Async version of retrieve_results using semaphore for concurrency control
     """
@@ -47,7 +47,7 @@ async def retrieve_results(path_pdf, product_ids, collection_name, max_concurren
                 # Create async task for each retrieve operation
                 task = retrieve_chunk_with_semaphore(
                     semaphore, 
-                    product_ids, 
+                    filename_ids, 
                     context_queries[item]["value"], 
                     collection_name,
                     item,
@@ -83,7 +83,7 @@ async def retrieve_chunk_async(product_ids, query_str, collection_name):
         )
     return content
 
-def retrieve_chunk_sync(product_ids, query_str, collection_name):
+def retrieve_chunk_sync(filename_ids, query_str, collection_name):
     """
     Synchronous version of retrieve_chunk (original logic)
     """
@@ -91,7 +91,7 @@ def retrieve_chunk_sync(product_ids, query_str, collection_name):
     index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
     filters_chunk = MetadataFilters(
         filters=[
-            MetadataFilter(key="product_id", operator=FilterOperator.IN, value=product_ids),
+            MetadataFilter(key="filename_id", operator=FilterOperator.IN, value=filename_ids),
             MetadataFilter(key="type", operator=FilterOperator.EQ, value="chunk_document"),
         ],
         condition=FilterCondition.AND,
