@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
 from flasgger import Swagger
 from backend.db.connect_db import SessionLocal, Base, engine
 from backend.services.upload_data import ProductService
@@ -12,6 +13,7 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 # Flask + Swagger
 app = Flask(__name__)
+CORS(app)  # Thêm CORS support
 
 # Swagger configuration with tags
 swagger_config = {
@@ -44,12 +46,14 @@ swagger = Swagger(app, config=swagger_config)
 # Tạo bảng nếu chưa có
 Base.metadata.create_all(bind=engine)
 
+
 def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
 
 @app.route("/upload", methods=["POST"])
 def upload_data():
@@ -117,6 +121,7 @@ def upload_data():
 
     return jsonify(result)
 
+
 @app.route("/generate-excel", methods=["POST"])
 def generate_excel():
     """
@@ -165,7 +170,8 @@ def generate_excel():
 
         pdf_file = request.files["pdf_file"]
         filename_ids_str = request.form.get("filename_ids", "")
-        collection_name = request.form.get("collection_name", "hello_my_friend")
+        collection_name = request.form.get(
+            "collection_name", "hello_my_friend")
         type = request.form.get("type", "manual")
 
         db = next(get_db())
@@ -179,6 +185,8 @@ def generate_excel():
 # ==================== CRUD APIs ====================
 
 # ===== Category APIs =====
+
+
 @app.route("/categories", methods=["POST"])
 def create_category():
     """
@@ -201,19 +209,20 @@ def create_category():
         name = request.form.get("name") or request.json.get("name")
         if not name:
             return jsonify({"error": "Category name is required"}), 400
-            
+
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         # Check if category already exists
         existing = crud.category.get_by_name(name)
         if existing:
             return jsonify({"error": "Category already exists"}), 400
-            
+
         category = crud.category.create(name)
         return jsonify({"id": category.id, "name": category.name})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/categories", methods=["GET"])
 def get_categories():
@@ -238,14 +247,15 @@ def get_categories():
     try:
         skip = int(request.args.get("skip", 0))
         limit = int(request.args.get("limit", 100))
-        
+
         db = next(get_db())
         crud = CRUDService(db)
         categories = crud.category.get_all(skip, limit)
-        
+
         return jsonify([{"id": cat.id, "name": cat.name} for cat in categories])
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/categories/<category_id>", methods=["GET"])
 def get_category(category_id):
@@ -269,10 +279,10 @@ def get_category(category_id):
         db = next(get_db())
         crud = CRUDService(db)
         category = crud.category.get_with_product_lines(category_id)
-        
+
         if not category:
             return jsonify({"error": "Category not found"}), 404
-            
+
         return jsonify({
             "id": category.id,
             "name": category.name,
@@ -280,6 +290,7 @@ def get_category(category_id):
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/categories/<category_id>", methods=["PUT"])
 def update_category(category_id):
@@ -307,17 +318,18 @@ def update_category(category_id):
         name = request.form.get("name") or request.json.get("name")
         if not name:
             return jsonify({"error": "Category name is required"}), 400
-            
+
         db = next(get_db())
         crud = CRUDService(db)
         category = crud.category.update(category_id, name)
-        
+
         if not category:
             return jsonify({"error": "Category not found"}), 404
-            
+
         return jsonify({"id": category.id, "name": category.name})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/categories/<category_id>", methods=["DELETE"])
 def delete_category(category_id):
@@ -341,15 +353,17 @@ def delete_category(category_id):
         db = next(get_db())
         crud = CRUDService(db)
         success = crud.category.delete(category_id)
-        
+
         if not success:
             return jsonify({"error": "Category not found"}), 404
-            
+
         return jsonify({"message": "Category deleted successfully"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 # ===== Product Line APIs =====
+
+
 @app.route("/product-lines", methods=["POST"])
 def create_product_line():
     """
@@ -372,18 +386,19 @@ def create_product_line():
     """
     try:
         name = request.form.get("name") or request.json.get("name")
-        category_id = request.form.get("category_id") or request.json.get("category_id")
-        
+        category_id = request.form.get(
+            "category_id") or request.json.get("category_id")
+
         if not name or not category_id:
             return jsonify({"error": "Name and category_id are required"}), 400
-            
+
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         # Check if category exists
         if not crud.category.get_by_id(category_id):
             return jsonify({"error": "Category not found"}), 404
-            
+
         product_line = crud.product_line.create(name, category_id)
         return jsonify({
             "id": product_line.id,
@@ -392,6 +407,7 @@ def create_product_line():
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/product-lines", methods=["GET"])
 def get_product_lines():
@@ -421,15 +437,15 @@ def get_product_lines():
         category_id = request.args.get("category_id")
         skip = int(request.args.get("skip", 0))
         limit = int(request.args.get("limit", 100))
-        
+
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         if category_id:
             product_lines = crud.product_line.get_by_category(category_id)
         else:
             product_lines = crud.product_line.get_all(skip, limit)
-        
+
         return jsonify([{
             "id": pl.id,
             "name": pl.name,
@@ -437,6 +453,7 @@ def get_product_lines():
         } for pl in product_lines])
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/product-lines/<product_line_id>", methods=["GET"])
 def get_product_line(product_line_id):
@@ -460,10 +477,10 @@ def get_product_line(product_line_id):
         db = next(get_db())
         crud = CRUDService(db)
         product_line = crud.product_line.get_with_products(product_line_id)
-        
+
         if not product_line:
             return jsonify({"error": "Product line not found"}), 404
-            
+
         return jsonify({
             "id": product_line.id,
             "name": product_line.name,
@@ -472,6 +489,7 @@ def get_product_line(product_line_id):
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/product-lines/<product_line_id>", methods=["PUT"])
 def update_product_line(product_line_id):
@@ -499,14 +517,14 @@ def update_product_line(product_line_id):
         name = request.form.get("name") or request.json.get("name")
         if not name:
             return jsonify({"error": "Product line name is required"}), 400
-            
+
         db = next(get_db())
         crud = CRUDService(db)
         product_line = crud.product_line.update(product_line_id, name)
-        
+
         if not product_line:
             return jsonify({"error": "Product line not found"}), 404
-            
+
         return jsonify({
             "id": product_line.id,
             "name": product_line.name,
@@ -514,6 +532,7 @@ def update_product_line(product_line_id):
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/product-lines/<product_line_id>", methods=["DELETE"])
 def delete_product_line(product_line_id):
@@ -537,15 +556,17 @@ def delete_product_line(product_line_id):
         db = next(get_db())
         crud = CRUDService(db)
         success = crud.product_line.delete(product_line_id)
-        
+
         if not success:
             return jsonify({"error": "Product line not found"}), 404
-            
+
         return jsonify({"message": "Product line deleted successfully"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 # ===== Product APIs =====
+
+
 @app.route("/products", methods=["POST"])
 def create_product():
     """
@@ -568,18 +589,19 @@ def create_product():
     """
     try:
         name = request.form.get("name") or request.json.get("name")
-        product_line_id = request.form.get("product_line_id") or request.json.get("product_line_id")
-        
+        product_line_id = request.form.get(
+            "product_line_id") or request.json.get("product_line_id")
+
         if not name or not product_line_id:
             return jsonify({"error": "Name and product_line_id are required"}), 400
-            
+
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         # Check if product line exists
         if not crud.product_line.get_by_id(product_line_id):
             return jsonify({"error": "Product line not found"}), 404
-            
+
         product = crud.product.create(name, product_line_id)
         return jsonify({
             "id": product.id,
@@ -588,6 +610,7 @@ def create_product():
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/products", methods=["GET"])
 def get_products():
@@ -617,15 +640,15 @@ def get_products():
         product_line_id = request.args.get("product_line_id")
         skip = int(request.args.get("skip", 0))
         limit = int(request.args.get("limit", 100))
-        
+
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         if product_line_id:
             products = crud.product.get_by_product_line(product_line_id)
         else:
             products = crud.product.get_all(skip, limit)
-        
+
         return jsonify([{
             "id": p.id,
             "name": p.name,
@@ -633,6 +656,7 @@ def get_products():
         } for p in products])
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/products/<product_id>", methods=["GET"])
 def get_product(product_id):
@@ -656,10 +680,10 @@ def get_product(product_id):
         db = next(get_db())
         crud = CRUDService(db)
         product = crud.product.get_full_info(product_id)
-        
+
         if not product:
             return jsonify({"error": "Product not found"}), 404
-            
+
         return jsonify({
             "id": product.id,
             "name": product.name,
@@ -675,6 +699,7 @@ def get_product(product_id):
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/products/<product_id>", methods=["PUT"])
 def update_product(product_id):
@@ -702,14 +727,14 @@ def update_product(product_id):
         name = request.form.get("name") or request.json.get("name")
         if not name:
             return jsonify({"error": "Product name is required"}), 400
-            
+
         db = next(get_db())
         crud = CRUDService(db)
         product = crud.product.update(product_id, name)
-        
+
         if not product:
             return jsonify({"error": "Product not found"}), 404
-            
+
         return jsonify({
             "id": product.id,
             "name": product.name,
@@ -717,6 +742,7 @@ def update_product(product_id):
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/products/<product_id>", methods=["DELETE"])
 def delete_product(product_id):
@@ -740,19 +766,21 @@ def delete_product(product_id):
         db = next(get_db())
         crud = CRUDService(db)
         success = crud.product.delete(product_id)
-        
+
         if not success:
             return jsonify({"error": "Product not found"}), 404
-            
+
         return jsonify({"message": "Product deleted successfully"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 # ===== File APIs =====
+
+
 @app.route("/files", methods=["GET"])
 def get_files():
     """
-    Get all files
+    Get all files with full product info
     ---
     tags:
       - Default
@@ -771,28 +799,87 @@ def get_files():
         default: 100
     responses:
       200:
-        description: List of files
+        description: List of files with full product information
     """
     try:
         product_id = request.args.get("product_id")
         skip = int(request.args.get("skip", 0))
         limit = int(request.args.get("limit", 100))
-        
+
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         if product_id:
             files = crud.file.get_by_product(product_id)
         else:
             files = crud.file.get_all(skip, limit)
-        
-        return jsonify([{
-            "id": f.id,
-            "name": f.name,
-            "product_id": f.product_id
-        } for f in files])
+
+        # Lấy thông tin đầy đủ cho mỗi file
+        files_with_details = []
+        for f in files:
+            try:
+                file_detail = crud.file.get_with_product_info(f.id)
+                if file_detail:
+                    file_data = {
+                        "id": file_detail.id,
+                        "name": file_detail.name,
+                        "product_id": file_detail.product_id,
+                        "product": None
+                    }
+
+                    # Thêm thông tin product nếu có
+                    if hasattr(file_detail, 'product') and file_detail.product:
+                        product_data = {
+                            "id": file_detail.product.id,
+                            "name": file_detail.product.name,
+                            "product_line": None
+                        }
+
+                        # Thêm thông tin product_line nếu có
+                        if hasattr(file_detail.product, 'product_line') and file_detail.product.product_line:
+                            product_line_data = {
+                                "id": file_detail.product.product_line.id,
+                                "name": file_detail.product.product_line.name,
+                                "category": None
+                            }
+
+                            # Thêm thông tin category nếu có
+                            if hasattr(file_detail.product.product_line, 'category') and file_detail.product.product_line.category:
+                                product_line_data["category"] = {
+                                    "id": file_detail.product.product_line.category.id,
+                                    "name": file_detail.product.product_line.category.name
+                                }
+
+                            product_data["product_line"] = product_line_data
+
+                        file_data["product"] = product_data
+
+                    files_with_details.append(file_data)
+                else:
+                    # Nếu không lấy được chi tiết, thêm thông tin cơ bản
+                    files_with_details.append({
+                        "id": f.id,
+                        "name": f.name,
+                        "product_id": f.product_id,
+                        "product": None
+                    })
+            except Exception as e:
+                print(f"Error getting details for file {f.id}: {str(e)}")
+                # Thêm file với thông tin cơ bản nếu có lỗi
+                files_with_details.append({
+                    "id": f.id,
+                    "name": f.name,
+                    "product_id": f.product_id,
+                    "product": None
+                })
+
+        return jsonify(files_with_details)
     except Exception as e:
+        print(f"Error in get_files: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/files/<file_id>", methods=["GET"])
 def get_file(file_id):
@@ -813,31 +900,57 @@ def get_file(file_id):
         description: File not found
     """
     try:
+        print(f"Getting file details for ID: {file_id}")  # Debug log
         db = next(get_db())
         crud = CRUDService(db)
         file_store = crud.file.get_with_product_info(file_id)
-        
+
         if not file_store:
+            print(f"File not found: {file_id}")
             return jsonify({"error": "File not found"}), 404
-            
+
+        # Kiểm tra xem file có product info không
+        if not file_store.product:
+            print(f"File {file_id} has no associated product")
+            return jsonify({
+                "id": file_store.id,
+                "name": file_store.name,
+                "product_id": file_store.product_id,
+                "product": None
+            })
+
+        # Kiểm tra product_line và category
+        product_data = {
+            "id": file_store.product.id,
+            "name": file_store.product.name
+        }
+
+        if hasattr(file_store.product, 'product_line') and file_store.product.product_line:
+            product_line_data = {
+                "id": file_store.product.product_line.id,
+                "name": file_store.product.product_line.name
+            }
+
+            if hasattr(file_store.product.product_line, 'category') and file_store.product.product_line.category:
+                product_line_data["category"] = {
+                    "id": file_store.product.product_line.category.id,
+                    "name": file_store.product.product_line.category.name
+                }
+
+            product_data["product_line"] = product_line_data
+
         return jsonify({
             "id": file_store.id,
             "name": file_store.name,
-            "product": {
-                "id": file_store.product.id,
-                "name": file_store.product.name,
-                "product_line": {
-                    "id": file_store.product.product_line.id,
-                    "name": file_store.product.product_line.name,
-                    "category": {
-                        "id": file_store.product.product_line.category.id,
-                        "name": file_store.product.product_line.category.name
-                    }
-                }
-            }
+            "product_id": file_store.product_id,
+            "product": product_data
         })
     except Exception as e:
+        print(f"Error getting file {file_id}: {str(e)}")  # Debug log
+        import traceback
+        traceback.print_exc()  # In full stack trace
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/files/<file_id>", methods=["PUT"])
 def update_file(file_id):
@@ -865,14 +978,14 @@ def update_file(file_id):
         name = request.form.get("name") or request.json.get("name")
         if not name:
             return jsonify({"error": "File name is required"}), 400
-            
+
         db = next(get_db())
         crud = CRUDService(db)
         file_store = crud.file.update(file_id, name)
-        
+
         if not file_store:
             return jsonify({"error": "File not found"}), 404
-            
+
         return jsonify({
             "id": file_store.id,
             "name": file_store.name,
@@ -880,6 +993,7 @@ def update_file(file_id):
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @app.route("/files/<file_id>", methods=["DELETE"])
 def delete_file(file_id):
@@ -903,15 +1017,17 @@ def delete_file(file_id):
         db = next(get_db())
         crud = CRUDService(db)
         success = crud.file.delete(file_id)
-        
+
         if not success:
             return jsonify({"error": "File not found"}), 404
-            
+
         return jsonify({"message": "File deleted successfully"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 # ===== Hierarchy API =====
+
+
 @app.route("/hierarchy", methods=["GET"])
 def get_hierarchy():
     """
@@ -930,6 +1046,7 @@ def get_hierarchy():
         return jsonify(hierarchy)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)

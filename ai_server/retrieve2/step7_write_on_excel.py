@@ -5,6 +5,7 @@ from openpyxl.utils import get_column_letter
 from ai_server.retrieve2.step6_adapt_or_not import adapt_or_not
 import json
 import asyncio
+import re
 async def create_json_to_excel(pdf_path, filename_ids, collection_name):
     context_queries, product_keys = await adapt_or_not(pdf_path, filename_ids, collection_name)
     print("=== Bắt đầu tạo file Excel ===")
@@ -149,9 +150,12 @@ def create_excel_file(context_queries, product_keys):
                 
                 ws.cell(row=current_row, column=3).value = spec
                 if dap_ung_item:
+                    
+                    dap_ung_item = re.sub(r'[\x00-\x1F\x7F]', '', dap_ung_item)  # Loại bỏ ký tự không hợp lệ
                     ws.cell(row=current_row, column=4).value = dap_ung_item
 
                     # Ghi tài liệu tham chiếu cho từng hàng (không merge)
+                    ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so) 
                     ws.cell(row=current_row, column=5).value = ho_so
                 
                 # Ghi tình trạng đáp ứng tạm thời (sẽ merge sau)
