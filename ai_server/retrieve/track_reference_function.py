@@ -83,10 +83,12 @@ async def track_reference_async(context_queries: Dict, kha_nang_dap_ung_tham_chi
             try:
                 value = context_queries[key]["value"]
                 content = kha_nang_dap_ung_tham_chieu_step[key]["relevant_context"]
-                
+                module_component = context_queries[key]["ten_hang_hoa"]
+
                 user_prompt = f"""
                 Chunk và metadata: {content}
-                Yêu cầu: {value}
+                yeu_cau_ky_thuat: {value}
+                module/component: {module_component}
                 """
                 
                 print(f"🚀 Đang xử lý key: {key}")
@@ -115,15 +117,14 @@ async def track_reference_async(context_queries: Dict, kha_nang_dap_ung_tham_chi
             continue
             
         key, processed_result = result
-        print("sssssssssssssssss: ", processed_result)
 
         kha_nang_dap_ung_tham_chieu_step[key]["kha_nang_dap_ung"] = processed_result.get("kha_nang_dap_ung", "")
         kha_nang_dap_ung_tham_chieu_step[key]["tai_lieu_tham_chieu"] = {
-            "file": processed_result["tai_lieu_tham_chieu"]["file"],
-            "section": processed_result["tai_lieu_tham_chieu"].get("section", ""),
-            "table_or_figure": processed_result["tai_lieu_tham_chieu"].get("table_or_figure", ""),
-            "page": processed_result["tai_lieu_tham_chieu"].get("page", 0),
-            "evidence": processed_result["tai_lieu_tham_chieu"].get("evidence", "")
+            "file": processed_result.get("tai_lieu_tham_chieu", {}).get("file", ""),
+            "section": processed_result.get("tai_lieu_tham_chieu", {}).get("section", ""),
+            "table_or_figure": processed_result.get("tai_lieu_tham_chieu", {}).get("table_or_figure", ""),
+            "page": processed_result.get("tai_lieu_tham_chieu", {}).get("page", 0),
+            "evidence": processed_result.get("tai_lieu_tham_chieu", {}).get("evidence", "")
         }
         kha_nang_dap_ung_tham_chieu_step[key].pop("relevant_context", None)
         print(f"✅ Hoàn thành key: {key}")
@@ -184,7 +185,7 @@ async def evaluate_technical_requirement_async(user_prompt: str, assistant_id: s
 
         else:
             print(f"Run status: {run.status}")
-            return None
+            return DEFAULT_OBJECT
     
     # Chạy function sync trong thread pool
     return await asyncio.to_thread(_sync_evaluate)

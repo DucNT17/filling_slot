@@ -6,7 +6,6 @@ def sum_weights(adapt_or_not_step):
     return total_weight
 
 def compare_function(adapt_or_not_step):
-    print("sssssssssssssssss: ", adapt_or_not_step)
     sum = 0
     total_weight = sum_weights(adapt_or_not_step)
     for key, value in adapt_or_not_step.items():

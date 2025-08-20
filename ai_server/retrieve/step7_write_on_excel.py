@@ -5,11 +5,13 @@ from openpyxl.utils import get_column_letter
 from ai_server.retrieve.step4_retrieve import retrieve_results
 import json
 import asyncio
+import re
 async def create_json_to_excel(pdf_path, collection_name):
     context_queries, product_keys = await retrieve_results(pdf_path, collection_name)
     print("=== Bắt đầu tạo file Excel ===")
-    create_excel_file(context_queries, product_keys)
+    wb = create_excel_file(context_queries, product_keys)
     print("=== Đã tạo file Excel thành công ===")
+    return wb
 
 
 def create_excel_file(context_queries, product_keys):
@@ -79,9 +81,31 @@ def create_excel_file(context_queries, product_keys):
         
         # Ghi các hàng hàng hóa con
         for hang_hoa_idx, (ten_hang_hoa, items) in enumerate(hang_hoa_dict.items(), start=1):
-            ma_ids = items[:-3]  # Các ID
+            ma_ids = items[:-2]  # Các ID
             dap_ung = items[-2]  # ví dụ: "đáp ứng"
-            
+            if '/' in dap_ung:
+                numerator, denominator = dap_ung.split('/')
+                try:
+                    numerator = int(numerator)
+                    denominator = int(denominator)
+                    if denominator == 0 or numerator == 0:  # mẫu bằng 0
+                        dap_ung = "Không đáp ứng"
+                    elif numerator == denominator:
+                        dap_ung = f"Đáp ứng"
+                    else:
+                        dap_ung = f"Đáp ứng : {numerator} / {denominator}"
+                except ValueError:  # tử hoặc mẫu có chữ (không phải số)
+                    dap_ung = "Không đáp ứng"
+            else:
+                try:
+                    dap_ung = int(dap_ung)
+                    if dap_ung == 0:  # nếu là số thập phân
+                        dap_ung = "Không đáp ứng"
+                    else:
+                        dap_ung = f"Đáp ứng"
+                except ValueError:
+                    dap_ung = "Không đáp ứng"
+
             # Lấy danh sách các yêu cầu
             spec_list = []
             dap_ung_list = []
@@ -91,15 +115,20 @@ def create_excel_file(context_queries, product_keys):
             for ma in ma_ids:
                 if ma in context_queries:
                     spec_list.append(context_queries[ma]['yeu_cau_ky_thuat_chi_tiet'])
-                    dap_ung_list.append(context_queries[ma].get('kha_nang_dap_ung', ''))
+                    # Kiểm tra kha_nang_dap_ung có chứa số hoặc chữ không
+                    kha_nang_dap_ung = context_queries[ma].get('kha_nang_dap_ung', '')
+                    if kha_nang_dap_ung and re.search(r'[a-zA-Z0-9]', kha_nang_dap_ung):
+                        dap_ung_list.append(kha_nang_dap_ung)
+                    else:
+                        dap_ung_list.append('')
                     ho_so_tham_khao = context_queries[ma].get("tai_lieu_tham_chieu")
                     content = ""
                     file = ho_so_tham_khao.get("file", "")
                     if file:
                         content = f"Tài liệu tham chiếu: {file}"
                     section = ho_so_tham_khao.get("section", "")
-                    if section:
-                        content += f" - Mục: {section}"
+                    # if section:
+                    #     content += f" - Mục: {section}"
                     table_or_figure = ho_so_tham_khao.get("table_or_figure", "")
                     if table_or_figure is not None and table_or_figure != "":
                         content += f" - Có trong bảng/hình: {table_or_figure}"
@@ -125,9 +154,11 @@ def create_excel_file(context_queries, product_keys):
                 ws.cell(row=current_row, column=2).value = ten_hang_hoa if spec_idx == 0 else ""
                 
                 ws.cell(row=current_row, column=3).value = spec
-                if page != 0:
+                if dap_ung_item:
+                    dap_ung_item = re.sub(r'[\x00-\x1F\x7F]', '', dap_ung_item)  # Loại bỏ ký tự không hợp lệ
                     ws.cell(row=current_row, column=4).value = dap_ung_item
 
+                    ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so)  # Loại bỏ ký tự không hợp lệ
                     # Ghi tài liệu tham chiếu cho từng hàng (không merge)
                     ws.cell(row=current_row, column=5).value = ho_so
                 
@@ -183,15 +214,28 @@ def create_excel_file(context_queries, product_keys):
     for row in range(3, current_row):
         ws.row_dimensions[row].height = None  # Auto height
     
-    # Lưu file
-    output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung.xlsx"
+    return wb
+    # # Lưu file
+    # output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.xlsx"
+    # wb.save(output_path)
+    # print(f"Đã lưu file Excel tại: {output_path}")
+def create_json_to_excel1():
+    # context_queries, product_keys = await adapt_or_not(pdf_path, filename_ids, collection_name)
+    with open("D:/study/LammaIndex/output/context_queries.json", "r", encoding="utf-8") as f:
+        context_queries = json.load(f)
+    with open("D:/study/LammaIndex/output/product_keys.json", "r", encoding="utf-8") as f:
+        product_keys = json.load(f)
+    print("=== Bắt đầu tạo file Excel ===")
+    wb = create_excel_file(context_queries, product_keys)
+    print("=== Đã tạo file Excel thành công ===")
+    output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.xlsx"
     wb.save(output_path)
     print(f"Đã lưu file Excel tại: {output_path}")
 
-# Sử dụng
-async def main():
-    await create_json_to_excel("D:/study/LammaIndex/documents/test1.pdf", "hello_my_friend")
+# # Sử dụng
+# async def main():
+#     await create_json_to_excel("D:/study/LammaIndex/documents/test1.pdf", "hello_my_friend")
 
-# Fix: Run the async function properly
-if __name__ == "__main__":
-    asyncio.run(main())
+# # Fix: Run the async function properly
+# if __name__ == "__main__":
+#     asyncio.run(main())
