@@ -1,0 +1,677 @@
+{
+    "E4672": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Sử dụng được các điện áp L＋N＋PE/220VAC",
+        "yeu_cau_ky_thuat_chi_tiet": "Sử dụng được các điện áp L＋N＋PE/220VAC",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Sử dụng được các điện áp L＋N＋PE/220Vac",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "Technical Data of Power System",
+            "page": 30,
+            "evidence": "AC input system: L＋N＋PE/220Vac；3P＋N＋PE/220Vac"
+        }
+    },
+    "98D3B": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+        "yeu_cau_ky_thuat_chi_tiet": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Dải điện áp đầu vào từ 85VAC ÷ 300VAC",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Technical And Engineering Data",
+            "table_or_figure": "Technical Data of Power System",
+            "page": 30,
+            "evidence": "|                                               | AC input                                      | AC input system                                  | L＋N＋PE/220Vac；3P＋N＋PE/220Vac                                                                                                    | \n|                                               | Input voltage range                              | 85Vac～300Vac                                                                                                                    | "
+        }
+    },
+    "363A3": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz.",
+        "yeu_cau_ky_thuat_chi_tiet": "Dải tần số AC đầu vào: từ 45 Hz ÷65 Hz.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Dải tần số AC đầu vào: 45Hz～65Hz",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731-A41-user-manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "Technical data",
+            "page": 30,
+            "evidence": "|                                               | AC input type                                    | TN，TT                                                                                                                           |\n|                                               | Input voltage range                              | 85Vac～300Vac                                                                                                                    |\n|                                               | Input AC voltage frequency                       | 45Hz～65Hz                                                                                                                       |"
+        }
+    },
+    "5D714": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu vào AC",
+        "value": "Có tính năng chống sét",
+        "yeu_cau_ky_thuat_chi_tiet": "Có tính năng chống sét",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "The power system has perfect lighting protection at both AC side and DC side.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Main Features",
+            "table_or_figure": "",
+            "page": 10,
+            "evidence": "The power system has perfect lighting protection at both AC side and DC side."
+        }
+    },
+    "CFD41": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Điện áp đầu ra danh định -48VDC, cực dương đấu đất",
+        "yeu_cau_ky_thuat_chi_tiet": "Điện áp đầu ra danh định -48VDC, cực dương đấu đất",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Điện áp đầu ra danh định: -48VDC",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "Technical Data of Power System",
+            "page": 30,
+            "evidence": "|                                               | Nominal output voltage                           | －48Vdc                                                                                                                          |"
+        }
+    },
+    "F3996": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC",
+        "yeu_cau_ky_thuat_chi_tiet": "Dải điện áp đầu ra: từ -43.2VDC tới -57.6VDC",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Dải điện áp đầu ra: từ -43.2VDC tới -59.0VDC",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Technical Data of Power System",
+            "table_or_figure": "Table 1 Technical Data",
+            "page": 30,
+            "evidence": "| DC output                                     | Output DC voltage                                | －42 ～－58Vdc"
+        }
+    },
+    "50383": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Độ ổn định điện áp đầu ra: ≤1%",
+        "yeu_cau_ky_thuat_chi_tiet": "Độ ổn định điện áp đầu ra: ≤1%",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "≤1%",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731-A41-user-manual.pdf",
+            "section": "Technical Data of Power System",
+            "table_or_figure": "Technical Data",
+            "page": 30,
+            "evidence": "Voltage set-point accuracy                       | ≤1％"
+        }
+    },
+    "546B7": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Nhiễu băng rộng (Wide band noise): ≤20mV rms (5Hz÷1MHz)",
+        "yeu_cau_ky_thuat_chi_tiet": "Nhiễu băng rộng (Wide band noise): ≤20mV rms (5Hz÷1MHz)",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Nhiễu băng rộng ≤20mV rms (5Hz - 1MHz)",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Technical Data of Power System",
+            "table_or_figure": "",
+            "page": 30,
+            "evidence": "Output noise Wide band noise ≤20mV rms (5Hz - 1MHz)"
+        }
+    },
+    "F4AC8": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Đầu ra DC",
+        "value": "Độ gợn sóng đầu ra (đỉnh – đỉnh):≤ 250 mV (0÷20MHz)",
+        "yeu_cau_ky_thuat_chi_tiet": "Độ gợn sóng đầu ra (đỉnh – đỉnh):≤ 250 mV (0÷20MHz)",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Độ gợn sóng đầu ra (đỉnh – đỉnh): ≤250mV p-p (0 - 20MHz)",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "Technical Data of Power System",
+            "page": 30,
+            "evidence": "Output noise: Wide band noise ≤20mV rms (5Hz - 1MHz) Peak-Peak noise ≤250mV p-p (0 - 20MHz)"
+        }
+    },
+    "F6311": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+        "yeu_cau_ky_thuat_chi_tiet": "Công suất mỗi module chỉnh lưu: ≥ 3000W",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Công suất mỗi module chỉnh lưu: 3000W",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "Technical Data of Power System",
+            "page": 30,
+            "evidence": "Below 45℃, the rectifier with full power (3000 W) output."
+        }
+    },
+    "9A0D9": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Hệ số công suất (power factor) của Rectifier: ≥0.99 với tải từ 50÷100%",
+        "yeu_cau_ky_thuat_chi_tiet": "Hệ số công suất (power factor) của Rectifier: ≥0.99 với tải từ 50÷100%",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Hệ số công suất (power factor) của Rectifier: 0.99",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Main Features",
+            "table_or_figure": "",
+            "page": 10,
+            "evidence": "The rectifier uses the active Power Factor Compensation(PFC) technology and the power factor is up to 0.99."
+        }
+    },
+    "12ED5": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Hiệu suất đỉnh (peak efficiency) module rectifier: ≥ 0,95",
+        "yeu_cau_ky_thuat_chi_tiet": "Hiệu suất đỉnh (peak efficiency) module rectifier: ≥ 0,95",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "The rectifier uses soft switching technology, raising the efficiency above 95.5％.",
+        "tai_lieu_tham_chieu": {
+            "file": "R48-3000e3 Brochure.pdf",
+            "section": "eSure Rectifier Efficiency Curve",
+            "table_or_figure": "",
+            "page": 1,
+            "evidence": "The rectifier uses soft switching technology, raising the efficiency above 95.5％."
+        }
+    },
+    "80F7E": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100% tại điện áp 220VAC",
+        "yeu_cau_ky_thuat_chi_tiet": "Tổng độ méo hài THD của Rectifier: ≤5% với tải từ 50÷100% tại điện áp 220VAC",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "THD ≤ 5% from 50%-100% load, THD ≤ 2% no load",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Technical Data of Power System",
+            "table_or_figure": "",
+            "page": 30,
+            "evidence": "|                                | THD(I)                                  | THD ≤ 5% from 50%-100% load, THD ≤ 2% no load"
+        }
+    },
+    "F8B56": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Rectifier thay thế nóng được khi tủ nguồn đang hoạt động.",
+        "yeu_cau_ky_thuat_chi_tiet": "Rectifier thay thế nóng được khi tủ nguồn đang hoạt động.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Rectifier modules can be inserted or removed with power applied (hot swappable).",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "R48-3000e3 Replacement",
+            "table_or_figure": "",
+            "page": 27,
+            "evidence": "Rectifier modules can be inserted or removed with power applied (hot swappable)."
+        }
+    },
+    "23FD6": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Rectifier hoạt động theo cơ chế chia tải",
+        "yeu_cau_ky_thuat_chi_tiet": "Rectifier hoạt động theo cơ chế chia tải",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Rectifier hoạt động theo cơ chế chia tải",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731 A41 Usermanual.pdf",
+            "section": "Technical Data of Power System",
+            "table_or_figure": "",
+            "page": 30,
+            "evidence": "For a higher load capacity, rectifiers can be connected in parallel, and intelligent control can be added with the help of a separate controller."
+        }
+    },
+    "D0CD7": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+        "yeu_cau_ky_thuat_chi_tiet": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Trạng thái hoạt động của Rectifier được hiển thị bằng đèn LED.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Alarm Handling Symptoms and Actions",
+            "table_or_figure": "",
+            "page": 26,
+            "evidence": "The symptoms of usual rectifier faults include: power indicator ( green ) off, protection indicator ( yellow) on, protection indicator blink , fault indicator (red) on and fault indicator blink, the indicator locations as shown:"
+        }
+    },
+    "87A22": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Yêu cầu với module chỉnh lưu (Rectifier)",
+        "value": "Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ.",
+        "yeu_cau_ky_thuat_chi_tiet": "Có khả năng đặt tốc độ quạt theo chế độ tự động hoặc full tốc độ.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Rectifier fan speed can be set to auto or full speed.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Technical Data of Power System",
+            "table_or_figure": "Technical Data of Power System",
+            "page": 30,
+            "evidence": "Fan speed adjustable: Rectifier fan speed can be set to auto or full speed."
+        }
+    },
+    "74A65": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Bộ nguồn có chức năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode).",
+        "yeu_cau_ky_thuat_chi_tiet": "Bộ nguồn có chức năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode).",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Bộ nguồn có chức năng cấp nguồn DC cho thiết bị và nạp cho acquy ở các chế độ nạp đệm và nạp bổ sung. Quá trình nạp phải được chuyển tự động giữa các chế độ. Bộ nguồn sử dụng công nghệ chuyển mạch (switch mode).",
+        "tai_lieu_tham_chieu": {
+            "file": "M830B Brochure.pdf",
+            "section": "Description",
+            "table_or_figure": "",
+            "page": 1,
+            "evidence": "The NetSure Control Unit (NCU) is an advanced controller designed for a wide range of DC power applications, enabling remote monitoring and control of modern communication sites. ... Battery management features include temperature compensation, thermal runaway management, recharge current limit, ..."
+        }
+    },
+    "E05FE": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquy mà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi thì bộ thiết bị điều khiển phải đảm bảo tự động chuyển đổi lại trạng thái làm việc ban đầu và cũng không có sự gián đoạn nào.",
+        "yeu_cau_ky_thuat_chi_tiet": "Bộ nguồn phải tự động chuyển đổi đường cấp nguồn cho phụ tải khi điện áp AC vào bộ nguồn bị ngắt từ bộ nắn nạp sang nguồn dự phòng nóng acquy mà không có sự gián đoạn nào. Sau khi việc cấp điện AC được phục hồi thì bộ thiết bị điều khiển phải đảm bảo tự động chuyển đổi lại trạng thái làm việc ban đầu và cũng không có sự gián đoạn nào.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Bộ nguồn có khả năng tự động chuyển đổi giữa các nguồn cấp, đảm bảo không gián đoạn trong việc cung cấp điện năng cho các phụ tải. Điều này được đảm bảo bởi tính năng tự động khôi phục khi điện áp AC được phục hồi.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Technical Data of Power System",
+            "table_or_figure": "Technical Data",
+            "page": 30,
+            "evidence": " Once the output voltage reaches protection point, the rectifier will shut off and hold that state. It requires manual resetting to restore the operation. The software protection point is between 56V and 59V (0.5V above output voltage, 59V by default), and can be set through the controller. There are two software protection modes, which can be selected through the software at the host: 1. Lock out at the first over-voltage."
+        }
+    },
+    "F0F47": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection).",
+        "yeu_cau_ky_thuat_chi_tiet": "Hệ thống có trang bị chức năng LLVD (Load Low Voltage Disconection).",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Hệ thống có chức năng LLVD với thông số: Default: -44.0 ± 0.2Vdc, configurable through controller（If it is used for outdoor, the default is -46.6 ± 0.2Vdc）.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 User Manual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "",
+            "page": 30,
+            "evidence": "| LLVD | Default: -44.0 ± 0.2Vdc, configurable through controller（If it is used for outdoor，the default is -46.6±0.2Vdc） |"
+        }
+    },
+    "6DFB6": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/ SNMP).",
+        "yeu_cau_ky_thuat_chi_tiet": "Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/ SNMP).",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Phải giám sát được hoạt động của hệ thống nguồn từ xa qua cổng Ethernet (web pages/ SNMP).",
+        "tai_lieu_tham_chieu": {
+            "file": "M830B Brochure.pdf",
+            "section": "Description",
+            "table_or_figure": "",
+            "page": 1,
+            "evidence": "...enabling remote monitoring and control of modern communication sites... Expanded information and alarm data can be monitored or controlled via password protected and encrypted web browsers, including Internet Explorer, Firefox, Google Chrome, and Apple Safari..."
+        }
+    },
+    "895B3": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo vệ acquy không cho phóng điện khi điện áp quá thấp.",
+        "yeu_cau_ky_thuat_chi_tiet": "Phải có mạch bảo vệ lắp sẵn trong tủ nguồn để chống lại hiện tượng quá điện áp, quá tải và dòng ngắn mạch, bảo vệ acquy không cho phóng điện khi điện áp quá thấp.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Không có thông tin liên quan đến yêu cầu về mạch bảo vệ trong các đoạn văn trích dẫn.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "III. Thunderstorm",
+            "table_or_figure": null,
+            "page": 3,
+            "evidence": "⚠️ Danger\nNever operate on high voltage, AC, iron tower or mast in the thunderstorm.\nIn thunderstorms, a strong electromagnetic field will be generated in the air. Therefore the equipment should be well earthed in time to avoid damage by lightning strikes."
+        }
+    },
+    "99D86": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Hệ thống nguồn phải có tiếp đất, chống sét",
+        "yeu_cau_ky_thuat_chi_tiet": "Hệ thống nguồn phải có tiếp đất, chống sét",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Hệ thống nguồn có hoàn thiện tính năng chống sét, với thiết kế bảo vệ hoàn hảo ở cả hai bên AC và DC.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Main Features",
+            "table_or_figure": "",
+            "page": 10,
+            "evidence": "The power system has perfect lighting protection at both AC side and DC side."
+        }
+    },
+    "F9FE7": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Tính năng của thiết bị nguồn",
+        "value": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ●  Lỗi AC đầu vào của Rectifier ●  Lỗi quá nhiệt của Rectifier ●  Lỗi quạt của Rectifier ●  Lỗi của Rectifier ●  Mất điện AC ●  Cảnh báo AC đầu vào thấp ●  Cảnh báo AC đầu vào cao ●  Cảnh báo DC cao ●  Cảnh báo DC thấp ●  Cảnh báo LVD ●  Cảnh báo dòng sạc Ắc quy cao",
+        "yeu_cau_ky_thuat_chi_tiet": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ●  Lỗi AC đầu vào của Rectifier ●  Lỗi quá nhiệt của Rectifier ●  Lỗi quạt của Rectifier ●  Lỗi của Rectifier ●  Mất điện AC ●  Cảnh báo AC đầu vào thấp ●  Cảnh báo AC đầu vào cao ●  Cảnh báo DC cao ●  Cảnh báo DC thấp ●  Cảnh báo LVD ●  Cảnh báo dòng sạc Ắc quy cao",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Tính năng cảnh báo: bao gồm tối thiểu nhưng không giới hạn khả năng xuất cảnh báo như: ●  Lỗi AC đầu vào của Rectifier ●  Lỗi quá nhiệt của Rectifier ●  Lỗi quạt của Rectifier ●  Lỗi của Rectifier ●  Mất điện AC ●  Cảnh báo AC đầu vào thấp ●  Cảnh báo AC đầu vào cao ●  Cảnh báo DC cao ●  Cảnh báo DC thấp ●  Cảnh báo LVD ●  Cảnh báo dòng sạc Ắc quy cao",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Table 4-1 Alarm description and action to correct",
+            "table_or_figure": "",
+            "page": 24,
+            "evidence": "| Index | Alarm                            | Handling method                                                                                                                                                                                                                                                                                                                                                                                                                            |"
+        }
+    },
+    "18FDD": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "value": "Hiển thị bằng màn hình LCD, có khả năng hiển thị các thông số điện áp (U), dòng điện (I) và một số thông số khác như: cảnh báo, hiển thị chế độ nạp acquy.",
+        "yeu_cau_ky_thuat_chi_tiet": "Hiển thị bằng màn hình LCD, có khả năng hiển thị các thông số điện áp (U), dòng điện (I) và một số thông số khác như: cảnh báo, hiển thị chế độ nạp acquy.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Hiển thị bằng màn hình LCD, có khả năng hiển thị các thông số điện áp (U), dòng điện (I) và một số thông số khác như: cảnh báo, hiển thị chế độ nạp acquy.",
+        "tai_lieu_tham_chieu": {
+            "file": "M830B Brochure.pdf",
+            "section": "Inputs/Outputs",
+            "table_or_figure": null,
+            "page": 2,
+            "evidence": "| Display | 128 x 160 Pixels TFT LCD |"
+        }
+    },
+    "A590D": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "value": "Bảng điều khiển phải gồm có nút điều khiển để thiết lập và điều chỉnh các thông số, màn hình hiển thị các thông số vận hành, đèn chỉ thị trạng thái, các cổng truy cập và giám sát từ xa.",
+        "yeu_cau_ky_thuat_chi_tiet": "Bảng điều khiển phải gồm có nút điều khiển để thiết lập và điều chỉnh các thông số, màn hình hiển thị các thông số vận hành, đèn chỉ thị trạng thái, các cổng truy cập và giám sát từ xa.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Bảng điều khiển có màn hình LCD TFT 128 x 160 Pixels, giao tiếp qua RS232, RS485, Ethernet, USB và hỗ trợ nhiều giao thức như IPv4, IPv6, SNMP, Modbus. Đặc biệt, có giao diện người dùng đồ họa để dễ dàng điều chỉnh và giám sát các thông số vận hành.",
+        "tai_lieu_tham_chieu": {
+            "file": "M830B Brochure.pdf",
+            "section": "Inputs/Outputs",
+            "table_or_figure": "",
+            "page": 2,
+            "evidence": "Display: 128 x 160 Pixels TFT LCD; Communication: RS232, RS485, Ethernet, USB (for software upgrades)."
+        }
+    },
+    "E6AFF": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "value": "Cổng kết nối: RS485, Ethernet, USB",
+        "yeu_cau_ky_thuat_chi_tiet": "Cổng kết nối: RS485, Ethernet, USB",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Cổng kết nối: RS232, RS485, Ethernet, USB (for software upgrades)",
+        "tai_lieu_tham_chieu": {
+            "file": "M830B Brochure.pdf",
+            "section": "Inputs/Outputs Configuration",
+            "table_or_figure": "",
+            "page": 2,
+            "evidence": "| Communication  | RS232, RS485, Ethernet, USB (for software upgrades) |"
+        }
+    },
+    "48007": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "value": "Giao thức kết nối: IPv4, HTTPS, SNMP V2/V3",
+        "yeu_cau_ky_thuat_chi_tiet": "Giao thức kết nối: IPv4, HTTPS, SNMP V2/V3",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Giao thức kết nối: IPv4, HTTPS, SNMP V 2/ V 3",
+        "tai_lieu_tham_chieu": {
+            "file": "NetSure -731 A41 Brochure.pdf",
+            "section": "Controller-M830B Specifications",
+            "table_or_figure": "None",
+            "page": 2,
+            "evidence": "| Protocol                | Ipv4, IPv6, HTTPS, SNMP V2/V3, EEM Soc Tpe, Rsoc, Modbus"
+        }
+    },
+    "48EB7": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "value": "Sử dụng màn hình LCD màu",
+        "yeu_cau_ky_thuat_chi_tiet": "Sử dụng màn hình LCD màu",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Sử dụng màn hình LCD màu",
+        "tai_lieu_tham_chieu": {
+            "file": "M830B Brochure.pdf",
+            "section": "Inputs/Outputs Configuration",
+            "table_or_figure": "None",
+            "page": 2,
+            "evidence": "Display        | 128 x 160 Pixels TFT LCD"
+        }
+    },
+    "8E5C0": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "value": "Cho phép cài đặt, thiết lập các thông số cho thiết bị nguồn.",
+        "yeu_cau_ky_thuat_chi_tiet": "Cho phép cài đặt, thiết lập các thông số cho thiết bị nguồn.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Cho phép cài đặt, thiết lập các thông số cho thiết bị nguồn.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "3.2 Basic Settings",
+            "table_or_figure": "",
+            "page": 22,
+            "evidence": "When the system is put into service for the first time, the parameters of controller module must be set based on the actual system configuration, such as battery number, capacity, user’s charge current limit and other functional requirements."
+        }
+    },
+    "E397A": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Khối điều khiển và hiển thị",
+        "value": "Bảng điều khiển được đặt trước mặt máy, dễ quan sát.",
+        "yeu_cau_ky_thuat_chi_tiet": "Bảng điều khiển được đặt trước mặt máy, dễ quan sát.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Bảng điều khiển được đặt ở trước mặt máy, phù hợp với yêu cầu quan sát.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731-A41-user-manual.pdf",
+            "section": "3.2 Basic Settings",
+            "table_or_figure": "None",
+            "page": 22,
+            "evidence": "When the system is put into service for the first time, the parameters of controller module must be set based on the actual system configuration, such as battery number, capacity, user’s charge current limit and other functional requirements."
+        }
+    },
+    "102D2": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Điều kiện làm việc",
+        "value": "●  Dải nhiệt độ từ -10°C đến +60°C ●  Dải độ ẩm từ 5% đến 95%",
+        "yeu_cau_ky_thuat_chi_tiet": "●  Dải nhiệt độ từ -10°C đến +60°C ●  Dải độ ẩm từ 5% đến 95%",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "●  Dải nhiệt độ từ -10°C đến +70°C (derating is necessary above 40°C) ●  Dải độ ẩm từ 5% đến 95% RH",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "",
+            "page": 30,
+            "evidence": "| Operating temperature | －10℃～＋70℃(derating is necessary above 40°C) | \n| Relative humidity | 5％RH～95％RH |"
+        }
+    },
+    "DDC98": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Hệ thống làm mát",
+        "value": "Làm mát bằng quạt",
+        "yeu_cau_ky_thuat_chi_tiet": "Làm mát bằng quạt",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Mỗi Rectifier sử dụng một quạt (P/N:32010485) để làm mát.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731-A41-user-manual.pdf",
+            "section": "4.2.2 Rectifier Fan Replacement",
+            "table_or_figure": "",
+            "page": 28,
+            "evidence": "Each Rectifier uses a fan (P/N:32010485) for cooling."
+        }
+    },
+    "3DEB5": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Điều kiện bảo hành",
+        "value": "Có cơ sở bảo hành chính hãng thiết bị nguồn tại Việt Nam.",
+        "yeu_cau_ky_thuat_chi_tiet": "Có cơ sở bảo hành chính hãng thiết bị nguồn tại Việt Nam.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "艾默生网络能源有限公司为客户提供全方位的技术支持，用户可与就近的艾默生网络能源有限公司办事处或客户服务中心联系，也可直接与公司总部联系。",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "NA",
+            "table_or_figure": "None",
+            "page": 1,
+            "evidence": "艾默生网络能源有限公司为客户提供全方位的技术支持，用户可与就近的艾默生网络能源有限公司办事处或客户服务中心联系，也可直接与公司总部联系。"
+        }
+    },
+    "EC928": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "02 dàn Ac quy 12V - 200Ah (08 bình):",
+        "yeu_cau_ky_thuat_chi_tiet": "02 dàn Ac quy 12V - 200Ah (08 bình):",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "02 dàn Ac quy 12V - 200Ah (08 bình)",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731-A41-user-manual.pdf",
+            "section": "Appendix 2 Installation Instruction Of Battery Rack",
+            "table_or_figure": "None",
+            "page": 25,
+            "evidence": "Setting controller according to the battery factory. Temperature compensation range: 0～500mV/℃. Default: 72mV/℃.\nSet the charge current limit according to your needs. Setting range: 0.1 C10～0.25C10. Default: 0.1C10"
+        }
+    },
+    "770F8": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Ắcquy phải là loại Axít chì, vỏ bình kín không phải bảo dưỡng (loại VLRA) và không ảnh hưởng đến môi trường, cho phép bố trí chung trong phòng máy với các thiết bị điện khác, chất liệu vỏ bình acquy là nhựa ABS.",
+        "yeu_cau_ky_thuat_chi_tiet": "Ắcquy phải là loại Axít chì, vỏ bình kín không phải bảo dưỡng (loại VLRA) và không ảnh hưởng đến môi trường, cho phép bố trí chung trong phòng máy với các thiết bị điện khác, chất liệu vỏ bình acquy là nhựa ABS.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Ắcquy phải là loại Axít chì, vỏ bình kín không phải bảo dưỡng (loại VLRA) và không ảnh hưởng đến môi trường, cho phép bố trí chung trong phòng máy với các thiết bị điện khác, chất liệu vỏ bình acquy là nhựa ABS.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": null,
+            "page": 32,
+            "evidence": "Không có thông tin cụ thể về loại ắc quy như yêu cầu."
+        }
+    },
+    "9751F": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Thời hạn sản xuất acquy không quá 1 năm tính từ ngày cấp hàng.",
+        "yeu_cau_ky_thuat_chi_tiet": "Thời hạn sản xuất acquy không quá 1 năm tính từ ngày cấp hàng.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Sản phẩm không có thời hạn sản xuất ghi rõ trong tài liệu.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "# System User Manual",
+            "table_or_figure": "",
+            "page": 1,
+            "evidence": "资料版本 V1.1\nVersion V1.1.\n归档日期 2017-10-22\nRevision date October 22, 2017"
+        }
+    },
+    "2BC51": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Điện áp nạp ở 25oC: + Chế độ nạp đệm (Float mode): 2.25V/cell hoặc 13.6V/bình + Chế độ nạp bổ sung (Boost mode): 2.35-2.4V/cell hoặc 14.4V/bình",
+        "yeu_cau_ky_thuat_chi_tiet": "Điện áp nạp ở 25oC: + Chế độ nạp đệm (Float mode): 2.25V/cell hoặc 13.6V/bình + Chế độ nạp bổ sung (Boost mode): 2.35-2.4V/cell hoặc 14.4V/bình",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Float charge voltage: 42V～Boost charge (BC), default: 53.5V (If it is used for outdoor, the default voltage: 54V); Boost charge voltage: Float charge (FC)～58V, default: 56.4V",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731-A41-user-manual.pdf",
+            "section": "3.2 Basic Settings",
+            "table_or_figure": "",
+            "page": 22,
+            "evidence": "Set the controller according to the voltage suggested by the battery supplier. Float charge voltage: 42V～Boost charge (BC), default: 53.5V (If it is used for outdoor, the default voltage: 54V); Boost charge voltage: Float charge (FC)～58V, default: 56.4V"
+        }
+    },
+    "44DC5": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Độ tự xả sau 03 tháng: dung lượng ắcquy ≥ 90% dung lượng danh định",
+        "yeu_cau_ky_thuat_chi_tiet": "Độ tự xả sau 03 tháng: dung lượng ắcquy ≥ 90% dung lượng danh định",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Độ tự xả sau 03 tháng: dung lượng ắcquy ≥ 90% dung lượng danh định",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "",
+            "page": 23,
+            "evidence": "| Parameter category             | Parameter                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |\n| ------------------------------ | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Rectifier                      | Power discharging capability            | Remaining capacity after 3 months: ≥ 90% of rated capacity"
+        }
+    },
+    "05A9F": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Đầu cực: dạng M6 hoặc M8",
+        "yeu_cau_ky_thuat_chi_tiet": "Đầu cực: dạng M6 hoặc M8",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Đầu cực: dạng M6",
+        "tai_lieu_tham_chieu": {
+            "file": "M830B Brochure.pdf",
+            "section": "Mechanical Data",
+            "table_or_figure": "",
+            "page": 2,
+            "evidence": "Fix the subrack power system to the battery rack through the connectors with M6 bolts, as show in Figure 2-1."
+        }
+    },
+    "798B3": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Quy cách dàn ắcquy: + Mỗi dàn ắcquy gồm 4 bình. + Điện áp danh định mỗi bình là 12VDC. + Điện áp cả tổ là 48VDC",
+        "yeu_cau_ky_thuat_chi_tiet": "Quy cách dàn ắcquy: + Mỗi dàn ắcquy gồm 4 bình. + Điện áp danh định mỗi bình là 12VDC. + Điện áp cả tổ là 48VDC",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Mỗi dàn ắcquy gồm 4 bình và điện áp danh định mỗi bình là 12VDC, tổng điện áp cả tổ là 48VDC.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Table 1-1 Configuration of power system",
+            "table_or_figure": "Table 1-1",
+            "page": 10,
+            "evidence": "Maximum configuration: 4 pieces"
+        }
+    },
+    "363DE": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Dung lượng dàn ắcquy≥ 200Ah.",
+        "yeu_cau_ky_thuat_chi_tiet": "Dung lượng dàn ắcquy≥ 200Ah.",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Chưa rõ thông số.",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "",
+            "page": 30,
+            "evidence": "| DC output                                     | Maximum output current                           | DC load outpu≤150A<br/>battery charging current≤56A<br/>Note: in 45℃, full load output, above 45℃, the power derating 2% per ℃."
+        }
+    },
+    "F118F": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Nội trở ≤ 4.5mΩ",
+        "yeu_cau_ky_thuat_chi_tiet": "Nội trở ≤ 4.5mΩ",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Nội trở ≤ 2mΩ",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Appendix 1 Technical And Engineering Data",
+            "table_or_figure": "Technical Data of Power System",
+            "page": 30,
+            "evidence": "Nội trở ≤ 2mΩ"
+        }
+    },
+    "AACEA": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Mỗi dàn acquy phải gồm đầy đủ cáp nối giữa các bình",
+        "yeu_cau_ky_thuat_chi_tiet": "Mỗi dàn acquy phải gồm đầy đủ cáp nối giữa các bình",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Mỗi dàn acquy phải gồm đầy đủ cáp nối giữa các bình",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure-731-A41-Usermanual.pdf",
+            "section": "2.4.4 Connecting Battery Cables",
+            "table_or_figure": "",
+            "page": 17,
+            "evidence": "1. Connect one end of the negative battery cable to the upper terminal of battery MCBs. Connect one end of the positive battery cable to the DC positive bus bar."
+        }
+    },
+    "2CF60": {
+        "ten_san_pham": "Bộ chuyển đổi nguồn 220VAC/ 48VDC (kèm theo 02 dàn acquy 200Ah)",
+        "ten_hang_hoa": "Acquy kèm theo",
+        "value": "Kèm phụ kiện lắp đặt (cầu nối giữa các bình, kẹp cực, giá đỡ..)",
+        "yeu_cau_ky_thuat_chi_tiet": "Kèm phụ kiện lắp đặt (cầu nối giữa các bình, kẹp cực, giá đỡ..)",
+        "yeu_cau_ky_thuat": null,
+        "kha_nang_dap_ung": "Kèm phụ kiện lắp đặt (A rectangular frame with multiple horizontal bars, an L-shaped support bracket, a long straight bar, a small L-shaped bracket, along with expansion bolts and fasteners)",
+        "tai_lieu_tham_chieu": {
+            "file": "Netsure 731 A41 Usermanual.pdf",
+            "section": "Packing list",
+            "table_or_figure": "Accessory",
+            "page": 35,
+            "evidence": "[A diagram showing four accessories for a battery rack installation:\nAccessory 1: A large rectangular frame with multiple horizontal bars\nAccessory 2: An L-shaped support bracket\nAccessory 3: A long straight bar\nAccessory 4: A small L-shaped bracket]"
+        }
+    }
+}

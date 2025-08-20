@@ -160,6 +160,7 @@ def create_excel_file(context_queries, product_keys):
 
                     ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so)  # Loại bỏ ký tự không hợp lệ
                     # Ghi tài liệu tham chiếu cho từng hàng (không merge)
+                    ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so) 
                     ws.cell(row=current_row, column=5).value = ho_so
                 
                 # Ghi tình trạng đáp ứng tạm thời (sẽ merge sau)
