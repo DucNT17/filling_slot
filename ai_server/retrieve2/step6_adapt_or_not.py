@@ -11,7 +11,7 @@ load_dotenv()
 # Use AsyncOpenAI instead of OpenAI
 client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-async def adapt_or_not(path_pdf, filename_ids, collection_name, max_concurrent=3):
+async def adapt_or_not(path_pdf, filename_ids, collection_name, max_concurrent=10):
     """
     Hàm này sẽ gọi các hàm khác để thực hiện quá trình truy xuất và đánh giá khả năng đáp ứng yêu cầu kỹ thuật.
     Reduced max_concurrent from 5 to 3 for OpenAI rate limits
@@ -55,9 +55,9 @@ async def process_product_key(semaphore, context_queries, product_keys, product,
                     continue
                     
                 yeu_cau_ky_thuat = context_queries[item].get('yeu_cau_ky_thuat_chi_tiet', "")
-                kha_nang_dap_ung = context_queries[item].get('kha_nang_dap_ung', "Không đáp ứng")
+                kha_nang_dap_ung = context_queries[item].get('kha_nang_dap_ung', "Không có thông tin")
                 if kha_nang_dap_ung == "":
-                    kha_nang_dap_ung = "Không đáp ứng"
+                    kha_nang_dap_ung = "Không có thông tin"
                 dap_ung_ky_thuat += f"{yeu_cau_ky_thuat} || {kha_nang_dap_ung}\n"
 
                 tai_lieu = context_queries[item].get('tai_lieu_tham_chieu', {})
@@ -81,6 +81,7 @@ async def process_product_key(semaphore, context_queries, product_keys, product,
                     product_keys[product][key].append(output_text['đáp ứng kỹ thuật'])
                     product_keys[product][key].append(tai_lieu_tham_chieu)
         except Exception as e:
+
             print(f"❌ Error processing product key {product}-{key}: {e}")
 
 
@@ -165,8 +166,12 @@ async def evaluator_adaptability(user_prompt, assistant_id):
 
         else:
             print(f"Run status: {run.status}")
-            return None
-            
+            return json.dumps({
+                "đáp ứng kỹ thuật": "0"
+            })
+
     except Exception as e:
         print(f"❌ Error in evaluator_adaptability: {e}")
-        return None
+        return json.dumps({
+                "đáp ứng kỹ thuật": "0"
+            })

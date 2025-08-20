@@ -115,15 +115,20 @@ def create_excel_file(context_queries, product_keys):
             for ma in ma_ids:
                 if ma in context_queries:
                     spec_list.append(context_queries[ma]['yeu_cau_ky_thuat_chi_tiet'])
-                    dap_ung_list.append(context_queries[ma].get('kha_nang_dap_ung', ''))
+                    # Kiểm tra kha_nang_dap_ung có chứa số hoặc chữ không
+                    kha_nang_dap_ung = context_queries[ma].get('kha_nang_dap_ung', '')
+                    if kha_nang_dap_ung and re.search(r'[a-zA-Z0-9]', kha_nang_dap_ung):
+                        dap_ung_list.append(kha_nang_dap_ung)
+                    else:
+                        dap_ung_list.append('')
                     ho_so_tham_khao = context_queries[ma].get("tai_lieu_tham_chieu")
                     content = ""
                     file = ho_so_tham_khao.get("file", "")
                     if file:
                         content = f"Tài liệu tham chiếu: {file}"
                     section = ho_so_tham_khao.get("section", "")
-                    if section:
-                        content += f" - Mục: {section}"
+                    # if section:
+                    #     content += f" - Mục: {section}"
                     table_or_figure = ho_so_tham_khao.get("table_or_figure", "")
                     if table_or_figure is not None and table_or_figure != "":
                         content += f" - Có trong bảng/hình: {table_or_figure}"
@@ -150,10 +155,10 @@ def create_excel_file(context_queries, product_keys):
                 
                 ws.cell(row=current_row, column=3).value = spec
                 if dap_ung_item:
-                    
                     dap_ung_item = re.sub(r'[\x00-\x1F\x7F]', '', dap_ung_item)  # Loại bỏ ký tự không hợp lệ
                     ws.cell(row=current_row, column=4).value = dap_ung_item
 
+                    ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so)  # Loại bỏ ký tự không hợp lệ
                     # Ghi tài liệu tham chiếu cho từng hàng (không merge)
                     ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so) 
                     ws.cell(row=current_row, column=5).value = ho_so

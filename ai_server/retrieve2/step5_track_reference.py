@@ -71,7 +71,7 @@ def extract_first_json_object(json_str: str):
     except json.JSONDecodeError:
         return DEFAULT_OBJECT
 
-async def track_reference(pdf_path, filename_ids, collection_name, max_concurrent=5):
+async def track_reference(pdf_path, filename_ids, collection_name, max_concurrent=10):
     """
     Async version of track_reference with concurrent processing
     Note: Reduced max_concurrent from 10 to 5 for OpenAI rate limits
@@ -109,9 +109,9 @@ async def track_reference(pdf_path, filename_ids, collection_name, max_concurren
             print(f"❌ Lỗi xử lý key {key}: {result}")
             continue
             
-        if result is None:
-            print(f"⚠️ Không có kết quả cho key {key}")
-            continue
+        # if result is None:
+        #     print(f"⚠️ Không có kết quả cho key {key}")
+        #     continue
             
         context_queries[key]["kha_nang_dap_ung"] = result.get('kha_nang_dap_ung', '')
         context_queries[key]["tai_lieu_tham_chieu"] = {
@@ -133,13 +133,13 @@ async def process_query_with_semaphore(semaphore, key, query_data, assistant_id)
     async with semaphore:
         value = query_data["value"]
         content = query_data["relevant_context"]
-        form = query_data["yeu_cau_ky_thuat_chi_tiet"]
-        
+        module_component = query_data["ten_hang_hoa"]
+
         # Tạo user prompt
         user_prompt = f'''
-        Yêu cầu: {value}
         Chunk và metadata: {content}
-        Đoạn văn mẫu: {form}
+        yeu_cau_ky_thuat: {value}
+        module/component: {module_component}
         '''
 
         # Gọi hàm đánh giá
@@ -206,8 +206,8 @@ async def evaluate_technical_requirement(user_prompt, assistant_id):
 
         else:
             print(f"Run status: {run.status}")
-            return None
+            return DEFAULT_OBJECT
             
     except Exception as e:
         print(f"❌ Error in evaluate_technical_requirement: {e}")
-        return None
+        return DEFAULT_OBJECT

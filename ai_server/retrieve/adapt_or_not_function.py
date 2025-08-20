@@ -35,7 +35,9 @@ async def adapt_or_not_async(kha_nang_dap_ung_tham_chieu_step: Dict,
                         continue
                         
                     yeu_cau_ky_thuat = context_queries[item].get('yeu_cau_ky_thuat_chi_tiet', "")
-                    kha_nang_dap_ung = kha_nang_dap_ung_tham_chieu_step[item].get('kha_nang_dap_ung', "")
+                    kha_nang_dap_ung = kha_nang_dap_ung_tham_chieu_step[item].get('kha_nang_dap_ung', "Không có thông tin")
+                    if kha_nang_dap_ung == "":
+                        kha_nang_dap_ung = "Không có thông tin"
                     dap_ung_ky_thuat += f"{yeu_cau_ky_thuat} || {kha_nang_dap_ung}\n"
             
                     tai_lieu = kha_nang_dap_ung_tham_chieu_step[item].get('tai_lieu_tham_chieu', {})
@@ -128,51 +130,72 @@ def create_thread():
 # === ASYNC VERSION OF EVALUATOR_ADAPTABILITY ===
 async def Evaluator_adaptability_async(user_prompt: str, assistant_id: str = "asst_SIWbRtRbvCxXS9dgqvtj9U8O") -> str:
     """
-    Phiên bản async của Evaluator_adaptability
+    Phiên bản async của Evaluator_adaptability với try-except handling
     """
     def _sync_evaluate():
-        # 1. Tạo thread riêng cho mỗi lần gọi
-        thread = clientOpenAI.beta.threads.create()
-        thread_id = thread.id
+        try:
+            # 1. Tạo thread riêng cho mỗi lần gọi
+            thread = clientOpenAI.beta.threads.create()
+            thread_id = thread.id
 
-        # 2. Gửi message vào thread
-        clientOpenAI.beta.threads.messages.create(
-            thread_id=thread_id,
-            role="user",
-            content=user_prompt
-        )
+            # 2. Gửi message vào thread
+            clientOpenAI.beta.threads.messages.create(
+                thread_id=thread_id,
+                role="user",
+                content=user_prompt
+            )
 
-        # 3. Tạo run
-        run = clientOpenAI.beta.threads.runs.create(
-            thread_id=thread_id,
-            assistant_id=assistant_id,
-            tool_choice={"type": "function", "function": {"name": "evaluator"}}
-        )
+            # 3. Tạo run
+            run = clientOpenAI.beta.threads.runs.create(
+                thread_id=thread_id,
+                assistant_id=assistant_id,
+                tool_choice={"type": "function", "function": {"name": "evaluate_requirement_fulfillment"}}
+            )
 
-        # 4. Chờ assistant xử lý (tối đa 20s)
-        for _ in range(20):
-            run = clientOpenAI.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run.id)
-            if run.status not in ["queued", "in_progress"]:
-                break
-            time.sleep(1)
+            # 4. Chờ assistant xử lý (tối đa 20s)
+            for _ in range(20):
+                try:
+                    run = clientOpenAI.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run.id)
+                    if run.status not in ["queued", "in_progress"]:
+                        break
+                except Exception as e:
+                    print(f"⚠️ Lỗi khi retrieve run status: {str(e)}")
+                    break
+                time.sleep(1)
 
-        # 5. Lấy arguments trực tiếp
-        if run.status == "requires_action":
-            call = run.required_action.submit_tool_outputs.tool_calls[0]
-            print(f"👉 Assistant đã gọi tool: {call.function.name}")
-            print("🧠 Dữ liệu JSON assistant muốn trả về:")
-            print(call.function.arguments)
-            return call.function.arguments
+            # 5. Lấy arguments trực tiếp
+            if run.status == "requires_action":
+                try:
+                    call = run.required_action.submit_tool_outputs.tool_calls[0]
+                    print(f"👉 Assistant đã gọi tool: {call.function.name}")
+                    print("🧠 Dữ liệu JSON assistant muốn trả về:")
+                    print(call.function.arguments)
+                    return call.function.arguments
+                except Exception as e:
+                    print(f"⚠️ Lỗi khi lấy tool call arguments: {str(e)}")
+                    return json.dumps({"đáp ứng kỹ thuật": "0"})
 
-        elif run.status == "completed":
-            messages = clientOpenAI.beta.threads.messages.list(thread_id=thread_id)
-            for msg in messages.data:
-                print(f"hello:.........[{msg.role}] {msg.content[0].text.value}")
-            return None
+            elif run.status == "completed":
+                try:
+                    messages = clientOpenAI.beta.threads.messages.list(thread_id=thread_id)
+                    for msg in messages.data:
+                        print(f"hello:.........[{msg.role}] {msg.content[0].text.value}")
+                    return None
+                except Exception as e:
+                    print(f"⚠️ Lỗi khi lấy messages: {str(e)}")
+                    return None
 
-        else:
-            print(f"Run status: {run.status}")
-            return None
+            else:
+                print(f"Run status: {run.status}")
+                return json.dumps({"đáp ứng kỹ thuật": "0"})
+                
+        except Exception as e:
+            print(f"❌ Lỗi trong _sync_evaluate: {str(e)}")
+            return json.dumps({"đáp ứng kỹ thuật": "0"})
     
-    # Chạy function sync trong thread pool
-    return await asyncio.to_thread(_sync_evaluate)
+    # Chạy function sync trong thread pool với try-except
+    try:
+        return await asyncio.to_thread(_sync_evaluate)
+    except Exception as e:
+        print(f"❌ Lỗi trong asyncio.to_thread: {str(e)}")
+        return json.dumps({"đáp ứng kỹ thuật": "0"})

@@ -30,13 +30,25 @@ from ai_server.retrieve.compare_function import compare_function, merge_dicts
 import re
 import asyncio
 from typing import Dict, Any, Tuple
+from llama_index.core import QueryBundle
+from llama_index.core.postprocessor import LLMRerank
+from concurrent.futures import ThreadPoolExecutor
 
 clientOpenAI = OpenAI()
 
 async def retrieve_results(path_pdf, collection_name):
-    context_queries, product_keys = llm_create_query(path_pdf)
+    """
+    Async version of retrieve_results using semaphore for concurrency control
+    """
+    # Run llm_create_query in thread pool since it's synchronous
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor() as executor:
+        context_queries, product_keys = await loop.run_in_executor(
+            executor, llm_create_query, path_pdf
+        )
+    
     for product in product_keys:
-        product_line = retrieve_product_line(product)
+        product_line = await retrieve_product_line_async(product)
         product_line = product_line.replace('"', '').replace("'", "")
         print(f"Product Line: {product_line}")
         query_str = f"{product}: "
@@ -49,54 +61,40 @@ async def retrieve_results(path_pdf, collection_name):
                     continue
                 query_str += context_queries[item]["value"]
             query_str += "\n"
+        
         prompt_yeu_cau_ky_thuat = create_prompt_extract_module(query_str)
-        response = clientOpenAI.responses.create(
-            model="gpt-4o-mini",
-            input=prompt_yeu_cau_ky_thuat,
-            temperature=0
-        )
-        product_requirement = f"{product}: {response.output_text.strip()}" 
-        products = retrieve_document(collection_name, product_line, product_requirement)  #search product (brochure, product_id)
-
-
+        
+        # Run OpenAI API call in thread pool
+        with ThreadPoolExecutor() as executor:
+            response = await loop.run_in_executor(
+                executor,
+                lambda: clientOpenAI.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=[{"role": "user", "content": prompt_yeu_cau_ky_thuat}],
+                    temperature=0
+                )
+            )
+        
+        product_requirement = f"{product}: {response.choices[0].message.content.strip()}" 
+        products = await retrieve_document_async(collection_name, product_line, product_requirement)
+        print("products:", products)
+        
         kha_nang_dap_ung_tham_chieu_final = {}
         adapt_or_not_final = {}
         sum = 0
+        
         for item in products:  #Mỗi sản phẩm liên quan
             kha_nang_dap_ung_tham_chieu_step = {}
             adapt_or_not_step = {}
-            product_search_id = []
             product_id = item["product_id"]
-            brochure = item["brochure_file_path"]
-            reader = MarkdownReader()
-            documents = reader.load_data(file=f"D:/study/LammaIndex/{brochure}")
-            markdown_text = "\n".join(doc.text for doc in documents)
-            prompt_brochure = create_prompt_extract_module2(markdown_text)
-            response = clientOpenAI.responses.create(
-                model="gpt-4o-mini",
-                input=prompt_brochure,
-                temperature=0
-            )
-            product_brochure = response.output_text.strip()
-            match = re.search(r'```json\s*(.*?)\s*```', product_brochure, re.DOTALL)
-            if match:
-                json_str = match.group(1)
-            else:
-                json_str = response  # nếu không có code block thì dùng nguyên văn
-
-            # Parse JSON thành list Python
-            product_brochure = json.loads(json_str)
-            product_component_id = retrieve_component(collection_name, product_brochure)
-            product_search_id.extend(product_component_id)  
-            product_search_id.append(product_id)
-
-            product_search_id = set(product_search_id)
+            print(f"Processing product_id: {product_id}")
             
             kha_nang_dap_ung_tham_chieu_step = await process_requirements_async_with_semaphore(
-                collection_name, all_requirements, context_queries, product_search_id, max_concurrent=5
+                collection_name, all_requirements, context_queries, product_id, max_concurrent=10
             )
+            # print(f"Processed kha_nang_dap_ung_tham_chieu_step for product_id {product_id}: {kha_nang_dap_ung_tham_chieu_step}")
+            
             kha_nang_dap_ung_tham_chieu_step = await track_reference_async(context_queries, kha_nang_dap_ung_tham_chieu_step)
-
             kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step = await adapt_or_not_async(kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step, all_requirements, context_queries)
 
             sum_local = compare_function(adapt_or_not_step)
@@ -104,161 +102,228 @@ async def retrieve_results(path_pdf, collection_name):
                 sum = sum_local
                 kha_nang_dap_ung_tham_chieu_final = copy.deepcopy(kha_nang_dap_ung_tham_chieu_step)
                 adapt_or_not_final = copy.deepcopy(adapt_or_not_step)
-            with open(f"D:/study/LammaIndex/output/kha_nang_dap_ung_{product_id}.json", "w", encoding="utf-8") as f:
-                json.dump(kha_nang_dap_ung_tham_chieu_step, f, ensure_ascii=False, indent=4)
-            with open(f"D:/study/LammaIndex/output/adapt_or_not_{product_id}.json", "w", encoding="utf-8") as f:
-                json.dump(adapt_or_not_step, f, ensure_ascii=False, indent=4)
+            
+            # Save files in thread pool
+            with ThreadPoolExecutor() as executor:
+                await loop.run_in_executor(
+                    executor,
+                    save_json_files,
+                    product_id,
+                    kha_nang_dap_ung_tham_chieu_step,
+                    adapt_or_not_step
+                )
+                
         context_queries = merge_dicts(kha_nang_dap_ung_tham_chieu_final, context_queries)
         for key in adapt_or_not_final:
-            product_keys[product][key].extend(adapt_or_not_final[key])  # Giả sử bạn muốn lấy giá trị đầu tiên
+            if key in product_keys[product]:
+                product_keys[product][key].extend(adapt_or_not_final[key])
+            else:
+                print(f"Warning: Key '{key}' không tồn tại trong product_keys[{product}]")
 
-        
-    with open("D:/study/LammaIndex/output/context_queries.json", "w", encoding="utf-8") as f:
-        json.dump(context_queries, f, ensure_ascii=False, indent=4)
-    with open("D:/study/LammaIndex/output/product_keys.json", "w", encoding="utf-8") as f:
-        json.dump(product_keys, f, ensure_ascii=False, indent=4)
+    # Save final results in thread pool
+    with ThreadPoolExecutor() as executor:
+        await loop.run_in_executor(
+            executor,
+            save_final_results,
+            context_queries,
+            product_keys
+        )
 
     return context_queries, product_keys
 
-def retrieve_document(collection_name, product_line, query_str):
-    product_ids = []
-    vector_store = config_db(collection_name)
-    index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
-    
-    filters_document = MetadataFilters(
-        filters=[
-            MetadataFilter(key="product_line", operator=FilterOperator.EQ, value=product_line),
-            MetadataFilter(key="type", operator=FilterOperator.EQ, value="summary_document"),
-        ],
-    condition=FilterCondition.AND,
-    )
-    retriever_document = index.as_retriever(similarity_top_k=3, sparse_top_k=10, verbose=True, enable_hybrid=True, filters=filters_document)
-
-    results = retriever_document.retrieve(query_str)
-
-    for result in results:
-        metadata = result.metadata
-        product_ids.append(
-            {
-                "product_id": metadata["product_id"],
-                "brochure_file_path": metadata["brochure_file_path"],
-            }
+async def retrieve_document_async(collection_name, product_line, query_str):
+    """
+    Async wrapper for retrieve_document
+    """
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor() as executor:
+        return await loop.run_in_executor(
+            executor,
+            retrieve_document_sync,
+            collection_name,
+            product_line,
+            query_str
         )
 
+def retrieve_document_sync(collection_name, product_line, query_str):
+    """
+    Synchronous version of retrieve_document (original logic)
+    """
+    product_ids = []
+    try:
+        vector_store = config_db(collection_name)
+        index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
+        
+        filters_document = MetadataFilters(
+            filters=[
+                MetadataFilter(key="product_line", operator=FilterOperator.EQ, value=product_line),
+                MetadataFilter(key="type", operator=FilterOperator.EQ, value="summary_document"),
+            ],
+            condition=FilterCondition.AND,
+        )
+        retriever_document = index.as_retriever(similarity_top_k=3, sparse_top_k=10, verbose=True, enable_hybrid=True, filters=filters_document)
+
+        results = retriever_document.retrieve(query_str)
+
+        for result in results:
+            metadata = result.metadata
+            product_ids.append(
+                {
+                    "product_id": metadata["product_id"]
+                }
+            )
+    except Exception as e:
+        print(f"Lỗi trong retrieve_document: {e}")
+        
     return product_ids
 
-async def retrieve_chunk_async(product_ids, query_str, collection_name):
+async def retrieve_chunk_with_semaphore(semaphore, product_id, query_str, collection_name, item_key, context_queries):
     """
-    Phiên bản async của retrieve_chunk
+    Wrapper function to handle semaphore and update context_queries
     """
-    # Wrap các operations đồng bộ trong executor để không block event loop
+    async with semaphore:
+        content = await retrieve_chunk_async(product_id, query_str, collection_name)
+        if content:
+            context_queries[item_key] = {'relevant_context': content}
+
+async def retrieve_chunk_async(product_id, query_str, collection_name):
+    """
+    Async wrapper for retrieve_chunk using thread pool
+    """
     loop = asyncio.get_event_loop()
-    vector_store = config_db(collection_name)
-    def _retrieve_sync():
+    with ThreadPoolExecutor() as executor:
+        content = await loop.run_in_executor(
+            executor, 
+            retrieve_chunk_sync, 
+            product_id, 
+            query_str, 
+            collection_name
+        )
+    return content
+
+def retrieve_chunk_sync(product_id, query_str, collection_name):
+    """
+    Synchronous version of retrieve_chunk (original logic)
+    """
+    try:
+        vector_store = config_db(collection_name)
         index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
         
         filters_chunk = MetadataFilters(
             filters=[
-                MetadataFilter(key="product_id", operator=FilterOperator.IN, value=product_ids),
+                MetadataFilter(key="product_id", operator=FilterOperator.EQ, value=product_id),
                 MetadataFilter(key="type", operator=FilterOperator.EQ, value="chunk_document"),
             ],
             condition=FilterCondition.AND,
         )
-        retriever_chunk = index.as_retriever(similarity_top_k=5, verbose=True, filters=filters_chunk)
         
+        retriever_chunk = index.as_retriever(similarity_top_k=5, sparse_top_k=10, verbose=True, enable_hybrid=True, filters=filters_chunk)
         results = retriever_chunk.retrieve(query_str)
+        
         content = ""
         for i, result in enumerate(results, start=1):
             metadata = result.metadata
-            file_name = metadata["file_name"] + ".pdf"
-            page = metadata["page"]
-            table = metadata["table_name"]
-            figure_name = metadata.get("figure_name")
+            file_name = metadata.get("file_name", "unknown") + ".pdf"
+            page = metadata.get("page", "unknown")
+            table = metadata.get("table_name", "N/A")
+            figure_name = metadata.get("figure_name", "N/A")
             text = result.text.strip()
             content += f"Chunk {i} trong file {file_name} tại trang {page}, có chứa bảng {table} và hình {figure_name} có nội dung:\n{text}\n\n"
         return content
-    
-    # Chạy function đồng bộ trong thread pool để không block
-    return await loop.run_in_executor(None, _retrieve_sync)
+    except Exception as e:
+        print(f"Lỗi trong retrieve_chunk_sync: {e}")
+        return ""
 
-async def process_single_item(item: str, key: str, context_queries: Dict, product_search_id: Any, collection_name: str) -> tuple:
+async def process_single_item_with_semaphore(semaphore, item, key, context_queries, product_id, collection_name):
     """
-    Xử lý một item đơn lẻ một cách bất đồng bộ
+    Wrapper function to handle semaphore for single item processing
     """
-    if item not in context_queries:
+    async with semaphore:
+        return await process_single_item_async(item, key, context_queries, product_id, collection_name)
+
+async def process_single_item_async(item: str, key: str, context_queries: Dict, product_id: Any, collection_name: str) -> tuple:
+    """
+    Async wrapper for processing single item
+    """
+    try:
+        if item not in context_queries:
+            return item, None
+        
+        query = context_queries[item].get("value", "")
+        content = await retrieve_chunk_async(product_id, query, collection_name)
+        print(f"Processed item: {item}")
+        
+        return item, {
+            'relevant_context': content
+        }
+    except Exception as e:
+        print(f"Lỗi khi xử lý item {item}: {e}")
         return item, None
-    
-    query = context_queries[item]["value"]
-    content = await retrieve_chunk_async(product_search_id, query, collection_name)
-    print(f"Processed item: {item}")  # In ra để theo dõi tiến trình
-    
-    return item, {
-        'relevant_context': content
-    }
 
-def retrieve_chunk(product_ids, query_str, collection_name):
-    vector_store = config_db(collection_name)
-    index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
-    
-    filters_chunk = MetadataFilters(
-        filters=[
-            MetadataFilter(key="product_id", operator=FilterOperator.IN, value=product_ids),
-            MetadataFilter(key="type", operator=FilterOperator.EQ, value="chunk_document"),
-        ],
-        condition=FilterCondition.AND,
-    )
+async def retrieve_product_line_async(product_name, assistant_id="asst_CkhqaSBGeaIlLO5mY7puPybD"):
+    """
+    Async wrapper for retrieve_product_line
+    """
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor() as executor:
+        return await loop.run_in_executor(
+            executor,
+            retrieve_product_line_sync,
+            product_name,
+            assistant_id
+        )
 
-    retriever_chunk = index.as_retriever(similarity_top_k=5, sparse_top_k=10, enable_hybrid=True, verbose=True, filters=filters_chunk)
+def retrieve_product_line_sync(product_name, assistant_id="asst_CkhqaSBGeaIlLO5mY7puPybD"):
+    """
+    Synchronous version of retrieve_product_line (original logic)
+    """
+    try:
+        thread = clientOpenAI.beta.threads.create()
+        thread_id = thread.id
+        
+        clientOpenAI.beta.threads.messages.create(
+            thread_id=thread_id,
+            role="user",
+            content=product_name
+        )
+        
+        run = clientOpenAI.beta.threads.runs.create(
+            thread_id=thread_id,
+            assistant_id=assistant_id,
+            tool_choice="auto"
+        )
+        run_id = run.id
+        
+        max_wait_time = 300
+        wait_time = 0
+        while wait_time < max_wait_time:
+            run_status = clientOpenAI.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
+            if run_status.status == "completed":
+                break
+            elif run_status.status in ["failed", "cancelled", "expired"]:
+                raise Exception(f"Run failed with status: {run_status.status}")
+            time.sleep(1)
+            wait_time += 1
+        
+        if wait_time >= max_wait_time:
+            raise Exception("Timeout: Assistant không phản hồi trong thời gian cho phép")
 
-    results = retriever_chunk.retrieve(query_str)
-    content = ""
-    for i, result in enumerate(results, start=1):
-        metadata = result.metadata
-        file_name = metadata["file_name"]+ ".pdf"
-        page = metadata["page"]
-        table = metadata["table_name"]
-        figure_name = metadata.get("figure_name")
-        text = result.text.strip()
-        content += f"Chunk {i} trong file {file_name} tại trang {page}, có chứa bảng {table} và hình {figure_name} có nội dung:\n{text}\n\n"
+        messages = clientOpenAI.beta.threads.messages.list(thread_id=thread_id)
+        for message in reversed(messages.data):
+            if message.role == "assistant":
+                for content in message.content:
+                    if content.type == "text":
+                        return content.text.value
 
-    return content
-
-def retrieve_product_line(product_name, assistant_id="asst_CkhqaSBGeaIlLO5mY7puPybD"):
-    thread = clientOpenAI.beta.threads.create()
-    thread_id = thread.id
-    # 2. Gửi message vào thread
-    clientOpenAI.beta.threads.messages.create(
-        thread_id=thread_id,
-        role="user",
-        content=product_name
-    )
-    run = clientOpenAI.beta.threads.runs.create(
-        thread_id=thread_id,
-        assistant_id=assistant_id,
-        tool_choice="auto"  # hoặc thay bằng tool cụ thể nếu cần
-        # tool_choice={"type": "function", "function": {"name": "danh_gia_ky_thuat"}}
-    )
-    run_id = run.id
-    # 4. Đợi assistant xử lý xong
-    while True:
-        run_status = clientOpenAI.beta.threads.runs.retrieve(thread_id=thread_id, run_id=run_id)
-        if run_status.status == "completed":
-            break
-        elif run_status.status in ["failed", "cancelled", "expired"]:
-            raise Exception(f"Run failed with status: {run_status.status}")
-        time.sleep(1)
-
-    # 5. Lấy kết quả trả về từ Assistant
-    messages = clientOpenAI.beta.threads.messages.list(thread_id=thread_id)
-    for message in reversed(messages.data):  # đảo ngược để lấy kết quả mới nhất trước
-        if message.role == "assistant":
-            for content in message.content:
-                if content.type == "text":
-                    return content.text.value
-
-    return None
+        return None
+    except Exception as e:
+        print(f"Lỗi trong retrieve_product_line: {e}")
+        return None
 
 def create_prompt_extract_module(query_str):
+    """
+    This function remains synchronous as it's just string processing
+    """
     prompt = f"""
 You are an expert in hardware product documentation analysis.  
 Read the provided text (which can be either a detailed product brochure or a general product requirement) and extract ONLY the core physical hardware components/modules of the system.
@@ -276,7 +341,7 @@ Output format:
 - <Component Name>[: <Model(s)/Code(s) if available>]
  
 Rules:
-1. Only include core hardware modules essential for the product’s operation (e.g., Rectifier Module, Controller, AC Input, AC Distribution, DC Distribution, Battery Distribution, Lightning Protection, Cooling System, Battery Bank).
+1. Only include core hardware modules essential for the product's operation (e.g., Rectifier Module, Controller, AC Input, AC Distribution, DC Distribution, Battery Distribution, Lightning Protection, Cooling System, Battery Bank).
 2. Preserve the exact wording of component/module names from the text (do not paraphrase or generalize).
 3. Include model numbers, codes, or exact designations only if explicitly stated in the text.  
    - If multiple models exist, list them separated by " / ".
@@ -286,95 +351,67 @@ Rules:
 """
     return prompt
 
-def create_prompt_extract_module2(query_str):
-    prompt = f"""
-    You are an expert in hardware product documentation analysis.  
-Read the provided text (which can be either a detailed product brochure or a general product requirement) and extract ONLY the model numbers, codes, or exact designations of the core physical hardware components/modules of the system.
-
-Input:
-<<<
-{query_str}
->>>
-
-Output format:
-A valid JSON array of strings, where each string is one model/code.  
-Example:
-["R48-121A3", "R56-3220"]
-
-Rules:
-1. Only extract model numbers, codes, or exact designations explicitly stated in the text.  
-   - Do NOT include component/module names, descriptions, amperage, voltage, or units (e.g., "125 A / 2P" is ignored).
-2. Extract models only from core hardware modules essential for the product’s operation (e.g., Rectifier Module, Controller, AC Input, AC Distribution, DC Distribution, Battery Distribution, Lightning Protection, Cooling System, Battery Bank).
-3. Preserve the exact case, spacing, and characters from the original text.
-4. If multiple models are listed together, split them into separate JSON array elements.
-5. Ignore optional accessories, warranty info, standards compliance, and marketing text.
-6. Do not infer or guess model numbers—extract only what is explicitly stated.
-7. Output only a valid JSON array without extra text or explanations.
-
+async def process_requirements_async_with_semaphore(collection_name, all_requirements: Dict, context_queries: Dict, product_id: Any, max_concurrent: int = 10) -> Dict:
     """
-    return prompt
-
-def retrieve_component(collection_name, keyword_product_brochure):
-    should_conditions = [
-        FieldCondition(
-            key='file_brochure_name',
-            match=MatchText(text=kw)
-        )
-        for kw in keyword_product_brochure
-    ]
-
-    text_filter = Filter(
-        should=should_conditions  # OR search
-    )
-
-    scroll_result, next_page = qdrantClient.scroll(
-        collection_name=collection_name,
-        scroll_filter=text_filter,
-        limit=5
-    )
-
-    product_ids = []
-    if scroll_result:
-        print("Kết quả tìm kiếm:")
-        for result in scroll_result:
-            metadata = result.payload
-            product_id = metadata.get("product_id", "")
-            if product_id:
-                product_ids.append(product_id)
-    return product_ids
-
-
-async def process_requirements_async_with_semaphore(collection_name,all_requirements: Dict, context_queries: Dict, product_search_id: Any, max_concurrent: int = 10) -> Dict:
+    Async version with semaphore for concurrency control
     """
-    Phiên bản async với giới hạn số lượng concurrent tasks
-    """
-    kha_nang_dap_ung_tham_chieu_step = {}
     semaphore = asyncio.Semaphore(max_concurrent)
+    kha_nang_dap_ung_tham_chieu_step = {}
     
-    async def process_with_semaphore(item: str, key: str):
-        async with semaphore:
-            return await process_single_item(item, key, context_queries, product_search_id, collection_name=collection_name)
-    
-    # Tạo danh sách tất cả các tasks với semaphore
+    # Collect all tasks to run concurrently
     tasks = []
+    items_info = []  # To track which item corresponds to which result
+    
     for key in all_requirements:
         for item in all_requirements[key]:
-            task = process_with_semaphore(item, key)
-            tasks.append(task)
+            if item in context_queries:
+                task = process_single_item_with_semaphore(
+                    semaphore, item, key, context_queries, product_id, collection_name
+                )
+                tasks.append(task)
+                items_info.append((item, key))
     
     print(f"Bắt đầu xử lý {len(tasks)} tasks với tối đa {max_concurrent} concurrent...")
     
-    # Chạy tất cả tasks đồng thời (nhưng giới hạn concurrent)
-    results = await asyncio.gather(*tasks, return_exceptions=True)
-    
-    # Xử lý kết quả
-    for result in results:
-        if isinstance(result, Exception):
-            print(f"Lỗi khi xử lý: {result}")
-            continue
+    try:
+        # Run all tasks concurrently
+        results = await asyncio.gather(*tasks, return_exceptions=True)
         
-        item, data = result
-        if data is not None:
-            kha_nang_dap_ung_tham_chieu_step[item] = data
+        # Process results
+        for i, result in enumerate(results):
+            if isinstance(result, Exception):
+                print(f"Lỗi khi xử lý: {result}")
+                continue
+            
+            item, data = result
+            if data is not None:
+                kha_nang_dap_ung_tham_chieu_step[item] = data
+                
+    except Exception as e:
+        print(f"Lỗi trong process_requirements_async_with_semaphore: {e}")
     
     return kha_nang_dap_ung_tham_chieu_step
+
+def save_json_files(product_id, kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step):
+    """
+    Synchronous helper function for saving JSON files
+    """
+    try:
+        with open(f"D:/study/LammaIndex/output/kha_nang_dap_ung_{product_id}.json", "w", encoding="utf-8") as f:
+            json.dump(kha_nang_dap_ung_tham_chieu_step, f, ensure_ascii=False, indent=4)
+        with open(f"D:/study/LammaIndex/output/adapt_or_not_{product_id}.json", "w", encoding="utf-8") as f:
+            json.dump(adapt_or_not_step, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"Lỗi khi lưu file cho product_id {product_id}: {e}")
+
+def save_final_results(context_queries, product_keys):
+    """
+    Synchronous helper function for saving final results
+    """
+    try:
+        with open("D:/study/LammaIndex/output/context_queries.json", "w", encoding="utf-8") as f:
+            json.dump(context_queries, f, ensure_ascii=False, indent=4)
+        with open("D:/study/LammaIndex/output/product_keys.json", "w", encoding="utf-8") as f:
+            json.dump(product_keys, f, ensure_ascii=False, indent=4)
+    except Exception as e:
+        print(f"Lỗi khi lưu file kết quả cuối: {e}")

@@ -5,6 +5,7 @@ from backend.db.connect_db import SessionLocal, Base, engine
 from backend.services.upload_data import ProductService
 from backend.services.processtoexcel import ExcelService
 from backend.services.crud_service import CRUDService
+from backend.services.auto_excel_service import AutoExcelService
 from backend.models.models import *
 import asyncio
 import os
@@ -151,18 +152,34 @@ def generate_excel():
         type: string
         required: false
         default: manual
-        description: Processing type (manual or auto)
+        enum: [manual, auto]
+        description: Processing type - 'manual' uses filename IDs, 'auto' uses step7 automatic processing
     responses:
       200:
-        description: Excel file or JSON response based on type
+        description: Excel file generated successfully (for both manual and auto types)
         content:
           application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
             schema:
               type: string
               format: binary
+      400:
+        description: Invalid request parameters
+        content:
           application/json:
             schema:
               type: object
+              properties:
+                error:
+                  type: string
+      500:
+        description: Internal server error
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
     """
     try:
         if "pdf_file" not in request.files:
@@ -175,12 +192,45 @@ def generate_excel():
         type = request.form.get("type", "manual")
 
         db = next(get_db())
-        service = ExcelService(db)
+        
         if type == "manual":
+            service = ExcelService(db)
             return service.generate_excel_from_pdf_by_filename_ids(pdf_file, filename_ids_str, collection_name)
-        return jsonify({"hello": "world"})
+        elif type == "auto":
+            auto_service = AutoExcelService(db)
+            return auto_service.generate_excel_auto(pdf_file, collection_name)
+        else:
+            return jsonify({"error": "Invalid type. Must be 'manual' or 'auto'"}), 400
+            
     except Exception as e:
         return jsonify({"error": f"Failed to generate Excel: {str(e)}"}), 500
+
+@app.route("/auto-excel/status", methods=["GET"])
+def get_auto_excel_status():
+    """
+    Get status of auto Excel generation service
+    ---
+    tags:
+      - Main API
+    responses:
+      200:
+        description: Service status information
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                message:
+                  type: string
+    """
+    try:
+        db = next(get_db())
+        auto_service = AutoExcelService(db)
+        return jsonify(auto_service.get_processing_status())
+    except Exception as e:
+        return jsonify({"error": f"Failed to get status: {str(e)}"}), 500
 
 # ==================== CRUD APIs ====================
 

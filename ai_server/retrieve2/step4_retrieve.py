@@ -9,6 +9,8 @@ from llama_index.llms.openai import OpenAI
 from llama_index.core.retrievers import VectorIndexAutoRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.settings import Settings
+# from llama_index.postprocessor.colbert_rerank import ColbertRerank
+from llama_index.core.postprocessor import LLMRerank
 from llama_index.core import StorageContext, VectorStoreIndex
 from llama_index.core.vector_stores import (
     MetadataFilter,
@@ -20,6 +22,11 @@ from ai_server.retrieve2.step3_create_query import llm_create_query
 from ai_server.config_db import config_db
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
+from llama_index.core import QueryBundle
+from llama_index.core.prompts import PromptTemplate
+from llama_index.core.prompts.prompt_type import PromptType
+
+
 
 async def retrieve_results(path_pdf, filename_ids, collection_name, max_concurrent=10):
     """
@@ -48,7 +55,7 @@ async def retrieve_results(path_pdf, filename_ids, collection_name, max_concurre
                 task = retrieve_chunk_with_semaphore(
                     semaphore, 
                     filename_ids, 
-                    context_queries[item]["value"], 
+                    context_queries[item]["ten_hang_hoa"] +": " + context_queries[item]["value"], 
                     collection_name,
                     item,
                     context_queries
@@ -60,15 +67,15 @@ async def retrieve_results(path_pdf, filename_ids, collection_name, max_concurre
     
     return context_queries, product_keys
 
-async def retrieve_chunk_with_semaphore(semaphore, product_ids, query, collection_name, item_key, context_queries):
+async def retrieve_chunk_with_semaphore(semaphore, filename_ids, query, collection_name, item_key, context_queries):
     """
     Wrapper function to handle semaphore and update context_queries
     """
     async with semaphore:
-        content = await retrieve_chunk_async(product_ids, query, collection_name)
+        content = await retrieve_chunk_async(filename_ids, query, collection_name)
         context_queries[item_key]["relevant_context"] = content
 
-async def retrieve_chunk_async(product_ids, query_str, collection_name):
+async def retrieve_chunk_async(filename_ids, query_str, collection_name):
     """
     Truly async version of retrieve_chunk using thread pool
     """
@@ -77,7 +84,7 @@ async def retrieve_chunk_async(product_ids, query_str, collection_name):
         content = await loop.run_in_executor(
             executor, 
             retrieve_chunk_sync, 
-            product_ids, 
+            filename_ids, 
             query_str, 
             collection_name
         )
@@ -96,9 +103,30 @@ def retrieve_chunk_sync(filename_ids, query_str, collection_name):
         ],
         condition=FilterCondition.AND,
     )
-    retriever_chunk = index.as_retriever(similarity_top_k=5, verbose=True, filters=filters_chunk)
-   
-    results = retriever_chunk.retrieve(query_str)
+    query_bundle = QueryBundle(query_str)
+    retriever_chunk = index.as_retriever(
+        similarity_top_k=10,
+        sparse_top_k=15,
+        verbose=True,
+        enable_hybrid=True,
+        filters=filters_chunk
+    )
+    retrieved_nodes = retriever_chunk.retrieve(query_bundle)
+    reranker = LLMRerank(
+        choice_batch_size=10,
+        top_n=5,
+        llm=Settings.llm
+    )
+    results = reranker.postprocess_nodes(
+        retrieved_nodes, query_bundle
+    )
+    
+    # results = retriever_chunk.retrieve(query_str)
+
+    # results = colbert_reranker.postprocess_nodes(
+    #     nodes=initial_nodes,
+    #     query_str=query_str
+    # )
     content = ""
     for i, result in enumerate(results, start=1):
         metadata = result.metadata
