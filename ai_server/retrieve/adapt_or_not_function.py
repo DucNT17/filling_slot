@@ -146,7 +146,7 @@ async def Evaluator_adaptability_async(user_prompt: str, assistant_id: str = "as
         run = clientOpenAI.beta.threads.runs.create(
             thread_id=thread_id,
             assistant_id=assistant_id,
-            tool_choice={"type": "function", "function": {"name": "evaluator"}}
+            tool_choice={"type": "function", "function": {"name": "evaluate_requirement_fulfillment"}}
         )
 
         # 4. Chờ assistant xử lý (tối đa 20s)

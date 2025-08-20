@@ -1,90 +1,57 @@
 {
-    "Critical Power":[
-      {
-        "name":"Battery Energy Storage System (BESS)",
-        "description":"Vertiv's BESS solution is optimized for mission-critical facilities. Our full-featured PCS—fast acting in 2ms—and the latest li-ion batteries, supports your sustainability goals and improves uptime."
+  "name": "kha_nang_dap_ung",
+  "description": "Xác định khả năng đáp ứng của sản phẩm theo yêu cầu kỹ thuật từ chunk tài liệu.",
+  "strict": true,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "yeu_cau_ky_thuat": {
+        "type": "string",
+        "description": "Yêu cầu kỹ thuật"
       },
-      {
-        "name":"Uninterruptible Power Supply (UPS)",
-        "description":"Protect your equipment and applications with our complete range of efficient, reliable UPS systems that can be configured to meet the specific needs of your critical applications."
+      "kha_nang_dap_ung": {
+        "type": "string",
+        "description": "Câu trả lời cần giống y hệt với cú pháp của yêu cầu kỹ thuật, chỉ thay phần thông số bằng giá trị thực tế từ chunk và bắt buộc trả lời bằng Tiếng Việt. Nếu không tìm thấy thông tin thì để chuỗi rỗng."
       },
-      {
-        "name":"DC Power Systems",
-        "description":"Vertiv's thermal control solutions ensure optimal cooling and monitoring for critical infrastructure, enhancing efficiency and reliability.DC Power Systems"
-      },
-      {
-        "name":"Power Distribution",
-        "description":"Our power distribution systems stand up to changing needs and environments while ensuring the availability you demand."
-      },
-      {
-        "name":"Static Transfer Switches",
-        "description":"Transfer critical loads to emergency sources with our line of quick, reliable and flexible power switching solutions."
-      },
-      {
-        "name":"Power Control and Monitoring",
-        "description":"Run your data center at peak performance by making insightful decisions using our power controls and monitoring products."
-      },
-      {
-        "name":"Busway and Busduct",
-        "description":"The Vertiv™ Powerbar patented range of busbar trunking ads overhead power distribution to your data center, allowing increased accessibility to power loads for maintenance. Our Vertiv Powerbar products also compliment the Vertiv Switchgear range to provide a complete power distribution solution."
-      },
-      {
-        "name":"Switchgear and Switchboard",
-        "description":"Vertiv's power management software provides advanced monitoring and control of power systems, ensuring reliability and efficiency.You want a solution that ensures the proper flow of power to electrical circuits, protects your equipment, isolates power systems, and most importantly, does not fail. Discover the best power distribution solution to protect your equipment. "
+      "tai_lieu_tham_chieu": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "Tên file chính xác tuyệt đối của chunk chứa thông tin liên quan đến yêu cầu kỹ thuật hoặc chuỗi rỗng nếu không có."
+          },
+          "section": {
+            "type": "string",
+            "description": "Tên section của chunk chứa thông tin liên quan đến yêu cầu kỹ thuật hoặc chuỗi rỗng nếu không có."
+          },
+          "table_or_figure": {
+            "type": "string",
+            "description": "Tên bảng/hình nếu có của chunk chứa thông tin liên quan đến yêu cầu kỹ thuật, ngược lại để chuỗi rỗng."
+          },
+          "page": {
+            "type": "integer",
+            "description": "Số thứ tự trang(page) của chunk chứa thông tin liên quan đến yêu cầu kỹ thuật"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Trích xuất nguyên văn phần nội dung liên quan của chunk để trả lời cho yêu cầu kỹ thuật. Nếu nội dung trích dẫn nằm trong bảng, không trả lại bảng theo dạng hàng/cột hay markdown mà hãy diễn giải thành văn bản. Nếu trong bảng nhiều cấp → nối cấp bằng dấu ":"(ví dụ:'Others: Safety regulation: Conform to IEC60950-1 standards')"
+        },
+        "required": [
+          "file",
+          "section",
+          "table_or_figure",
+          "page",
+          "evidence"
+        ],
+        "additionalProperties": false
       }
+    },
+    "required": [
+      "yeu_cau_ky_thuat",
+      "kha_nang_dap_ung",
+      "tai_lieu_tham_chieu"
     ],
-    "Thermal Management":[
-      {
-        "name":"Enclosure Cooling",
-        "description":"Manage heat densities of your IT equipment even in remote locations with reliable enclosure cooling solutions."
-      },
-      {
-        "name":"Heat Rejection",
-        "description":"Efficient, easy to install systems in abundant configurations."
-      },
-      {
-        "name":"High Density Solutions",
-        "description":"Higher capacity quickly and affordably."
-      },
-      {
-        "name":"Outdoor Packaged Systems",
-        "description":"Quickly deployable, highly efficient economization."
-      },
-      {
-        "name":"Room Cooling",
-        "description":"Achieve unsurpassed protection, while reducing energy use, saving water and simplifying deployment."
-      },
-      {
-        "name":"In-Row Cooling",
-        "description":"Solve high-density challenges with efficient, flexible and scalable cooling and containment solutions."
-      },
-      {
-        "name":"Evaporative Free Cooling",
-        "description":"Transform data center design and performance with free cooling economizer innovations that offer the world’s highest efficiency and protection."
-      },
-      {
-        "name":"Free Cooling Chillers",
-        "description":"Get reliable cooling solutions for vital systems in critical industries with easy-to-install Free Cooling Chillers."
+    "additionalProperties": false
 
-      },
-      {
-        "name":"Thermal Control and Monitoring",
-        "description":"Harmonize and control your entire data center thermal management system to achieve up to 50% higher efficiency, improve protection and security and enhance staff productivity."
-      }
-    ],
-    "Racks & Enclosures":[
-      {
-        "name":"Integrated Solutions",
-        "description":"Meet your IT infrastructure needs with scalable Smart Solutions products that offer cost and space savings."
-      },
-      {
-        "name":"Racks and Containment",
-        "description":"Get flexible and cost-effective rack and containment products and secure integral systems in your data center."
-      },
-      {
-        "name":"Outdoor Enclosures",
-        "description":"Secure voice, video and data electronics using reliable, customized solutions for small outdoor enclosures to large infrastructure solutions."
-      }
-    ]
-}
-
+  }
+  }

@@ -164,7 +164,7 @@ async def retrieve_chunk_async(product_ids, query_str, collection_name):
             ],
             condition=FilterCondition.AND,
         )
-        retriever_chunk = index.as_retriever(similarity_top_k=5, verbose=True, filters=filters_chunk)
+        retriever_chunk = index.as_retriever(similarity_top_k=5, sparse_top_k=10, verbose=True, enable_hybrid=True, filters=filters_chunk)
         
         results = retriever_chunk.retrieve(query_str)
         content = ""
