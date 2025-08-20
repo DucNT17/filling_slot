@@ -5,12 +5,17 @@ import { DocumentUpload } from "@/components/DocumentUpload";
 import { DocumentList } from "@/components/DocumentList";
 import { KnowledgeChat } from "@/components/KnowledgeChat";
 import { ReportGenerator } from "@/components/ReportGenerator";
-import { FileText, MessageSquare, Upload, FileCheck } from "lucide-react";
+import { ManagementDashboard } from "@/components/ManagementDashboard";
+import { FileText, MessageSquare, Upload, FileCheck, Settings } from "lucide-react";
 
 const Dashboard = () => {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const handleDocumentUploaded = () => {
+    setRefreshTrigger(prev => prev + 1);
+  };
+
+  const handleDataChanged = () => {
     setRefreshTrigger(prev => prev + 1);
   };
 
@@ -27,7 +32,7 @@ const Dashboard = () => {
         </div>
 
         <Tabs defaultValue="documents" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="documents" className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
               Quản Lý Tài Liệu
@@ -43,6 +48,10 @@ const Dashboard = () => {
             <TabsTrigger value="reports" className="flex items-center gap-2">
               <FileCheck className="h-4 w-4" />
               Tạo Báo Cáo
+            </TabsTrigger>
+            <TabsTrigger value="management" className="flex items-center gap-2">
+              <Settings className="h-4 w-4" />
+              Quản Lý Hệ Thống
             </TabsTrigger>
           </TabsList>
 
@@ -100,6 +109,10 @@ const Dashboard = () => {
                 <ReportGenerator />
               </CardContent>
             </Card>
+          </TabsContent>
+
+          <TabsContent value="management">
+            <ManagementDashboard />
           </TabsContent>
         </Tabs>
       </div>

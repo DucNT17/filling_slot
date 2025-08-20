@@ -254,6 +254,9 @@ def get_categories():
 
         return jsonify([{"id": cat.id, "name": cat.name} for cat in categories])
     except Exception as e:
+        print(f"Error in get_categories: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 
@@ -452,6 +455,9 @@ def get_product_lines():
             "category_id": pl.category_id
         } for pl in product_lines])
     except Exception as e:
+        print(f"Error in get_product_lines: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
 
