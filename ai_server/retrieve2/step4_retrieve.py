@@ -151,7 +151,7 @@ Answer:
     )
     retrieved_nodes = retriever_chunk.retrieve(query_bundle)
     reranker = LLMRerank(
-        choice_select_prompt=custom_rerank_prompt,
+        # choice_select_prompt=custom_rerank_prompt,
         choice_batch_size=10,
         top_n=5,
         llm=Settings.llm
@@ -175,6 +175,6 @@ Answer:
         figure_name = metadata.get("figure_name")
         text = result.text.strip()
         content += f"""
-        [file: {file_name}, table_or_figure: figure: {figure_name} và bảng: {table}, page: {page}]
-        Nội dung chunk: {text}\n\n\n"""
+        Metadata của chunk_{i} có file: {file_name}, figure: {figure_name}, bảng: {table}, page: {page} \n
+        Nội dung chunk: {text}\n\n============================================================\n\n"""
     return content
