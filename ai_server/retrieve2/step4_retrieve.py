@@ -107,7 +107,7 @@ def retrieve_chunk_sync(filename_ids, query_str, collection_name):
     retriever_chunk = index.as_retriever(
         similarity_top_k=10,
         sparse_top_k=15,
-        verbose=True,
+        # verbose=True,
         enable_hybrid=True,
         filters=filters_chunk
     )
@@ -135,5 +135,7 @@ def retrieve_chunk_sync(filename_ids, query_str, collection_name):
         table = metadata["table_name"]
         figure_name = metadata.get("figure_name")
         text = result.text.strip()
-        content += f"Chunk {i} trong file {file_name} tại trang {page}, có chứa bảng {table} và hình {figure_name} có nội dung:\n{text}\n\n"
+        content += f"""
+        [file: {file_name}, table_or_figure: figure: {figure_name} và bảng: {table}, page: {page}]
+        Nội dung chunk: {text}\n\n"""
     return content

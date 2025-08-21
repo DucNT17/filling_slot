@@ -13,7 +13,7 @@ async def adapt_or_not_async(kha_nang_dap_ung_tham_chieu_step: Dict,
                            context_queries: Dict,
                            max_concurrent: int = 5) -> Tuple[Dict, Dict]:
     """
-    Phiên bản async của hàm adapt_or_not
+    Phiên bản async của hàm adapt_or_not - xử lý từng item riêng biệt
     """
     assistant_id = "asst_SIWbRtRbvCxXS9dgqvtj9U8O"
     print(f"Assistant ID: {assistant_id}")
@@ -21,104 +21,184 @@ async def adapt_or_not_async(kha_nang_dap_ung_tham_chieu_step: Dict,
     # Tạo semaphore để giới hạn số requests đồng thời
     semaphore = asyncio.Semaphore(max_concurrent)
     
-    async def process_requirement(key: str):
+    async def process_item(item: str, requirement_key: str):
         async with semaphore:
             try:
-                print(f"🚀 Đang xử lý requirement: {key}")
+                print(f"🚀 Đang xử lý item: {item} trong requirement: {requirement_key}")
                 
-                dap_ung_ky_thuat = ""
-                tai_lieu_tham_chieu = ""
-                
-                # Thu thập thông tin từ tất cả items trong requirement
-                for item in all_requirements[key]:
-                    if item not in kha_nang_dap_ung_tham_chieu_step:
-                        continue
-                        
-                    yeu_cau_ky_thuat = context_queries[item].get('yeu_cau_ky_thuat_chi_tiet', "")
-                    kha_nang_dap_ung = kha_nang_dap_ung_tham_chieu_step[item].get('kha_nang_dap_ung', "Không có thông tin")
-                    if kha_nang_dap_ung == "":
-                        kha_nang_dap_ung = "Không có thông tin"
-                    dap_ung_ky_thuat += f"{yeu_cau_ky_thuat} || {kha_nang_dap_ung}\n"
-            
-                    tai_lieu = kha_nang_dap_ung_tham_chieu_step[item].get('tai_lieu_tham_chieu', {})
-                    file = tai_lieu.get("file", "")
-                    page = tai_lieu.get("page", "")
-                    table_or_figure = tai_lieu.get("table_or_figure", "")
-                    evidence = tai_lieu.get("evidence", "")
-            
-                    tai_lieu_text = f"{file}, trang: {page}"
-                    if table_or_figure:
-                        tai_lieu_text += f", trong bảng(figure): {table_or_figure}"
-                    tai_lieu_text += f", evidence: {evidence}\n\n"
-                    tai_lieu_tham_chieu += tai_lieu_text
-                
-                # Chỉ xử lý nếu có dữ liệu
-                if dap_ung_ky_thuat and tai_lieu_tham_chieu:
-                    print(f"📞 Gọi API cho key: {key}")
-                    result = await Evaluator_adaptability_async(dap_ung_ky_thuat, assistant_id)
-                    result = parse_output_text(result)  # result đã là dict
+                if item not in kha_nang_dap_ung_tham_chieu_step:
+                    print(f"⚠️ Item {item} không tồn tại trong kha_nang_dap_ung_tham_chieu_step")
+                    return item, "0"
                     
-                    output_text = result['đáp ứng kỹ thuật']
+                yeu_cau_ky_thuat = context_queries[item].get('value', "")
+                kha_nang_dap_ung = kha_nang_dap_ung_tham_chieu_step[item].get('kha_nang_dap_ung', "Không có thông tin")
+                module_name = context_queries[item].get('ten_hang_hoa', "")
+                if kha_nang_dap_ung == "":
+                    kha_nang_dap_ung = "Không có thông tin"
+                
+                # Xử lý từng item riêng biệt
+                user_prompt = f'Module {module_name} có yêu cầu kỹ thuật là: "{yeu_cau_ky_thuat}", khả năng đáp ứng của sản phẩm hiện tại là: "{kha_nang_dap_ung}".'
+
+                if user_prompt.strip():
+                    print(f"📞 Gọi API cho item: {item}")
+                    result = await Evaluator_adaptability_async(user_prompt, assistant_id)
+                    result = parse_output_text(result)
                     
-                    print(f"✅ Hoàn thành key: {key}")
-                    return key, output_text, tai_lieu_tham_chieu
+                    adapt_value = result['đáp ứng kỹ thuật']
+                    print(f"✅ Hoàn thành item: {item} - Result: {adapt_value}")
+                    return item, adapt_value
                 else:
-                    print(f"⚠️ Không có dữ liệu cho key: {key}")
-                    return key, None, None
+                    print(f"⚠️ Không có dữ liệu cho item: {item}")
+                    return item, "0"
                     
             except Exception as e:
-                print(f"❌ Lỗi xử lý key {key}: {str(e)}")
-                return key, None, None
+                print(f"❌ Lỗi xử lý item {item}: {str(e)}")
+                return item, "0"
     
-    # Tạo tasks cho tất cả requirements
-    tasks = [process_requirement(key) for key in all_requirements]
+    # Tạo tasks cho tất cả items
+    tasks = []
+    for requirement_key, items in all_requirements.items():
+        for item in items:
+            if item in kha_nang_dap_ung_tham_chieu_step:
+                task = process_item(item, requirement_key)
+                tasks.append((requirement_key, item, task))
     
-    print(f"🏃‍♂️ Bắt đầu xử lý {len(tasks)} requirements với {max_concurrent} requests đồng thời...")
-    results = await asyncio.gather(*tasks, return_exceptions=True)
+    print(f"🏃‍♂️ Bắt đầu xử lý {len(tasks)} items với {max_concurrent} requests đồng thời...")
+    
+    # Chạy tất cả tasks BẤT ĐỒNG BỘ và thu thập kết quả
+    task_list = [task for _, _, task in tasks]
+    results = await asyncio.gather(*task_list, return_exceptions=True)
     
     # Xử lý kết quả
-    for result in results:
-        weight = 0
-        if isinstance(result, Exception):
-            print(f"❌ Task failed: {result}")
-            continue
-            
-        key, output_text, tai_lieu_tham_chieu = result
-        
-        if output_text is not None and tai_lieu_tham_chieu is not None:
-            if key not in adapt_or_not_step:
-                adapt_or_not_step[key] = []
-            weight = len(all_requirements[key])  # Trọng số là số lượng item đã có
-            adapt_or_not_step[key].append(weight)
-            adapt_or_not_step[key].append(output_text)
-            adapt_or_not_step[key].append(tai_lieu_tham_chieu)
+    for i, result in enumerate(results):
+        try:
+            if isinstance(result, Exception):
+                print(f"❌ Task {i} failed: {result}")
+                continue
+                
+            item, adapt_value = result
+            # Lưu kết quả adapt_or_not vào kha_nang_dap_ung_tham_chieu_step
+            kha_nang_dap_ung_tham_chieu_step[item]['adapt_or_not'] = adapt_value
+        except Exception as e:
+            print(f"❌ Error processing result {i}: {e}")
     
-    print("🎉 Hoàn thành tất cả requirements!")
+    # Cập nhật adapt_or_not_step với logic mới
+    for requirement_key, items in all_requirements.items():
+        dap_ung_count = 0  # Đếm số item đáp ứng
+        total_items = 0    # Tổng số item
+        tai_lieu_tham_chieu = ""
+        
+        for item in items:
+            if item in kha_nang_dap_ung_tham_chieu_step:
+                total_items += 1
+                adapt_value = kha_nang_dap_ung_tham_chieu_step[item].get('adapt_or_not', "0")
+                if adapt_value == "1":
+                    dap_ung_count += 1
+                
+                # Thu thập tài liệu tham chiếu
+                tai_lieu = kha_nang_dap_ung_tham_chieu_step[item].get('tai_lieu_tham_chieu', {})
+                file = tai_lieu.get("file", "")
+                page = tai_lieu.get("page", "")
+                table_or_figure = tai_lieu.get("table_or_figure", "")
+                evidence = tai_lieu.get("evidence", "")
+        
+                tai_lieu_text = f"{file}, trang: {page}"
+                if table_or_figure:
+                    tai_lieu_text += f", trong bảng(figure): {table_or_figure}"
+                tai_lieu_text += f", evidence: {evidence}\n\n"
+                tai_lieu_tham_chieu += tai_lieu_text
+        
+        if total_items > 0:
+            # Lưu vào adapt_or_not_step với format mới
+            adapt_or_not_step[requirement_key] = [
+                dap_ung_count,  # Weight = số item đáp ứng
+                f"{dap_ung_count}/{total_items}",  # Tỷ lệ đáp ứng
+                tai_lieu_tham_chieu  # Tài liệu tham chiếu
+            ]
+    
+    print("🎉 Hoàn thành tất cả items!")
     return kha_nang_dap_ung_tham_chieu_step, adapt_or_not_step
 
 
 def parse_output_text(output_text: str) -> dict:
     DEFAULT_JSON = {"đáp ứng kỹ thuật": "0"}
+    
+    # Kiểm tra đầu vào
     if output_text is None or output_text.strip() == "":
+        print("⚠️ Output text is None or empty, returning default")
         return DEFAULT_JSON.copy()
+    
     # B1: Tìm phần JSON đầu tiên trong chuỗi
     match = re.search(r"\{.*\}", output_text, re.DOTALL)
     if not match:
+        print("⚠️ No JSON found in output text, returning default")
         return DEFAULT_JSON.copy()
 
     json_str = match.group(0).strip()
+    print(f"📝 Found JSON string: {json_str}")
 
     # B2: Parse JSON
     try:
         data = json.loads(json_str)
-    except json.JSONDecodeError:
+        print(f"✅ Successfully parsed JSON: {data}")
+    except json.JSONDecodeError as e:
+        print(f"❌ JSON decode error: {e}, returning default")
         return DEFAULT_JSON.copy()
 
-    # B3: Nếu không có key thì trả mặc định
+    # B3: Kiểm tra có phải là dict không
+    if not isinstance(data, dict):
+        print("⚠️ Parsed data is not a dictionary, returning default")
+        return DEFAULT_JSON.copy()
+
+    # B4: Kiểm tra có key "đáp ứng kỹ thuật" không
     if "đáp ứng kỹ thuật" not in data:
+        print("⚠️ Missing 'đáp ứng kỹ thuật' key, returning default")
         return DEFAULT_JSON.copy()
 
-    return data
+    # B5: Validate và normalize giá trị của key "đáp ứng kỹ thuật" - chỉ trả về 0 hoặc 1
+    dap_ung_value = data["đáp ứng kỹ thuật"]
+    
+    try:
+        if isinstance(dap_ung_value, (int, float)):
+            # Chuyển đổi về 0 hoặc 1
+            normalized_value = "1" if dap_ung_value > 0 else "0"
+        elif isinstance(dap_ung_value, str):
+            dap_ung_value = dap_ung_value.strip()
+            # Xử lý string đơn giản "0", "1"
+            if dap_ung_value in ["0", "1"]:
+                normalized_value = dap_ung_value
+            # Xử lý fraction
+            elif '/' in dap_ung_value:
+                try:
+                    numerator, denominator = dap_ung_value.split('/')
+                    numerator = int(numerator)
+                    denominator = int(denominator)
+                    if denominator > 0 and numerator > 0:
+                        normalized_value = "1"
+                    else:
+                        normalized_value = "0"
+                except (ValueError, ZeroDivisionError):
+                    normalized_value = "0"
+            # Xử lý số string khác
+            elif re.match(r'^\d+(\.\d+)?$', dap_ung_value):
+                try:
+                    num_value = float(dap_ung_value)
+                    normalized_value = "1" if num_value > 0 else "0"
+                except ValueError:
+                    normalized_value = "0"
+            else:
+                print(f"⚠️ Invalid string value: {dap_ung_value}, returning default")
+                return DEFAULT_JSON.copy()
+        else:
+            print(f"⚠️ Invalid value type: {type(dap_ung_value)}, returning default")
+            return DEFAULT_JSON.copy()
+            
+        print(f"✅ Normalized value: {dap_ung_value} -> {normalized_value}")
+        return {"đáp ứng kỹ thuật": normalized_value}
+        
+    except Exception as e:
+        print(f"⚠️ Error normalizing value {dap_ung_value}: {e}, returning default")
+        return DEFAULT_JSON.copy()
 
 
 

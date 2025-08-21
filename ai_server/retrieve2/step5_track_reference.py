@@ -11,7 +11,6 @@ load_dotenv()
 client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 DEFAULT_OBJECT = {
-    "yeu_cau_ky_thuat": "",
     "kha_nang_dap_ung": "",
     "tai_lieu_tham_chieu": {
         "file": "",
@@ -137,9 +136,9 @@ async def process_query_with_semaphore(semaphore, key, query_data, assistant_id)
 
         # Tạo user prompt
         user_prompt = f'''
-        Chunk và metadata: {content}
-        yeu_cau_ky_thuat: {value}
-        module/component: {module_component}
+        Các tài liệu kỹ thuật được cung cấp: {content},
+        module/component: {module_component} ,
+        yeu_cau_ky_thuat: {value},
         '''
 
         # Gọi hàm đánh giá

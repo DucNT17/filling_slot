@@ -228,7 +228,7 @@ def retrieve_chunk_sync(product_id, query_str, collection_name):
             table = metadata.get("table_name", "N/A")
             figure_name = metadata.get("figure_name", "N/A")
             text = result.text.strip()
-            content += f"Chunk {i} trong file {file_name} tại trang {page}, có chứa bảng {table} và hình {figure_name} có nội dung:\n{text}\n\n"
+            content += f"[file: {file_name}, table_or_figure: figure: {figure_name} và bảng: {table}, page: {page}]\nNội dung chunk: {text}\n\n"
         return content
     except Exception as e:
         print(f"Lỗi trong retrieve_chunk_sync: {e}")

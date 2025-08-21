@@ -23,7 +23,7 @@ def create_excel_file(context_queries, product_keys):
     # Thiết lập tiêu đề chính
     ws.merge_cells('A1:F1')
     ws['A1'] = "BẢNG TUYÊN BỐ ĐÁP ỨNG VỀ KỸ THUẬT"
-    ws['A1'].font = Font(bold=True, size=14)
+    ws['A1'].font = Font(name="Times New Roman", bold=True, size=14)
     ws['A1'].alignment = Alignment(horizontal='center', vertical='center')
     
     # Header của bảng
@@ -38,7 +38,7 @@ def create_excel_file(context_queries, product_keys):
     for col, header in enumerate(headers, start=1):
         cell = ws.cell(row=2, column=col)
         cell.value = header
-        cell.font = Font(bold=True, size=10)
+        cell.font = Font(name="Times New Roman", bold=True, size=10)
         cell.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
     
     # Thiết lập borders cho header
@@ -72,7 +72,7 @@ def create_excel_file(context_queries, product_keys):
         # Thiết lập style cho hàng product
         for col in range(1, 7):
             cell = ws.cell(row=current_row, column=col)
-            cell.font = Font(bold=True, size=11)
+            cell.font = Font(name="Times New Roman", bold=True, size=11)
             cell.alignment = Alignment(horizontal='center', vertical='center')
             cell.border = thin_border
         
@@ -81,54 +81,38 @@ def create_excel_file(context_queries, product_keys):
         
         # Ghi các hàng hàng hóa con
         for hang_hoa_idx, (ten_hang_hoa, items) in enumerate(hang_hoa_dict.items(), start=1):
-            ma_ids = items[:-2]  # Các ID
-            dap_ung = items[-2]  # ví dụ: "đáp ứng"
-            if '/' in dap_ung:
-                numerator, denominator = dap_ung.split('/')
-                try:
-                    numerator = int(numerator)
-                    denominator = int(denominator)
-                    if denominator == 0 or numerator == 0:  # mẫu bằng 0
-                        dap_ung = "Không đáp ứng"
-                    elif numerator == denominator:
-                        dap_ung = f"Đáp ứng"
-                    else:
-                        dap_ung = f"Đáp ứng : {numerator} / {denominator}"
-                except ValueError:  # tử hoặc mẫu có chữ (không phải số)
-                    dap_ung = "Không đáp ứng"
-            else:
-                try:
-                    dap_ung = int(dap_ung)
-                    if dap_ung == 0:  # nếu là số thập phân
-                        dap_ung = "Không đáp ứng"
-                    else:
-                        dap_ung = f"Đáp ứng"
-                except ValueError:
-                    dap_ung = "Không đáp ứng"
+            ma_ids = items[:-2]  # Các ID (bỏ 2 phần tử cuối)
 
             # Lấy danh sách các yêu cầu
             spec_list = []
             dap_ung_list = []
             ho_so_list = []
             page_list = []
+            tinh_dap_ung_list = []  # Thêm list cho tình trạng đáp ứng từng item
 
             for ma in ma_ids:
                 if ma in context_queries:
                     spec_list.append(context_queries[ma]['yeu_cau_ky_thuat_chi_tiet'])
-                    # Kiểm tra kha_nang_dap_ung có chứa số hoặc chữ không
+                    # Sử dụng kha_nang_dap_ung từ context_queries  
                     kha_nang_dap_ung = context_queries[ma].get('kha_nang_dap_ung', '')
                     if kha_nang_dap_ung and re.search(r'[a-zA-Z0-9]', kha_nang_dap_ung):
                         dap_ung_list.append(kha_nang_dap_ung)
                     else:
                         dap_ung_list.append('')
+                        
+                    # Xử lý tình trạng đáp ứng từng item
+                    adapt_or_not = context_queries[ma].get('adapt_or_not', "0")
+                    if adapt_or_not == "1":
+                        tinh_dap_ung_list.append("Đáp ứng")
+                    else:  # adapt_or_not == "0" hoặc bất kỳ giá trị nào khác
+                        tinh_dap_ung_list.append("Không đáp ứng")
+                        
                     ho_so_tham_khao = context_queries[ma].get("tai_lieu_tham_chieu")
                     content = ""
                     file = ho_so_tham_khao.get("file", "")
                     if file:
                         content = f"Tài liệu tham chiếu: {file}"
                     section = ho_so_tham_khao.get("section", "")
-                    # if section:
-                    #     content += f" - Mục: {section}"
                     table_or_figure = ho_so_tham_khao.get("table_or_figure", "")
                     if table_or_figure is not None and table_or_figure != "":
                         content += f" - Có trong bảng/hình: {table_or_figure}"
@@ -141,7 +125,7 @@ def create_excel_file(context_queries, product_keys):
             start_row = current_row
             
             # Ghi từng spec thành một hàng riêng biệt
-            for spec_idx, (spec, dap_ung_item, ho_so,page) in enumerate(zip(spec_list, dap_ung_list, ho_so_list,page_list)):
+            for spec_idx, (spec, dap_ung_item, ho_so, page, tinh_dap_ung) in enumerate(zip(spec_list, dap_ung_list, ho_so_list, page_list, tinh_dap_ung_list)):
                 # Ghi dữ liệu vào các cell
                 if spec_idx == 0:
                     # Hàng đầu tiên: ghi số thứ tự hàng hóa
@@ -160,21 +144,22 @@ def create_excel_file(context_queries, product_keys):
 
                     ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so)  # Loại bỏ ký tự không hợp lệ
                     # Ghi tài liệu tham chiếu cho từng hàng (không merge)
+                    ho_so = re.sub(r'[\x00-\x1F\x7F]', '', ho_so) 
                     ws.cell(row=current_row, column=5).value = ho_so
                 
-                # Ghi tình trạng đáp ứng tạm thời (sẽ merge sau)
-                ws.cell(row=current_row, column=6).value = dap_ung if spec_idx == 0 else ""
+                # Ghi tình trạng đáp ứng cho từng hàng (không merge nữa)
+                ws.cell(row=current_row, column=6).value = tinh_dap_ung
                 
                 # Thiết lập style cho dòng dữ liệu
                 for col in range(1, 7):
                     cell = ws.cell(row=current_row, column=col)
-                    cell.font = Font(size=9)
+                    cell.font = Font(name="Times New Roman", size=9)
                     cell.alignment = Alignment(vertical='top', wrap_text=True)
                     cell.border = thin_border
                 
                 current_row += 1
             
-            # Merge các ô cho cột A, B, F (Hạng mục số, Tên hàng hóa, Tình trạng đáp ứng)
+            # Merge các ô cho cột A, B (Hạng mục số, Tên hàng hóa) - không merge cột F nữa
             if len(spec_list) > 1:
                 end_row = current_row - 1
                 
@@ -187,11 +172,6 @@ def create_excel_file(context_queries, product_keys):
                 ws.merge_cells(f'B{start_row}:B{end_row}')
                 ws.cell(row=start_row, column=2).value = ten_hang_hoa
                 ws.cell(row=start_row, column=2).alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
-                
-                # Merge cột F (Tình trạng đáp ứng)
-                ws.merge_cells(f'F{start_row}:F{end_row}')
-                ws.cell(row=start_row, column=6).value = dap_ung
-                ws.cell(row=start_row, column=6).alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
     
     # Thiết lập độ rộng cột
     column_widths = {

@@ -14,3 +14,4 @@ psycopg2-binary
 werkzeug
 flask 
 flasgger
+flask_cors

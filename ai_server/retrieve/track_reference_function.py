@@ -7,7 +7,6 @@ from typing import Dict, Any
 clientOpenAI = OpenAI()
 
 DEFAULT_OBJECT = {
-    "yeu_cau_ky_thuat": "",
     "kha_nang_dap_ung": "",
     "tai_lieu_tham_chieu": {
         "file": "",
@@ -86,9 +85,9 @@ async def track_reference_async(context_queries: Dict, kha_nang_dap_ung_tham_chi
                 module_component = context_queries[key]["ten_hang_hoa"]
 
                 user_prompt = f"""
-                Chunk và metadata: {content}
-                yeu_cau_ky_thuat: {value}
-                module/component: {module_component}
+                Các tài liệu kỹ thuật được cung cấp: {content},
+                module/component: {module_component} ,
+                yeu_cau_ky_thuat: {value},
                 """
                 
                 print(f"🚀 Đang xử lý key: {key}")
