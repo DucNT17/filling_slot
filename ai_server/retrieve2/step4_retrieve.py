@@ -94,6 +94,44 @@ def retrieve_chunk_sync(filename_ids, query_str, collection_name):
     """
     Synchronous version of retrieve_chunk (original logic)
     """
+    rerank_prompt = """
+A list of documents (chunks of text) is shown below. 
+Each document has a number next to it. A question is also provided.
+ 
+Task:
+- Rank the documents by how useful they are for answering the question. 
+- Assign each selected document a relevance score from 1 to 10 
+  (10 = highly relevant and specific, 1 = barely relevant).
+- Exclude documents that are not relevant.
+- Output only the ranked list in descending order of relevance.
+ 
+Example format:
+Document 1:
+<text of document 1>
+ 
+Document 2:
+<text of document 2>
+ 
+...
+ 
+Question: <the user’s query>
+ 
+Answer:
+Doc: 2, Relevance: 9
+Doc: 5, Relevance: 7
+Doc: 3, Relevance: 4
+ 
+---
+ 
+Now try this:
+ 
+{context_str}
+Question: {query_str}
+Answer:
+"""
+    custom_rerank_prompt = PromptTemplate(
+    rerank_prompt, prompt_type=PromptType.CHOICE_SELECT
+)
     vector_store = config_db(collection_name)
     index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
     filters_chunk = MetadataFilters(
@@ -113,6 +151,7 @@ def retrieve_chunk_sync(filename_ids, query_str, collection_name):
     )
     retrieved_nodes = retriever_chunk.retrieve(query_bundle)
     reranker = LLMRerank(
+        choice_select_prompt=custom_rerank_prompt,
         choice_batch_size=10,
         top_n=5,
         llm=Settings.llm
@@ -137,5 +176,5 @@ def retrieve_chunk_sync(filename_ids, query_str, collection_name):
         text = result.text.strip()
         content += f"""
         [file: {file_name}, table_or_figure: figure: {figure_name} và bảng: {table}, page: {page}]
-        Nội dung chunk: {text}\n\n"""
+        Nội dung chunk: {text}\n\n\n"""
     return content
