@@ -179,7 +179,7 @@ async def evaluate_technical_requirement(user_prompt, assistant_id):
         run = await client.beta.threads.runs.create(
             thread_id=thread_id,
             assistant_id=assistant_id,
-            tool_choice={"type": "function", "function": {"name": "kha_nang_dap_ung"}}
+            tool_choice={"type": "function", "function": {"name": "Technical_adaptability"}}
         )
 
         # 4. Chờ assistant xử lý (tối đa 30s) với async sleep

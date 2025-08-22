@@ -116,7 +116,12 @@ def create_excel_file(context_queries, product_keys):
                     table_or_figure = ho_so_tham_khao.get("table_or_figure", "")
                     if table_or_figure is not None and table_or_figure != "":
                         content += f" - Có trong bảng/hình: {table_or_figure}"
-                    content += f" - Trang {ho_so_tham_khao.get('page', '')}: \n{ho_so_tham_khao.get('evidence', '')}"
+                    if ho_so_tham_khao.get("page") != 0:
+                        content += f" - Trang {ho_so_tham_khao.get('page', '')}"
+                    if ho_so_tham_khao.get("evidence") == "":
+                        content = ""
+                    else:
+                        content += f": \n{ho_so_tham_khao.get('evidence', '')}"
 
                     ho_so_list.append(content)
                     page_list.append(int(ho_so_tham_khao.get('page', '')))
@@ -138,7 +143,7 @@ def create_excel_file(context_queries, product_keys):
                 ws.cell(row=current_row, column=2).value = ten_hang_hoa if spec_idx == 0 else ""
                 
                 ws.cell(row=current_row, column=3).value = spec
-                if dap_ung_item:
+                if dap_ung_item and ho_so:
                     dap_ung_item = re.sub(r'[\x00-\x1F\x7F]', '', dap_ung_item)  # Loại bỏ ký tự không hợp lệ
                     ws.cell(row=current_row, column=4).value = dap_ung_item
 
@@ -148,8 +153,12 @@ def create_excel_file(context_queries, product_keys):
                     ws.cell(row=current_row, column=5).value = ho_so
                 
                 # Ghi tình trạng đáp ứng cho từng hàng (không merge nữa)
-                ws.cell(row=current_row, column=6).value = tinh_dap_ung
                 
+                
+                if dap_ung_item == "" or ho_so == "":
+                    ws.cell(row=current_row, column=6).value = "Không đáp ứng"
+                else:
+                    ws.cell(row=current_row, column=6).value = tinh_dap_ung
                 # Thiết lập style cho dòng dữ liệu
                 for col in range(1, 7):
                     cell = ws.cell(row=current_row, column=col)

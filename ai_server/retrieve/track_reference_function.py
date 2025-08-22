@@ -158,7 +158,7 @@ async def evaluate_technical_requirement_async(user_prompt: str, assistant_id: s
         run = clientOpenAI.beta.threads.runs.create(
             thread_id=thread_id,
             assistant_id=assistant_id,
-            tool_choice={"type": "function", "function": {"name": "kha_nang_dap_ung"}}
+            tool_choice={"type": "function", "function": {"name": "Technical_adaptability"}}
         )
 
         # 4. Chờ assistant xử lý (tối đa 20s)

@@ -175,6 +175,12 @@ Answer:
         figure_name = metadata.get("figure_name")
         text = result.text.strip()
         content += f"""
-        Metadata của chunk_{i} có file: {file_name}, figure: {figure_name}, bảng: {table}, page: {page} \n
-        Nội dung chunk: {text}\n\n============================================================\n\n"""
+        ========== CHUNK {i} ========
+            page: {page}
+            file: {file_name}
+            figure: {figure_name}
+            table: {table}
+
+            Nội dung của chunk: {text}
+            ========== CHUNK {i} END ==========\n\n"""
     return content
