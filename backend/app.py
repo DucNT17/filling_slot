@@ -7,11 +7,15 @@ from backend.services.processtoexcel import ExcelService
 from backend.services.crud_service import CRUDService
 from backend.services.auto_excel_service import AutoExcelService
 from backend.models.models import *
+from ai_server.config_db import client, aclient, config_db
+from qdrant_client.http.models import PayloadSchemaType, Filter, FieldCondition, MatchText, MatchValue
 import asyncio
 import os
 import tempfile
 from datetime import datetime
 from werkzeug.utils import secure_filename
+from tqdm import tqdm
+tqdm(disable=True)
 # Flask + Swagger
 app = Flask(__name__)
 CORS(app)  # Thêm CORS support
@@ -812,6 +816,11 @@ def delete_product(product_id):
         in: path
         type: string
         required: true
+      - name: collection_name
+        in: query
+        type: string
+        required: false
+        default: hello_my_friend2
     responses:
       200:
         description: Product deleted successfully
@@ -821,12 +830,38 @@ def delete_product(product_id):
     try:
         db = next(get_db())
         crud = CRUDService(db)
-        success = crud.product.delete(product_id)
-
-        if not success:
+        
+        # Kiểm tra product có tồn tại không
+        product = crud.product.get_by_id(product_id)
+        if not product:
             return jsonify({"error": "Product not found"}), 404
+        
+        # Lấy collection_name từ query params
+        collection_name = request.args.get('collection_name', 'hello_my_friend2')
+        
+        # Xóa tất cả vector data của product trong Qdrant
+        try:
+            client.delete(
+                collection_name=collection_name,
+                points_selector=Filter(
+                    must=[
+                        FieldCondition(
+                            key="product_id",
+                            match=MatchValue(value=product_id)
+                        )
+                    ]
+                )
+            )
+        except Exception as qdrant_error:
+            print(f"Warning: Could not delete from Qdrant: {qdrant_error}")
+        
+        # Xóa product từ database (sẽ xóa cascade các files)
+        success = crud.product.delete(product_id)
+        
+        if not success:
+            return jsonify({"error": "Failed to delete product from database"}), 500
 
-        return jsonify({"message": "Product deleted successfully"})
+        return jsonify({"message": "Product deleted successfully from both database and vector store"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -1063,6 +1098,11 @@ def delete_file(file_id):
         in: path
         type: string
         required: true
+      - name: collection_name
+        in: query
+        type: string
+        required: false
+        default: hello_my_friend2
     responses:
       200:
         description: File deleted successfully
@@ -1072,12 +1112,38 @@ def delete_file(file_id):
     try:
         db = next(get_db())
         crud = CRUDService(db)
+        
+        # Kiểm tra file có tồn tại không
+        file_store = crud.file.get_by_id(file_id)
+        if not file_store:
+            return jsonify({"error": "File not found"}), 404
+        
+        # Lấy collection_name từ query params
+        collection_name = request.args.get('collection_name', 'hello_my_friend2')
+        
+        # Xóa tất cả vector data của file trong Qdrant
+        try:
+            client.delete(
+                collection_name=collection_name,
+                points_selector=Filter(
+                    must=[
+                        FieldCondition(
+                            key="file_id",
+                            match=MatchValue(value=file_id)
+                        )
+                    ]
+                )
+            )
+        except Exception as qdrant_error:
+            print(f"Warning: Could not delete from Qdrant: {qdrant_error}")
+        
+        # Xóa file từ database
         success = crud.file.delete(file_id)
 
         if not success:
-            return jsonify({"error": "File not found"}), 404
+            return jsonify({"error": "Failed to delete file from database"}), 500
 
-        return jsonify({"message": "File deleted successfully"})
+        return jsonify({"message": "File deleted successfully from both database and vector store"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

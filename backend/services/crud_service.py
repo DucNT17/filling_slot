@@ -48,9 +48,21 @@ class CategoryCRUD:
         return category
 
     def delete(self, category_id: str) -> bool:
-        """Xóa category"""
+        """Xóa category và tất cả product lines, products, files liên quan"""
         category = self.get_by_id(category_id)
         if category:
+            # Xóa tất cả files của tất cả products trong category này
+            product_lines = self.db.query(ProductLine).filter(ProductLine.category_id == category_id).all()
+            for product_line in product_lines:
+                products = self.db.query(Product).filter(Product.product_line_id == product_line.id).all()
+                for product in products:
+                    files = self.db.query(FileVectorStore).filter(FileVectorStore.product_id == product.id).all()
+                    for file in files:
+                        self.db.delete(file)
+                    self.db.delete(product)
+                self.db.delete(product_line)
+            
+            # Sau đó xóa category
             self.db.delete(category)
             self.db.commit()
             return True
@@ -109,9 +121,18 @@ class ProductLineCRUD:
         return product_line
 
     def delete(self, product_line_id: str) -> bool:
-        """Xóa product line"""
+        """Xóa product line và tất cả products, files liên quan"""
         product_line = self.get_by_id(product_line_id)
         if product_line:
+            # Xóa tất cả files của các products trong product line này
+            products = self.db.query(Product).filter(Product.product_line_id == product_line_id).all()
+            for product in products:
+                files = self.db.query(FileVectorStore).filter(FileVectorStore.product_id == product.id).all()
+                for file in files:
+                    self.db.delete(file)
+                self.db.delete(product)
+            
+            # Sau đó xóa product line
             self.db.delete(product_line)
             self.db.commit()
             return True
@@ -182,9 +203,15 @@ class ProductCRUD:
         return product
 
     def delete(self, product_id: str) -> bool:
-        """Xóa product"""
+        """Xóa product và tất cả files liên quan"""
         product = self.get_by_id(product_id)
         if product:
+            # Xóa tất cả files liên quan trước
+            files = self.db.query(FileVectorStore).filter(FileVectorStore.product_id == product_id).all()
+            for file in files:
+                self.db.delete(file)
+            
+            # Sau đó xóa product
             self.db.delete(product)
             self.db.commit()
             return True

@@ -118,10 +118,10 @@ def create_excel_file(context_queries, product_keys):
                         content += f" - Có trong bảng/hình: {table_or_figure}"
                     if ho_so_tham_khao.get("page") != 0:
                         content += f" - Trang {ho_so_tham_khao.get('page', '')}"
-                    if ho_so_tham_khao.get("evidence") == "":
-                        content = ""
-                    else:
-                        content += f": \n{ho_so_tham_khao.get('evidence', '')}"
+                    # if ho_so_tham_khao.get("evidence") == "":
+                    #     content = ""
+                    # else:
+                    content += f": \n{ho_so_tham_khao.get('evidence', '')}"
 
                     ho_so_list.append(content)
                     page_list.append(int(ho_so_tham_khao.get('page', '')))
@@ -155,10 +155,10 @@ def create_excel_file(context_queries, product_keys):
                 # Ghi tình trạng đáp ứng cho từng hàng (không merge nữa)
                 
                 
-                if dap_ung_item == "" or ho_so == "":
-                    ws.cell(row=current_row, column=6).value = "Không đáp ứng"
-                else:
-                    ws.cell(row=current_row, column=6).value = tinh_dap_ung
+                # if dap_ung_item == "" or ho_so == "":
+                #     ws.cell(row=current_row, column=6).value = "Không đáp ứng"
+                # else:
+                ws.cell(row=current_row, column=6).value = tinh_dap_ung
                 # Thiết lập style cho dòng dữ liệu
                 for col in range(1, 7):
                     cell = ws.cell(row=current_row, column=col)
