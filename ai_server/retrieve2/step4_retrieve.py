@@ -25,7 +25,7 @@ from concurrent.futures import ThreadPoolExecutor
 from llama_index.core import QueryBundle
 from llama_index.core.prompts import PromptTemplate
 from llama_index.core.prompts.prompt_type import PromptType
-
+import json
 
 
 async def retrieve_results(path_pdf, filename_ids, collection_name, max_concurrent=10):
@@ -64,7 +64,10 @@ async def retrieve_results(path_pdf, filename_ids, collection_name, max_concurre
     
     # Run all tasks concurrently
     await asyncio.gather(*tasks)
-    
+    with open("D:/study/LammaIndex/output/context_queries_test.json", "w", encoding="utf-8") as f:
+        json.dump(context_queries, f, ensure_ascii=False, indent=4)
+    with open("D:/study/LammaIndex/output/product_keys_test.json", "w", encoding="utf-8") as f:
+        json.dump(product_keys, f, ensure_ascii=False, indent=4)
     return context_queries, product_keys
 
 async def retrieve_chunk_with_semaphore(semaphore, filename_ids, query, collection_name, item_key, context_queries):

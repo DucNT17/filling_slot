@@ -117,6 +117,7 @@ def find_all_pages_in_text(text: str):
 def strip_page_markers(text: str) -> str:
     """Xoá marker trang khỏi text để không ảnh hưởng embedding."""
     cleaned = PAGE_MARKER_RE.sub("", text)
+    cleaned = re.sub(r"```", "", cleaned)
     return cleaned.strip("\n\r ")
 
 def extract_levels_from_text(text: str):

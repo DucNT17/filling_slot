@@ -85,9 +85,11 @@ async def track_reference_async(context_queries: Dict, kha_nang_dap_ung_tham_chi
                 module_component = context_queries[key]["ten_hang_hoa"]
 
                 user_prompt = f"""
-                Các tài liệu kỹ thuật được cung cấp: {content},
-                module/component: {module_component} ,
-                yeu_cau_ky_thuat: {value},
+                Các tài liệu kỹ thuật được cung cấp: {content},\n
+                ====================================
+                module/component: {module_component} ,\n
+                ====================================
+                yeu_cau_ky_thuat: {value}
                 """
                 
                 print(f"🚀 Đang xử lý key: {key}")
@@ -170,11 +172,27 @@ async def evaluate_technical_requirement_async(user_prompt: str, assistant_id: s
 
         # 5. Lấy arguments trực tiếp
         if run.status == "requires_action":
-            call = run.required_action.submit_tool_outputs.tool_calls[0]
-            print(f"👉 Assistant đã gọi tool: {call.function.name}")
-            print("🧠 Dữ liệu JSON assistant muốn trả về:")
-            print(call.function.arguments)
-            return call.function.arguments
+            tool_calls = run.required_action.submit_tool_outputs.tool_calls
+            best_call = None
+
+            for call in tool_calls:
+                try:
+                    args = extract_first_json_object(call.function.arguments)
+                except json.JSONDecodeError:
+                    continue
+
+                if args.get("kha_nang_dap_ung"):  # Nếu không rỗng
+                    best_call = args
+                    break  # Ưu tiên lấy cái đầu tiên có dữ liệu
+
+            # Nếu không có cái nào kha_nang_dap_ung khác rỗng -> lấy cái cuối cùng
+            if not best_call and tool_calls:
+                try:
+                    best_call = json.loads(tool_calls[-1].function.arguments)
+                except json.JSONDecodeError:
+                    best_call = DEFAULT_OBJECT
+            print(f"✅ Found response: {best_call}")
+            return fill_defaults(best_call, DEFAULT_OBJECT)
 
         elif run.status == "completed":
             messages = clientOpenAI.beta.threads.messages.list(thread_id=thread_id)
