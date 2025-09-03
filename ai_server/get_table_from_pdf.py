@@ -225,7 +225,7 @@ def get_biggest_table_and_save_to_word(pdf_path, output_word_path=None, threshol
 # Example usage:
 if __name__ == "__main__":
     # Sử dụng function
-    pdf_file_path = "D:\\study\\LammaIndex\\documents\\22.2024.Codien Chuong V Yeu cau ve ky thuat (1).pdf"  # Thay đổi đường dẫn file PDF của bạn
+    pdf_file_path = "D:\\study\\LammaIndex\\documents\\test1.pdf"  # Thay đổi đường dẫn file PDF của bạn
     output_word_file = "D:\\study\\LammaIndex\\output\\largest_table.docx"  # Tên file Word output (tùy chọn)
 
     # Gọi function để extract và lưu bảng

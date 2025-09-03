@@ -9,6 +9,7 @@ from llama_index.llms.openai import OpenAI
 from llama_index.core.retrievers import VectorIndexAutoRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.core.settings import Settings
+from llama_index.core.vector_stores.types import VectorStoreQueryMode
 # from llama_index.postprocessor.colbert_rerank import ColbertRerank
 from llama_index.core.postprocessor import LLMRerank
 from llama_index.core import StorageContext, VectorStoreIndex
@@ -149,13 +150,15 @@ Answer:
         similarity_top_k=10,
         sparse_top_k=15,
         # verbose=True,
-        enable_hybrid=True,
-        filters=filters_chunk
+        vector_store_query_mode=VectorStoreQueryMode.HYBRID,
+        filters=filters_chunk,
+        hybrid_top_k=10,
+        alpha=0.7
     )
     retrieved_nodes = retriever_chunk.retrieve(query_bundle)
     reranker = LLMRerank(
         # choice_select_prompt=custom_rerank_prompt,
-        choice_batch_size=10,
+        choice_batch_size=5,
         top_n=5,
         llm=Settings.llm
     )
