@@ -12,6 +12,9 @@ from llama_index.core.settings import Settings
 from llama_index.core import StorageContext, VectorStoreIndex
 from qdrant_client.http.models import PayloadSchemaType, Filter, FieldCondition, MatchText
 from llama_index.readers.file import MarkdownReader
+from llama_index.core.postprocessor import LLMRerank
+from llama_index.core.vector_stores.types import VectorStoreQueryMode
+from llama_index.core import StorageContext, VectorStoreIndex
 import json
 import copy
 from llama_index.core.vector_stores import (
@@ -216,9 +219,27 @@ def retrieve_chunk_sync(product_id, query_str, collection_name):
             ],
             condition=FilterCondition.AND,
         )
-        
-        retriever_chunk = index.as_retriever(similarity_top_k=5, sparse_top_k=10, verbose=True, enable_hybrid=True, filters=filters_chunk)
-        results = retriever_chunk.retrieve(query_str)
+        query_bundle = QueryBundle(query_str)
+        retriever_chunk = index.as_retriever(
+            similarity_top_k=10,
+            sparse_top_k=15,
+            # verbose=True,
+            vector_store_query_mode=VectorStoreQueryMode.HYBRID,
+            filters=filters_chunk,
+            hybrid_top_k=10,
+            alpha=0.7
+        )
+        retrieved_nodes = retriever_chunk.retrieve(query_bundle)
+        reranker = LLMRerank(
+            # choice_select_prompt=custom_rerank_prompt,
+            choice_batch_size=5,
+            top_n=5,
+            llm=Settings.llm
+        )
+        results = reranker.postprocess_nodes(
+            retrieved_nodes, query_bundle
+        )
+    
         
         content = ""
         for i, result in enumerate(results, start=1):

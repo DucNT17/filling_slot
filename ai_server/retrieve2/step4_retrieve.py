@@ -158,7 +158,7 @@ Answer:
     retrieved_nodes = retriever_chunk.retrieve(query_bundle)
     reranker = LLMRerank(
         # choice_select_prompt=custom_rerank_prompt,
-        choice_batch_size=10,
+        choice_batch_size=5,
         top_n=5,
         llm=Settings.llm
     )
