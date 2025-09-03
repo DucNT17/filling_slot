@@ -7,7 +7,8 @@ from backend.services.processtoexcel import ExcelService
 from backend.services.crud_service import CRUDService
 from backend.services.auto_excel_service import AutoExcelService
 from backend.models.models import *
-from ai_server.config_db import client, aclient, config_db
+from ai_server.config_db import client, config_db
+from ai_server.chat_agent import ChatAgent
 from qdrant_client.http.models import PayloadSchemaType, Filter, FieldCondition, MatchText, MatchValue
 import asyncio
 import os
@@ -51,6 +52,17 @@ swagger = Swagger(app, config=swagger_config)
 # Tạo bảng nếu chưa có
 Base.metadata.create_all(bind=engine)
 
+# Khởi tạo ChatAgent global instance
+chat_agent = None
+
+
+def get_chat_agent(collection_name: str = "hello_my_friend") -> ChatAgent:
+    """Get or create ChatAgent instance"""
+    global chat_agent
+    if chat_agent is None or chat_agent.collection_name != collection_name:
+        chat_agent = ChatAgent(collection_name=collection_name)
+    return chat_agent
+
 
 def get_db():
     db = SessionLocal()
@@ -58,6 +70,15 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def get_request_data(field_name: str, default=None):
+    """Helper function để lấy data từ request, xử lý cả form data và JSON"""
+    if request.content_type and 'application/json' in request.content_type:
+        json_data = request.get_json(silent=True)
+        if json_data:
+            return json_data.get(field_name, default)
+    return request.form.get(field_name, default)
 
 
 @app.route("/upload", methods=["POST"])
@@ -196,7 +217,7 @@ def generate_excel():
         type = request.form.get("type", "manual")
 
         db = next(get_db())
-        
+
         if type == "manual":
             service = ExcelService(db)
             return service.generate_excel_from_pdf_by_filename_ids(pdf_file, filename_ids_str, collection_name)
@@ -205,9 +226,10 @@ def generate_excel():
             return auto_service.generate_excel_auto(pdf_file, collection_name)
         else:
             return jsonify({"error": "Invalid type. Must be 'manual' or 'auto'"}), 400
-            
+
     except Exception as e:
         return jsonify({"error": f"Failed to generate Excel: {str(e)}"}), 500
+
 
 @app.route("/auto-excel/status", methods=["GET"])
 def get_auto_excel_status():
@@ -236,6 +258,257 @@ def get_auto_excel_status():
     except Exception as e:
         return jsonify({"error": f"Failed to get status: {str(e)}"}), 500
 
+# ==================== CHAT APIs ====================
+
+
+@app.route("/chat", methods=["POST"])
+def chat_with_agent():
+    """
+    Chat with AI agent using vector database
+    ---
+    tags:
+      - Main API
+    parameters:
+      - name: question
+        in: formData
+        type: string
+        required: true
+        description: User's question
+      - name: collection_name
+        in: formData
+        type: string
+        required: false
+        default: hello_my_friend
+        description: Vector database collection name
+      - name: product_ids
+        in: formData
+        type: string
+        required: false
+        description: Comma-separated product IDs to filter context
+      - name: file_ids
+        in: formData
+        type: string
+        required: false
+        description: Comma-separated file IDs to filter context
+      - name: categories
+        in: formData
+        type: string
+        required: false
+        description: Comma-separated categories to filter context
+    responses:
+      200:
+        description: Chat response from AI agent
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answer:
+                  type: string
+                source_documents:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      file_name:
+                        type: string
+                      product_name:
+                        type: string
+                      category:
+                        type: string
+                      score:
+                        type: number
+                question:
+                  type: string
+                success:
+                  type: boolean
+      400:
+        description: Invalid request parameters
+      500:
+        description: Internal server error
+    """
+    try:
+        # Lấy parameters - xử lý cả form data và JSON
+        question = get_request_data("question")
+        collection_name = get_request_data(
+            "collection_name", "hello_my_friend")
+        product_ids_str = get_request_data("product_ids")
+        file_ids_str = get_request_data("file_ids")
+        categories_str = get_request_data("categories")
+
+        if not question:
+            return jsonify({"error": "Question is required"}), 400
+
+        product_ids = [pid.strip() for pid in product_ids_str.split(
+            ",")] if product_ids_str else None
+        file_ids = [fid.strip() for fid in file_ids_str.split(",")
+                    ] if file_ids_str else None
+        categories = [cat.strip() for cat in categories_str.split(
+            ",")] if categories_str else None
+
+        # Get chat agent
+        agent = get_chat_agent(collection_name)
+
+        # Get response from agent
+        response = agent.chat(
+            question=question,
+            product_ids=product_ids,
+            file_ids=file_ids,
+            categories=categories
+        )
+
+        return jsonify(response)
+
+    except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"Chat error: {error_details}")  # Log chi tiết lỗi
+        return jsonify({
+            "error": f"Failed to process chat: {str(e)}",
+            "success": False,
+            "answer": f"Xin lỗi, tôi gặp lỗi khi xử lý câu hỏi của bạn: {str(e)}",
+            "source_documents": [],
+            "question": question if 'question' in locals() else "Unknown"
+        }), 500
+
+
+@app.route("/chat/health", methods=["GET"])
+def chat_health_check():
+    """
+    Check chat agent health status
+    ---
+    tags:
+      - Main API
+    parameters:
+      - name: collection_name
+        in: query
+        type: string
+        required: false
+        default: hello_my_friend
+    responses:
+      200:
+        description: Agent health status
+    """
+    try:
+        collection_name = request.args.get(
+            "collection_name", "hello_my_friend")
+        agent = get_chat_agent(collection_name)
+        health_status = agent.health_check()
+        return jsonify(health_status)
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "error": str(e),
+            "message": "Failed to check agent health"
+        }), 500
+
+
+@app.route("/chat/products", methods=["GET"])
+def get_available_products():
+    """
+    Get available products in vector database
+    ---
+    tags:
+      - Main API
+    parameters:
+      - name: collection_name
+        in: query
+        type: string
+        required: false
+        default: hello_my_friend
+    responses:
+      200:
+        description: List of available products
+    """
+    try:
+        collection_name = request.args.get(
+            "collection_name", "hello_my_friend")
+        agent = get_chat_agent(collection_name)
+        products = agent.get_available_products()
+        return jsonify({"products": products})
+    except Exception as e:
+        return jsonify({
+            "error": f"Failed to get products: {str(e)}",
+            "products": []
+        }), 500
+
+
+@app.route("/chat/test", methods=["GET"])
+def test_chat_connection():
+    """
+    Test chat agent connection and basic functionality
+    ---
+    tags:
+      - Main API
+    parameters:
+      - name: collection_name
+        in: query
+        type: string
+        required: false
+        default: hello_my_friend
+    responses:
+      200:
+        description: Test results
+    """
+    try:
+        collection_name = request.args.get(
+            "collection_name", "hello_my_friend")
+        agent = get_chat_agent(collection_name)
+
+        # Perform basic tests
+        tests = {
+            "agent_initialization": False,
+            "health_check": False,
+            "simple_query": False,
+            "vector_store_connection": False
+        }
+
+        # Test 1: Agent initialization
+        if agent:
+            tests["agent_initialization"] = True
+
+        # Test 2: Health check
+        health = agent.health_check()
+        if health['status'] == 'healthy':
+            tests["health_check"] = True
+
+        # Test 3: Vector store connection
+        try:
+            from ai_server.config_db import client
+            collections = client.get_collections()
+            tests["vector_store_connection"] = True
+        except:
+            pass
+
+        # Test 4: Simple query
+        try:
+            response = agent.chat("test connection")
+            if response['success']:
+                tests["simple_query"] = True
+        except:
+            pass
+
+        # Calculate overall status
+        passed_tests = sum(tests.values())
+        total_tests = len(tests)
+        success_rate = (passed_tests / total_tests) * 100
+
+        return jsonify({
+            "overall_status": "healthy" if success_rate >= 75 else "warning" if success_rate >= 50 else "error",
+            "success_rate": f"{success_rate:.1f}%",
+            "tests": tests,
+            "collection_name": collection_name,
+            "message": f"Passed {passed_tests}/{total_tests} tests"
+        })
+
+    except Exception as e:
+        return jsonify({
+            "overall_status": "error",
+            "success_rate": "0%",
+            "error": str(e),
+            "message": "Failed to run tests"
+        }), 500
+
 # ==================== CRUD APIs ====================
 
 # ===== Category APIs =====
@@ -260,7 +533,7 @@ def create_category():
         description: Category already exists
     """
     try:
-        name = request.form.get("name") or request.json.get("name")
+        name = get_request_data("name")
         if not name:
             return jsonify({"error": "Category name is required"}), 400
 
@@ -830,15 +1103,16 @@ def delete_product(product_id):
     try:
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         # Kiểm tra product có tồn tại không
         product = crud.product.get_by_id(product_id)
         if not product:
             return jsonify({"error": "Product not found"}), 404
-        
+
         # Lấy collection_name từ query params
-        collection_name = request.args.get('collection_name', 'hello_my_friend2')
-        
+        collection_name = request.args.get(
+            'collection_name', 'hello_my_friend2')
+
         # Xóa tất cả vector data của product trong Qdrant
         try:
             client.delete(
@@ -854,10 +1128,10 @@ def delete_product(product_id):
             )
         except Exception as qdrant_error:
             print(f"Warning: Could not delete from Qdrant: {qdrant_error}")
-        
+
         # Xóa product từ database (sẽ xóa cascade các files)
         success = crud.product.delete(product_id)
-        
+
         if not success:
             return jsonify({"error": "Failed to delete product from database"}), 500
 
@@ -1112,15 +1386,16 @@ def delete_file(file_id):
     try:
         db = next(get_db())
         crud = CRUDService(db)
-        
+
         # Kiểm tra file có tồn tại không
         file_store = crud.file.get_by_id(file_id)
         if not file_store:
             return jsonify({"error": "File not found"}), 404
-        
+
         # Lấy collection_name từ query params
-        collection_name = request.args.get('collection_name', 'hello_my_friend2')
-        
+        collection_name = request.args.get(
+            'collection_name', 'hello_my_friend2')
+
         # Xóa tất cả vector data của file trong Qdrant
         try:
             client.delete(
@@ -1136,7 +1411,7 @@ def delete_file(file_id):
             )
         except Exception as qdrant_error:
             print(f"Warning: Could not delete from Qdrant: {qdrant_error}")
-        
+
         # Xóa file từ database
         success = crud.file.delete(file_id)
 

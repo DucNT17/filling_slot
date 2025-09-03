@@ -17,6 +17,7 @@ const API_BASE_URL = "http://localhost:5000/";
 interface Category {
     id: string;
     name: string;
+    product_lines?: ProductLine[];
 }
 
 interface Product {
@@ -58,10 +59,7 @@ export const ProductLineManagement = ({ onDataChanged }: ProductLineManagementPr
     const fetchInitialData = async () => {
         try {
             setLoading(true);
-            await Promise.all([
-                fetchProductLines(),
-                fetchCategories()
-            ]);
+            await fetchHierarchy();
         } catch (error) {
             console.error('Error fetching initial data:', error);
         } finally {
@@ -69,29 +67,33 @@ export const ProductLineManagement = ({ onDataChanged }: ProductLineManagementPr
         }
     };
 
-    const fetchProductLines = async () => {
+    const fetchHierarchy = async () => {
         try {
-            const response = await axios.get(`${API_BASE_URL}product-lines`);
-            setProductLines(response.data);
-        } catch (error: any) {
-            console.error('Error fetching product lines:', error);
-            toast({
-                title: "Lỗi",
-                description: "Không thể tải danh sách dòng sản phẩm",
-                variant: "destructive"
-            });
-        }
-    };
+            const response = await axios.get(`${API_BASE_URL}hierarchy`);
+            const hierarchyData: Category[] = response.data;
 
-    const fetchCategories = async () => {
-        try {
-            const response = await axios.get(`${API_BASE_URL}categories`);
-            setCategories(response.data);
+            // Extract categories
+            setCategories(hierarchyData);
+
+            // Extract product lines with products info
+            const allProductLines: ProductLineWithCategory[] = [];
+            hierarchyData.forEach(category => {
+                if (category.product_lines) {
+                    category.product_lines.forEach(productLine => {
+                        allProductLines.push({
+                            ...productLine,
+                            category: { id: category.id, name: category.name }
+                        });
+                    });
+                }
+            });
+            setProductLines(allProductLines);
+
         } catch (error: any) {
-            console.error('Error fetching categories:', error);
+            console.error('Error fetching hierarchy:', error);
             toast({
                 title: "Lỗi",
-                description: "Không thể tải danh sách danh mục",
+                description: "Không thể tải dữ liệu",
                 variant: "destructive"
             });
         }
@@ -127,7 +129,7 @@ export const ProductLineManagement = ({ onDataChanged }: ProductLineManagementPr
 
             setFormData({ name: "", category_id: "" });
             setIsCreateDialogOpen(false);
-            fetchProductLines();
+            fetchHierarchy();
             onDataChanged?.();
         } catch (error: any) {
             console.error('Create error:', error);
@@ -166,7 +168,7 @@ export const ProductLineManagement = ({ onDataChanged }: ProductLineManagementPr
             setFormData({ name: "", category_id: "" });
             setIsEditDialogOpen(false);
             setEditingProductLine(null);
-            fetchProductLines();
+            fetchHierarchy();
             onDataChanged?.();
         } catch (error: any) {
             console.error('Update error:', error);
@@ -193,7 +195,7 @@ export const ProductLineManagement = ({ onDataChanged }: ProductLineManagementPr
             });
 
             setDeletingProductLine(null);
-            fetchProductLines();
+            fetchHierarchy();
             onDataChanged?.();
         } catch (error: any) {
             console.error('Delete error:', error);
@@ -313,12 +315,12 @@ export const ProductLineManagement = ({ onDataChanged }: ProductLineManagementPr
                                     </TableCell>
                                     <TableCell>
                                         <Badge variant="secondary">
-                                            {getCategoryName(productLine.category_id)}
+                                            {productLine.category?.name || getCategoryName(productLine.category_id)}
                                         </Badge>
                                     </TableCell>
                                     <TableCell>
                                         <Badge variant="outline">
-                                            - sản phẩm
+                                            {productLine.products?.length || 0} sản phẩm
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="text-right">
@@ -384,7 +386,7 @@ export const ProductLineManagement = ({ onDataChanged }: ProductLineManagementPr
                             <Label>Danh mục hiện tại</Label>
                             <div className="p-2 bg-muted rounded-md">
                                 <Badge variant="secondary">
-                                    {getCategoryName(editingProductLine?.category_id || "")}
+                                    {editingProductLine?.category?.name || getCategoryName(editingProductLine?.category_id || "")}
                                 </Badge>
                             </div>
                             <p className="text-xs text-muted-foreground mt-1">

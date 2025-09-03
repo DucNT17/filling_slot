@@ -4,36 +4,47 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
-import { Send, MessageSquare, Bot, User, FileText } from "lucide-react";
+import { Send, MessageSquare, Bot, User, FileText, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-// import { supabase } from "@/integrations/supabase/client";
 
 interface Message {
   id: string;
   type: 'user' | 'assistant';
   content: string;
   timestamp: Date;
-  referencedDocuments?: string[];
+  referencedDocuments?: SourceDocument[];
 }
 
-interface QueryHistory {
-  id: string;
-  question: string;
+interface SourceDocument {
+  file_name: string;
+  product_name: string;
+  category: string;
+  score: number;
+}
+
+interface ChatResponse {
   answer: string;
-  referenced_documents: string[];
-  created_at: string;
+  source_documents: SourceDocument[];
+  question: string;
+  success: boolean;
+  error?: string;
 }
 
 export const KnowledgeChat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
-  const [queryHistory, setQueryHistory] = useState<QueryHistory[]>([]);
+  const [collectionName, setCollectionName] = useState("hello_my_friend");
+  const [showScrollButton, setShowScrollButton] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
+  // Backend API base URL
+  const API_BASE_URL = "http://localhost:5000";
+
   useEffect(() => {
-    fetchQueryHistory();
+    checkAgentHealth();
     // Add welcome message
     setMessages([{
       id: '1',
@@ -51,18 +62,31 @@ export const KnowledgeChat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const fetchQueryHistory = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('knowledge_queries')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(10);
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = event.currentTarget;
+    const isNearBottom = scrollHeight - scrollTop - clientHeight < 100;
+    setShowScrollButton(!isNearBottom && messages.length > 3);
+  };
 
-      if (error) throw error;
-      setQueryHistory(data || []);
-    } catch (error: any) {
-      console.error('Error fetching query history:', error);
+  const checkAgentHealth = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/chat/health?collection_name=${collectionName}`);
+      const data = await response.json();
+
+      if (data.status !== 'healthy') {
+        toast({
+          title: "Cảnh báo",
+          description: "AI Agent có thể không hoạt động ổn định",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      console.error('Error checking agent health:', error);
+      toast({
+        title: "Lỗi kết nối",
+        description: "Không thể kết nối với AI Agent",
+        variant: "destructive"
+      });
     }
   };
 
@@ -78,40 +102,84 @@ export const KnowledgeChat = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentQuestion = inputValue;
     setInputValue("");
     setLoading(true);
 
     try {
-      // Simulate AI response (replace with actual AI service call)
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      // Call chat API
+      const formData = new FormData();
+      formData.append('question', currentQuestion);
+      formData.append('collection_name', collectionName);
+
+      const response = await fetch(`${API_BASE_URL}/chat`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      let chatResponse: ChatResponse;
+
+      try {
+        chatResponse = await response.json();
+      } catch (parseError) {
+        throw new Error(`HTTP error! status: ${response.status} - Cannot parse response`);
+      }
+
+      // Xử lý cả HTTP error và success response
+      if (!response.ok) {
+        // Nếu server trả về lỗi nhưng có JSON response với answer
+        if (chatResponse && chatResponse.answer) {
+          const aiResponse: Message = {
+            id: (Date.now() + 1).toString(),
+            type: 'assistant',
+            content: chatResponse.answer,
+            timestamp: new Date(),
+            referencedDocuments: chatResponse.source_documents || []
+          };
+          setMessages(prev => [...prev, aiResponse]);
+          return; // Không throw error nữa
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      if (!chatResponse.success) {
+        // Nếu server trả về lỗi nhưng có answer, hiển thị answer
+        if (chatResponse.answer) {
+          const aiResponse: Message = {
+            id: (Date.now() + 1).toString(),
+            type: 'assistant',
+            content: chatResponse.answer,
+            timestamp: new Date(),
+            referencedDocuments: chatResponse.source_documents || []
+          };
+          setMessages(prev => [...prev, aiResponse]);
+          return; // Không throw error nữa
+        }
+        throw new Error(chatResponse.error || 'Unknown error occurred');
+      }
+
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
-        content: `Tôi đã tìm kiếm trong các tài liệu và đây là câu trả lời cho câu hỏi: "${inputValue}".\n\nDựa trên các tài liệu đã tải lên, tôi có thể cung cấp thông tin liên quan. Tuy nhiên, để có câu trả lời chính xác hơn, bạn cần tích hợp với dịch vụ AI như OpenAI hoặc các dịch vụ xử lý tài liệu khác.`,
+        content: chatResponse.answer,
         timestamp: new Date(),
-        referencedDocuments: ['doc1', 'doc2']
+        referencedDocuments: chatResponse.source_documents
       };
 
       setMessages(prev => [...prev, aiResponse]);
 
-      // Save to database
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        await supabase
-          .from('knowledge_queries')
-          .insert({
-            user_id: user.id,
-            question: userMessage.content,
-            answer: aiResponse.content,
-            referenced_documents: aiResponse.referencedDocuments || []
-          });
-        
-        fetchQueryHistory();
-      }
-
     } catch (error: any) {
       console.error('Error sending message:', error);
+
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'assistant',
+        content: `Xin lỗi, tôi gặp lỗi khi xử lý câu hỏi của bạn: ${error.message}`,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+
       toast({
         title: "Lỗi",
         description: "Không thể gửi tin nhắn. Vui lòng thử lại.",
@@ -122,132 +190,161 @@ export const KnowledgeChat = () => {
     }
   };
 
-  const loadHistoryQuery = (query: QueryHistory) => {
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      type: 'user',
-      content: query.question,
-      timestamp: new Date(query.created_at)
-    };
-
-    const aiMessage: Message = {
-      id: (Date.now() + 1).toString(),
+  const clearChat = () => {
+    setMessages([{
+      id: '1',
       type: 'assistant',
-      content: query.answer,
-      timestamp: new Date(query.created_at),
-      referencedDocuments: query.referenced_documents
-    };
-
-    setMessages([userMessage, aiMessage]);
+      content: 'Xin chào! Tôi là trợ lý AI của bạn. Hãy hỏi tôi bất cứ điều gì về các tài liệu đã tải lên.',
+      timestamp: new Date()
+    }]);
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[600px]">
-      {/* Chat History Sidebar */}
-      <div className="lg:col-span-1">
-        <Card className="h-full">
-          <CardContent className="p-4">
-            <h3 className="font-medium mb-4 flex items-center gap-2">
-              <MessageSquare className="h-4 w-4" />
-              Lịch sử hỏi đáp
-            </h3>
-            <ScrollArea className="h-[500px]">
-              <div className="space-y-2">
-                {queryHistory.map((query) => (
-                  <Card 
-                    key={query.id} 
-                    className="p-3 cursor-pointer hover:bg-accent transition-colors"
-                    onClick={() => loadHistoryQuery(query)}
-                  >
-                    <p className="text-sm font-medium line-clamp-2 mb-1">
-                      {query.question}
-                    </p>
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(query.created_at).toLocaleDateString('vi-VN')}
-                    </p>
-                    {query.referenced_documents.length > 0 && (
-                      <Badge variant="outline" className="text-xs mt-1">
-                        {query.referenced_documents.length} tài liệu
-                      </Badge>
-                    )}
-                  </Card>
-                ))}
-              </div>
-            </ScrollArea>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Main Chat Area */}
-      <div className="lg:col-span-3">
-        <Card className="h-full flex flex-col">
-          <CardContent className="flex-1 p-0 flex flex-col">
-            {/* Messages */}
-            <ScrollArea className="flex-1 p-4">
+    <div className="w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[600px] max-h-[600px] overflow-hidden">
+        {/* Chat Controls Sidebar */}
+        <div className="lg:col-span-1 h-full overflow-hidden">
+          <Card className="h-full">
+            <CardContent className="p-4 h-full overflow-y-auto">
+              <h3 className="font-medium mb-4 flex items-center gap-2">
+                <MessageSquare className="h-4 w-4" />
+                Điều khiển Chat
+              </h3>
               <div className="space-y-4">
-                {messages.map((message) => (
-                  <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[80%] rounded-lg p-3 ${
-                      message.type === 'user' 
-                        ? 'bg-primary text-primary-foreground' 
+                <div>
+                  <label className="text-sm font-medium">Collection Name:</label>
+                  <Input
+                    value={collectionName}
+                    onChange={(e) => setCollectionName(e.target.value)}
+                    placeholder="hello_my_friend"
+                    className="mt-1"
+                  />
+                </div>
+                <Button
+                  onClick={clearChat}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Xóa cuộc trò chuyện
+                </Button>
+                <Button
+                  onClick={checkAgentHealth}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Kiểm tra trạng thái Agent
+                </Button>
+              </div>
+              <div className="mt-6">
+                <h4 className="font-medium text-sm mb-2">Hướng dẫn sử dụng:</h4>
+                <ul className="text-xs text-muted-foreground space-y-1">
+                  <li>• Đặt câu hỏi về tài liệu đã tải lên</li>
+                  <li>• Agent sẽ tìm kiếm trong vector database</li>
+                  <li>• Xem tài liệu tham khảo trong phản hồi</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Main Chat Area */}
+        <div className="lg:col-span-3 h-full overflow-hidden">
+          <Card className="h-full flex flex-col">
+            <CardContent className="flex-1 p-0 flex flex-col overflow-hidden relative min-h-0">
+              {/* Messages */}
+              <ScrollArea className="flex-1 min-h-0" onScrollCapture={handleScroll}>
+                <div className="space-y-4 p-4">
+                  {messages.map((message) => (
+                    <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-[80%] rounded-lg p-3 break-words ${message.type === 'user'
+                        ? 'bg-primary text-primary-foreground'
                         : 'bg-muted'
-                    }`}>
-                      <div className="flex items-center gap-2 mb-2">
-                        {message.type === 'user' ? (
-                          <User className="h-4 w-4" />
-                        ) : (
-                          <Bot className="h-4 w-4" />
-                        )}
-                        <span className="text-xs opacity-70">
-                          {message.timestamp.toLocaleTimeString('vi-VN')}
-                        </span>
-                      </div>
-                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                      {message.referencedDocuments && message.referencedDocuments.length > 0 && (
-                        <div className="mt-2 flex items-center gap-1">
-                          <FileText className="h-3 w-3" />
+                        }`}>
+                        <div className="flex items-center gap-2 mb-2">
+                          {message.type === 'user' ? (
+                            <User className="h-4 w-4" />
+                          ) : (
+                            <Bot className="h-4 w-4" />
+                          )}
                           <span className="text-xs opacity-70">
-                            Tham khảo {message.referencedDocuments.length} tài liệu
+                            {message.timestamp.toLocaleTimeString('vi-VN')}
                           </span>
                         </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-                {loading && (
-                  <div className="flex justify-start">
-                    <div className="max-w-[80%] rounded-lg p-3 bg-muted">
-                      <div className="flex items-center gap-2">
-                        <Bot className="h-4 w-4" />
-                        <span className="text-sm">Đang suy nghĩ...</span>
+                        <p className="text-sm whitespace-pre-wrap break-words overflow-wrap-anywhere">{message.content}</p>
+                        {message.referencedDocuments && message.referencedDocuments.length > 0 && (
+                          <div className="mt-3">
+                            <div className="flex items-center gap-1 mb-2">
+                              <FileText className="h-3 w-3" />
+                              <span className="text-xs opacity-70">
+                                Tham khảo {message.referencedDocuments.length} tài liệu:
+                              </span>
+                            </div>
+                            <div className="space-y-1">
+                              {message.referencedDocuments.map((doc, index) => (
+                                <div key={index} className="text-xs bg-background/50 rounded p-2">
+                                  <div className="font-medium">{doc.file_name}</div>
+                                  <div className="text-muted-foreground">
+                                    {doc.product_name} - {doc.category}
+                                  </div>
+                                  <div className="text-muted-foreground">
+                                    Độ liên quan: {(doc.score * 100).toFixed(1)}%
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
-              </div>
-            </ScrollArea>
+                  ))}
+                  {loading && (
+                    <div className="flex justify-start">
+                      <div className="max-w-[80%] rounded-lg p-3 bg-muted">
+                        <div className="flex items-center gap-2">
+                          <Bot className="h-4 w-4" />
+                          <span className="text-sm">Đang suy nghĩ...</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+              </ScrollArea>
 
-            {/* Input Form */}
-            <div className="border-t p-4">
-              <form onSubmit={handleSubmit} className="flex gap-2">
-                <Input
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Đặt câu hỏi về tài liệu..."
-                  disabled={loading}
-                  className="flex-1"
-                />
-                <Button type="submit" disabled={loading || !inputValue.trim()}>
-                  <Send className="h-4 w-4" />
+              {/* Scroll to bottom button */}
+              {showScrollButton && (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="absolute bottom-20 right-4 rounded-full w-10 h-10 p-0 shadow-lg z-10"
+                  onClick={scrollToBottom}
+                  title="Cuộn xuống tin nhắn mới nhất"
+                >
+                  <ChevronDown className="h-4 w-4" />
                 </Button>
-              </form>
-              <p className="text-xs text-muted-foreground mt-2">
-                Hỏi về nội dung trong các tài liệu đã tải lên
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+              )}
+
+              {/* Input Form */}
+              <div className="border-t p-4 flex-shrink-0 bg-background">
+                <form onSubmit={handleSubmit} className="flex gap-2">
+                  <Input
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Đặt câu hỏi về tài liệu..."
+                    disabled={loading}
+                    className="flex-1"
+                  />
+                  <Button type="submit" disabled={loading || !inputValue.trim()}>
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </form>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Hỏi về nội dung trong các tài liệu đã tải lên
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );

@@ -10,10 +10,10 @@ const Index = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-6">
             <Brain className="h-16 w-16 text-primary mr-4" />
-            <h1 className="text-5xl font-bold">Hệ thống thông tin tri thức</h1>
+            <h1 className="text-5xl font-bold">Hệ thống quản lý tài liệu</h1>
           </div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Hệ thống quản trị nội bộ thông minh - Nơi tập trung và khai thác tri thức công ty một cách hiệu quả
+            Hệ thống quản lý tài liệu nội bộ thông minh - Nơi tập trung và khai thác tri thức dữ liệu một cách hiệu quả
           </p>
           <div className="mt-8">
             <Link to="/dashboard">
@@ -81,7 +81,7 @@ const Index = () => {
                 <li>• Đối chiếu yêu cầu kỹ thuật</li>
                 <li>• So sánh thông số sản phẩm</li>
                 <li>• Đánh giá mức độ đáp ứng</li>
-                <li>• Xuất file Word hoàn chỉnh</li>
+                <li>• Xuất file Excel hoàn chỉnh</li>
               </ul>
             </CardContent>
           </Card>

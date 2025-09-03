@@ -24,10 +24,10 @@ const Dashboard = () => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            Trung Tâm Tri Thức Thông Minh
+            Hệ thống quản lý tài liệu
           </h1>
           <p className="text-muted-foreground">
-            Quản lý tài liệu và hỏi đáp với AI về kiến thức công ty
+            Quản lý tài liệu và tự động tạo báo cáo kỹ thuật
           </p>
         </div>
 
