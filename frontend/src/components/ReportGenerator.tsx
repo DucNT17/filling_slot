@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { FileText, Download, Settings, Play, ChevronDown, ChevronRight, Folder, File } from "lucide-react";
+import { FileText, Download, Settings, Play, ChevronDown, ChevronRight, Folder, File, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 
@@ -111,6 +111,14 @@ export const ReportGenerator = () => {
         newSet.add(id);
       }
       return newSet;
+    });
+  };
+
+  const clearAllSelectedFiles = () => {
+    setSelectedFiles(new Set());
+    toast({
+      title: "Đã bỏ chọn",
+      description: "Đã bỏ chọn tất cả các file"
     });
   };
 
@@ -285,18 +293,31 @@ export const ReportGenerator = () => {
         {/* File Selection or Instructions Panel */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              {reportType === "manual" ? (
-                <>
-                  <Folder className="h-5 w-5" />
-                  Chọn tài liệu sản phẩm
-                  <Badge variant="outline">{selectedFiles.size} đã chọn</Badge>
-                </>
-              ) : (
-                <>
-                  <FileText className="h-5 w-5" />
-                  Hướng dẫn sử dụng
-                </>
+            <CardTitle className="flex items-center gap-2 justify-between">
+              <div className="flex items-center gap-2">
+                {reportType === "manual" ? (
+                  <>
+                    <Folder className="h-5 w-5" />
+                    Chọn tài liệu sản phẩm
+                    <Badge variant="outline">{selectedFiles.size} đã chọn</Badge>
+                  </>
+                ) : (
+                  <>
+                    <FileText className="h-5 w-5" />
+                    Hướng dẫn sử dụng
+                  </>
+                )}
+              </div>
+              {reportType === "manual" && selectedFiles.size > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={clearAllSelectedFiles}
+                  className="text-xs"
+                >
+                  <X className="h-3 w-3 mr-1" />
+                  Bỏ chọn tất cả
+                </Button>
               )}
             </CardTitle>
           </CardHeader>
