@@ -162,6 +162,6 @@ def get_biggest_table_and_save_to_word(pdf_path, output_word_path=None, threshol
         return None
 
 if __name__ == "__main__":
-    pdf_file_path = "D:\\study\\LammaIndex\\documents\\TCKT+Bản vẽ hệ thống điều hòa chính xác.pdf"
+    pdf_file_path = "E:\\Downloads\\YCKT ĐHCX - R2.1.pdf"
     output_word_file = "D:\\study\\LammaIndex\\output\\largest_table.docx"
     get_biggest_table_and_save_to_word(pdf_file_path, output_word_file)
