@@ -201,14 +201,14 @@ def create_excel_file(context_queries, product_keys):
     # print(f"Đã lưu file Excel tại: {output_path}")
 def create_json_to_excel1():
     # context_queries, product_keys = await adapt_or_not(pdf_path, filename_ids, collection_name)
-    with open("D:/study/LammaIndex/output/context_queries.json", "r", encoding="utf-8") as f:
+    with open("output/context_queries.json", "r", encoding="utf-8") as f:
         context_queries = json.load(f)
-    with open("D:/study/LammaIndex/output/product_keys.json", "r", encoding="utf-8") as f:
+    with open("output/product_keys.json", "r", encoding="utf-8") as f:
         product_keys = json.load(f)
     print("=== Bắt đầu tạo file Excel ===")
     wb = create_excel_file(context_queries, product_keys)
     print("=== Đã tạo file Excel thành công ===")
-    output_path = "D:/study/LammaIndex/output/bang_tuyen_bo_dap_ung10.xlsx"
+    output_path = "output/bang_tuyen_bo_dap_ung10.xlsx"
     wb.save(output_path)
     print(f"Đã lưu file Excel tại: {output_path}")
 

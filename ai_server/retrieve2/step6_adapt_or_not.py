@@ -34,9 +34,9 @@ async def adapt_or_not(path_pdf, filename_ids, collection_name, max_concurrent=1
     
     # Chạy tất cả tasks đồng thời với giới hạn semaphore
     await asyncio.gather(*tasks, return_exceptions=True)
-    with open("D:/study/LammaIndex/output/context_queries.json", "w", encoding="utf-8") as f:
+    with open("output/context_queries.json", "w", encoding="utf-8") as f:
         json.dump(context_queries, f, ensure_ascii=False, indent=4)
-    with open("D:/study/LammaIndex/output/product_keys.json", "w", encoding="utf-8") as f:
+    with open("output/product_keys.json", "w", encoding="utf-8") as f:
         json.dump(product_keys, f, ensure_ascii=False, indent=4)
     return context_queries, product_keys
 

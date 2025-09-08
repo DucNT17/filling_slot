@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile.backend
+    ports:
+      - "5000:5000"
+    environment:
+      - LLAMA_API_KEY=${LLAMA_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - QDRANT_URL=${QDRANT_URL}
+      - DB_POSTGRES_URL=${DB_POSTGRES_URL}
+    volumes:
+      - ./output:/app/output
+      - ./output10:/app/output10
+      - ./documents:/app/documents
+      - ./data:/app/data
+      - ./downloads:/app/downloads
+      - ./downloads1:/app/downloads1
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: dockerfile.frontend
+    ports:
+      - "8080:8080"
+    environment:
+      - VITE_API_BASE_URL=http://backend:5000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  app-data:
