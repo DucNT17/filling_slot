@@ -70,7 +70,7 @@ def get_node_metadata(pdf_path, product_id, filename_id):
         )
         # Lưu metadata
         metadata_dict[idx] = dict(node.metadata)
-    output_dir = "D:/study/LammaIndex/output"
+    output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
     output_file = f"{output_dir}/{nodes[0].metadata['file_name']}.md"
     with open(output_file, "w", encoding="utf-8") as f:

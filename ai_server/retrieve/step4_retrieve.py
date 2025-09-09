@@ -426,9 +426,9 @@ def save_json_files(product_id, kha_nang_dap_ung_tham_chieu_step, adapt_or_not_s
     Synchronous helper function for saving JSON files
     """
     try:
-        with open(f"D:/study/LammaIndex/output/kha_nang_dap_ung_{product_id}.json", "w", encoding="utf-8") as f:
+        with open(f"output/kha_nang_dap_ung_{product_id}.json", "w", encoding="utf-8") as f:
             json.dump(kha_nang_dap_ung_tham_chieu_step, f, ensure_ascii=False, indent=4)
-        with open(f"D:/study/LammaIndex/output/adapt_or_not_{product_id}.json", "w", encoding="utf-8") as f:
+        with open(f"output/adapt_or_not_{product_id}.json", "w", encoding="utf-8") as f:
             json.dump(adapt_or_not_step, f, ensure_ascii=False, indent=4)
     except Exception as e:
         print(f"Lỗi khi lưu file cho product_id {product_id}: {e}")
@@ -438,9 +438,9 @@ def save_final_results(context_queries, product_keys):
     Synchronous helper function for saving final results
     """
     try:
-        with open("D:/study/LammaIndex/output/context_queries.json", "w", encoding="utf-8") as f:
+        with open("output/context_queries.json", "w", encoding="utf-8") as f:
             json.dump(context_queries, f, ensure_ascii=False, indent=4)
-        with open("D:/study/LammaIndex/output/product_keys.json", "w", encoding="utf-8") as f:
+        with open("output/product_keys.json", "w", encoding="utf-8") as f:
             json.dump(product_keys, f, ensure_ascii=False, indent=4)
     except Exception as e:
         print(f"Lỗi khi lưu file kết quả cuối: {e}")

@@ -9,9 +9,9 @@ python-docx
 docx2pdf
 llama-index-vector-stores-qdrant
 fastembed
-python-docx
 psycopg2-binary
 werkzeug
 flask 
 flasgger
 flask_cors
+camelot-py==1.0.0
