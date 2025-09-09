@@ -17,3 +17,8 @@ cd frontend
 ```bash
 npm run dev
 ```
+
+## Chay Docker
+```bash
+docker-compose up --build -d
+```
