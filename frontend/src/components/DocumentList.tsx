@@ -10,7 +10,7 @@ import { FileText, Download, Trash2, Search, ChevronDown, ChevronRight, Folder, 
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/";
+const API_BASE_URL = "http://52.64.205.176:5000/";
 
 interface FileItem {
   id: string;

@@ -8,7 +8,7 @@ import { ProductLineManagement } from "./ProductLineManagement";
 import { ProductManagement } from "./ProductManagement";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/";
+const API_BASE_URL = "http://52.64.205.176:5000/";
 
 export const ManagementDashboard = () => {
     const [stats, setStats] = useState({

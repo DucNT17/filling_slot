@@ -11,7 +11,7 @@ import { Plus, Edit, Trash2, Folder, FolderOpen } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:5000/";
+const API_BASE_URL = "http://52.64.205.176:5000/";
 
 interface Category {
     id: string;
