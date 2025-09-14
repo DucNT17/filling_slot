@@ -41,7 +41,7 @@ export const KnowledgeChat = () => {
   const { toast } = useToast();
 
   // Backend API base URL
-  const API_BASE_URL = "http://localhost:5000";
+  const API_BASE_URL = "http://52.64.205.176:8080/";
 
   useEffect(() => {
     checkAgentHealth();
