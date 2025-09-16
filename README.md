@@ -1,3 +1,7 @@
+## Python sử dụng
+```bash
+python 3.12
+```
 ## Chạy Backend:
 ```bash
 source activate
